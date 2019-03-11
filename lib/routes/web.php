@@ -14,4 +14,10 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/','ProductController@index')->name('list-product');
+Route::get('/','HomeController@index')->name('list-product');
+Route::get('shop','HomeController@shop')->name('shop');
+Route::get('checkout','HomeController@checkout')->name('checkout');
+Route::get('payment','HomeController@payment')->name('payment');
+Route::get('single','HomeController@single')->name('single');
+Route::get('contact','HomeController@contact')->name('contact');
+Route::get('about','HomeController@about')->name('about');
