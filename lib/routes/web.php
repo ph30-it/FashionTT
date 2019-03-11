@@ -15,3 +15,4 @@
 //     return view('welcome');
 // });
 Route::get('/','ProductController@index')->name('list-product');
+route::view('ahihi', 'backend.category.list');
