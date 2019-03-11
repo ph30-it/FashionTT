@@ -17,3 +17,4 @@ Route::get('payment','HomeController@payment')->name('payment');
 Route::get('single','HomeController@single')->name('single');
 Route::view('/welcome', 'frontend.contact');
 Route::view('/welcome', 'frontend.about');
+//Route::view('/welcome', 'frontend.about');
