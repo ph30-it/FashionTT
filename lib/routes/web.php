@@ -19,6 +19,8 @@ Route::get('single','HomeController@single')->name('single');
 Route::view('contact', 'frontend.contact');
 Route::view('about', 'frontend.about');
 Route::get('login','admin\LoginController@getLogin')->name('login');
+Route::get('register','admin\LoginController@getRegister')->name('register');
+Route::POST('register','admin\LoginController@postRegister')->name('registered');
 Route::POST('login','admin\LoginController@postLogin')->name('logined');
 
 Route::get('logout','admin\LoginController@getLogout')->name('logout');

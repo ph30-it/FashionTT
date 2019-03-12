@@ -84,6 +84,11 @@ h2.active {
     background-color: #f2dede;
     border-color: #ebccd1;
 }
+.alert-success {
+    color: #a94442;
+    background-color: #98FB98;
+    border-color: #ebccd1;
+}
 
 .alert {
     padding: 15px;
