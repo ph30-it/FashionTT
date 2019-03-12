@@ -12,14 +12,8 @@
 	<div class="wrapper fadeInDown">
 		<div id="formContent">
 			<!-- Tabs Titles -->
-			<h2 class="active">Sign In</a> </h2>
-			<h2 class="inactive underlineHover"><a href="{{route('register')}}" title="">Sign Up</a> </h2>
-
-			<!-- Icon -->
-			<div class="fadeIn first">
-				<img src="{{asset('lib/public/images/user.png')}}" id="icon" alt="User Icon" />
-			</div>
-
+			<h2 class="inactive underlineHover"><a href="{{route('login')}}" title="">Sign In</a> </h2>
+			<h2 class="active">Sign Up </h2>
 			<!-- Login Form -->
 			@if($errors->any())
 			<div class="alert alert-danger">
@@ -33,19 +27,15 @@
 				<li>{{session('message')}}</li>
 			</div>
 			@endif
-			<form action="{{route('logined')}}" method="POST" >
+			<form action="{{route('registered')}}" method="POST" >
 				@csrf
 				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Username">
+				<input type="text"  class="fadeIn third" name="email" placeholder="Email">	
 				<input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
-				<input type="submit" class="fadeIn fourth" value="Log In"><br>
-				<input type="checkbox" name="remember" value="remember">Remember me
+				<input type="submit" class="fadeIn fourth" value="Register"><br>
 
 			</form>
 
-			<!-- Remind Passowrd -->
-			<div id="formFooter">
-				<a class="underlineHover" href="#">Forgot Password?</a>
-			</div>
 
 		</div>
 
