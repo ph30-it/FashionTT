@@ -215,7 +215,21 @@ li.dropdown.act a.w3_icons_act {
     background: #0e0e0e;
     color: #fff;
 }
+li{
+ list-style: none;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
 
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
 .mobile-menu img {
     position: absolute;
     width: 150px;
