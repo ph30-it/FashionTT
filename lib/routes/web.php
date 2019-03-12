@@ -41,3 +41,9 @@ Route::POST('login','admin\LoginController@postLogin')->name('logined');
 
 Route::get('logout','admin\LoginController@getLogout')->name('logout');
 
+
+//category
+Route::get('admin/category/list', 'CategoryController@index')->name('category-list');
+Route::get('admin/category/create', 'CategoryController@create')->name('category-create');
+Route::post('admin/category/store', 'CategoryController@store')->name('category-store');
+Route::delete('admin/category/{id}/delete', 'CategoryController@destroy')->name('category-delete');
