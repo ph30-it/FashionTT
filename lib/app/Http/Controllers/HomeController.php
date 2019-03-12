@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Product;
+use App\Models\Image;
 class HomeController extends Controller
 {
     public function index()
@@ -12,7 +13,10 @@ class HomeController extends Controller
     }
     public function shop()
     {
-    	return view('frontend.shop');
+        $product=Product::with('Images')->get()->take(20)->toArray();
+        //dd($product);
+        //$product=Product::all()->with('Image')->take(20)->toArray();
+    	return view('frontend.shop',compact('product'));
     }
     public function checkout()
     {
