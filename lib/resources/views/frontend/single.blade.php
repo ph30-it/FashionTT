@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script type="application/x-javascript">
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -35,60 +35,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
-	    rel="stylesheet">
+	rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
 
 <body>
 	<!-- banner -->
 	<div class="banner_top innerpage" id="home">
-		<div class="wrapper_top_w3layouts">
-			<div class="header_agileits">
-				<div class="logo inner_page_log">
-					<h1><a class="navbar-brand" href="index.html"><span>Downy</span> <i>Shoes</i></a></h1>
-				</div>
-				<div class="overlay overlay-contentpush">
-					<button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
-
-					<nav>
-						<ul>
-							<li><a href="index.html" class="active">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="404.html">Team</a></li>
-							<li><a href="shop.html">Shop Now</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</nav>
-				</div>
-				<div class="mobile-nav-button">
-					<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
-				</div>
-				<!-- cart details -->
-				<div class="top_nav_right">
-					<div class="shoecart shoecart2 cart cart box_1">
-						<form action="#" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
-							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- //cart details -->
-		<!-- search -->
-		<div class="search_w3ls_agileinfo">
-			<div class="cd-main-header">
-				<ul class="cd-header-buttons">
-					<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-				</ul>
-			</div>
-			<div id="cd-search" class="cd-search">
-				<form action="#" method="post">
-					<input name="Search" type="search" placeholder="Click enter after typing...">
-				</form>
-			</div>
-		</div>
+		@include('frontend.menu')
 		<!-- //search -->
 		<div class="clearfix"></div>
 		<!-- /banner_inner -->
@@ -145,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h5>Check delivery, payment options and charges at your location</h5>
 					<form action="#" method="post">
 						<input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}"
-						    required="">
+						required="">
 						<input type="submit" value="Check">
 					</form>
 				</div>
@@ -153,11 +107,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="color-quality-right">
 						<h5>Quality :</h5>
 						<select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-								<option value="null">5 Qty</option>
-								<option value="null">6 Qty</option> 
-								<option value="null">7 Qty</option>					
-								<option value="null">10 Qty</option>								
-							</select>
+							<option value="null">5 Qty</option>
+							<option value="null">6 Qty</option> 
+							<option value="null">7 Qty</option>					
+							<option value="null">10 Qty</option>								
+						</select>
 					</div>
 				</div>
 				<div class="occasional">
@@ -235,11 +189,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
 									blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
 									ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-									magna aliqua.</p>
+								magna aliqua.</p>
 								<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
 									blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
 									ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-									magna aliqua.</p>
+								magna aliqua.</p>
 							</div>
 						</div>
 						<!--//tab_one-->
@@ -258,7 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</ul>
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget.Ut enim ad minima veniam,
 												quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
-												autem vel eum iure reprehenderit.</p>
+											autem vel eum iure reprehenderit.</p>
 										</div>
 										<div class="clearfix"> </div>
 									</div>
@@ -282,11 +236,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
 									blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
 									ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-									magna aliqua.</p>
+								magna aliqua.</p>
 								<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
 									blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
 									ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-									magna aliqua.</p>
+								magna aliqua.</p>
 							</div>
 						</div>
 					</div>
@@ -583,13 +537,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			<span class="fa fa-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
+					<span class="fa fa-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
 				<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			<span class="fa fa-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
+					<span class="fa fa-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
 				<!-- The Modal -->
 
 			</div>
@@ -717,41 +671,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<p class="copy-right-w3ls-agileits">&copy 2018 Downy Shoes. All rights reserved | Design by <a href="http://w3layouts.com/">w3layouts</a></p>
 		</div>
 	</div>
-	</div>
-	<!-- //footer -->
-    <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-	<!-- js -->
-	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-	<!-- //js -->
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-		shoe.render();
+</div>
+<!-- //footer -->
+<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<!-- cart-js -->
+<script src="js/minicart.js"></script>
+<script>
+	shoe.render();
 
-		shoe.cart.on('shoe_checkout', function (evt) {
-			var items, len, i;
+	shoe.cart.on('shoe_checkout', function (evt) {
+		var items, len, i;
 
-			if (this.subtotal() > 0) {
-				items = this.items();
+		if (this.subtotal() > 0) {
+			items = this.items();
 
-				for (i = 0, len = items.length; i < len; i++) {}
-			}
-		});
-	</script>
-	<!-- //cart-js -->
-	<!-- /nav -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	<script src="js/classie.js"></script>
-	<script src="js/demo1.js"></script>
-	<!-- //nav -->
-	<!-- single -->
-	<script src="js/imagezoom.js"></script>
-	<!-- single -->
-	<!-- script for responsive tabs -->
-	<script src="js/easy-responsive-tabs.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('#horizontalTab').easyResponsiveTabs({
+			for (i = 0, len = items.length; i < len; i++) {}
+		}
+});
+</script>
+<!-- //cart-js -->
+<!-- /nav -->
+<script src="js/modernizr-2.6.2.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/demo1.js"></script>
+<!-- //nav -->
+<!-- single -->
+<script src="js/imagezoom.js"></script>
+<!-- single -->
+<!-- script for responsive tabs -->
+<script src="js/easy-responsive-tabs.js"></script>
+<script>
+	$(document).ready(function () {
+		$('#horizontalTab').easyResponsiveTabs({
 				type: 'default', //Types: default, vertical, accordion           
 				width: 'auto', //auto or any width like 600px
 				fit: true, // 100% fit in a container
@@ -764,16 +718,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					$info.show();
 				}
 			});
-			$('#verticalTab').easyResponsiveTabs({
-				type: 'vertical',
-				width: 'auto',
-				fit: true
-			});
+		$('#verticalTab').easyResponsiveTabs({
+			type: 'vertical',
+			width: 'auto',
+			fit: true
 		});
-	</script>
-	<!-- FlexSlider -->
-	<script src="js/jquery.flexslider.js"></script>
-	<script>
+	});
+</script>
+<!-- FlexSlider -->
+<script src="js/jquery.flexslider.js"></script>
+<script>
 		// Can also be used with $(document).ready()
 		$(window).load(function () {
 			$('.flexslider').flexslider({
