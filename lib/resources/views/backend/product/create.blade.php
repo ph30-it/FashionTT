@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title','Category')
+@section('title','product')
 @section('content')
 
 <div class="wrapper">
@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('category-list')}}">
+                    <a href="{{ route('product-list')}}">
                         <i class="pe-7s-user"></i>
                         <p>Categories</p>
                     </a>
@@ -71,7 +71,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                       <a href="">
+                     <a href="">
                         <i class="fa fa-search"></i>
                         <p class="hidden-lg hidden-md">Search</p>
                     </a>
@@ -80,35 +80,35 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                   <a href="">
-                       <p>Account</p>
-                   </a>
-               </li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <p>
-                      Dropdown
-                      <b class="caret"></b>
-                  </p>
+                 <a href="">
+                     <p>Account</p>
+                 </a>
+             </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <p>
+                  Dropdown
+                  <b class="caret"></b>
+              </p>
 
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <p>Log out</p>
-            </a>
-        </li>
-        <li class="separator hidden-lg hidden-md"></li>
-    </ul>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">
+            <p>Log out</p>
+        </a>
+    </li>
+    <li class="separator hidden-lg hidden-md"></li>
+</ul>
 </div>
 </div>
 </nav>
@@ -120,13 +120,13 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Create Category</h4>
-                        <button type="button" class="btn btn-success"><a href="{{route('category-list')}}">Categories List</a></button>
+                        <h4 class="title">Create Product</h4>
+                        <button type="button" class="btn btn-success"><a href="{{route('product-list')}}">Categories List</a></button>
                     </div>
                     <div class="content">
-                        <form action="{{ route('category-store')}}" method="POST">
-                         @csrf
-                         <div class="row">
+                        <form action="{{ route('product-store')}}" method="POST">
+                           @csrf
+                           <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Name</label>
@@ -138,23 +138,42 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Alias</label>
-                                    <input type="text" class="form-control" name="alias" id="alias">
+                                    <label>Price</label>
+                                    <input type="nummber" class="form-control" name="price" id="price">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Parent Id</label>
-                                    <select class="form-control" name="parent_id">
-                                        <option value="0"> Please Choose Categories</option>
-                                        <?php cate_parent($parent); ?>
-                                    </select>
+                                    <label>Sale</label>
+                                    <input type="number" class="form-control" name="sale" id="sale" value="0" >
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Create Category</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="text" class="form-control" name="description" id="description" >
+                                </div>
+                            </div>
+                        </div>
+                        <label>Categories</label>
+                        <select class="form-control" name="category_id">
+                            @foreach($categoryID as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+                            @endforeach
+                        </select>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input type="file" class="form-control" name="image" id="image" >
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-info btn-fill pull-right">Create product</button>
                         <div class="clearfix"></div>
                     </form>
                 </div>

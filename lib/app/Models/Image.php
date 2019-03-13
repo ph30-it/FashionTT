@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     protected $fillable = [
-        'name','product_id',
+        'name','product_id'
     ];
     public $timestamps = false;
     public function product()
