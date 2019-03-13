@@ -44,11 +44,11 @@ Route::get('logout','admin\LoginController@getLogout')->name('logout');
 Route::group(['prefix' => 'admin'], function(){
 	//route category
 	Route::group(['prefix' => 'category'], function(){
-		Route::get('/list', 'CategoryController@index')->name('category-list');
-		Route::get('/create', 'CategoryController@create')->name('category-create');
-		Route::post('/store', 'CategoryController@store')->name('category-store');
-		Route::get('/{id}/edit', 'CategoryController@edit')->name('category-edit');
-		Route::put('/{id}/update', 'CategoryController@update')->name('category-update');
-		Route::delete('/{id}/delete', 'CategoryController@destroy')->name('category-delete');
+		Route::get('/list', 'admin\CategoryController@index')->name('category-list');
+		Route::get('/create', 'admin\CategoryController@create')->name('category-create');
+		Route::post('/store', 'admin\CategoryController@store')->name('category-store');
+		Route::get('/{id}/edit', 'admin\CategoryController@edit')->name('category-edit');
+		Route::put('/{id}/update', 'admin\CategoryController@update')->name('category-update');
+		Route::delete('/{id}/delete', 'admin\CategoryController@destroy')->name('category-delete');
 	});
 });

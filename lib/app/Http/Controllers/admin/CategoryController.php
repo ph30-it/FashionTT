@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\category;
+use App\Models\Category;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $category = category::all();//lay tat ca data bang breed;
+        $category = Category::all();//lay tat ca data bang breed;
         return view('backend.category.list', compact('category'));
     }
 
@@ -40,7 +40,7 @@ class CategoryController extends Controller
     {
         //
         $data = $request->all();
-        category::create($data);
+        Category::create($data);
         return redirect()->route('category-list');
     }
 
@@ -50,7 +50,7 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(category $category)
+    public function show(Category $category)
     {
         //
     }
@@ -61,10 +61,10 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(category $id)
+    public function edit(Category $id)
     {
         //
-        $category = category::find($id)->first();
+        $category = Category::find($id)->first();
         return view('backend.category.edit', compact('category'));
     }
 
@@ -78,7 +78,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $category = category::find($id);
+        $category = Category::find($id);
         $data = $request->all();
         $category->update($data);
         return redirect()->route('category-list');
@@ -92,7 +92,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        category::destroy($id);
+        Category::destroy($id);
         return redirect()->route('category-list');
     }
 }
