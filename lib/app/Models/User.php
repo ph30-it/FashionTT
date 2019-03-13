@@ -42,7 +42,7 @@ class User extends Authenticatable
     }
     public function role()
     {
-        return $this->belongTo('App\Models\Role');
+        return $this->belongsTo('App\Models\Role');
     }
      public function orders()
     {

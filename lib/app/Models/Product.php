@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'name', 'price', 'sale','description','category_id'
+        'name', 'price', 'sale','description','view','category_id'
     ];
     public $timestamps = false;
     public function cate()
     {
-    	return $this->belongTo('App\Models\Category');
+    	return $this->belongsTo('App\Models\Category');
     }
     public function images()
     {
