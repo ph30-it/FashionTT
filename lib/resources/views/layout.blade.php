@@ -17,7 +17,7 @@
 	</script>
 	<!-- //custom-theme -->
 	
-	<link href="@yield('css')" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{asset('lib/public/css/')}}/@yield('css')" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{asset('lib/public/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="{{asset('lib/public/css/shop.css')}}" type="text/css" media="screen" property="" />
 	<link href="{{asset('lib/public/css/style7.css')}}" rel="stylesheet" type="text/css" media="all" />
@@ -304,5 +304,5 @@
 	});
 </script>
 <script type="text/javascript" src="{{asset('lib/public/js/bootstrap-3.1.1.min.js')}}"></script>
-<script type="text/javascript" src="@yield('js')"></script>
+<script type="text/javascript" src="{{asset('lib/public/js/')}}/@yield('js')"></script>
 </html>

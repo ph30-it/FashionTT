@@ -1,12 +1,6 @@
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php session_start();?>
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="en">
 <head>
 	<title>Downy Shoes an Ecommerce Category Bootstrap Responsive Website Template | Single :: w3layouts</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,16 +17,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 	</script>
 	<!-- //custom-theme -->
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/shop.css" type="text/css" media="screen" property="" />
-	<link href="css/style7.css" rel="stylesheet" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-	<link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css' />
+	<link href="http://localhost/web/public/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="http://localhost/web/public/css/shop.css" type="text/css" media="screen" property="" />
+	<link href="http://localhost/web/public/css/style7.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="http://localhost/web/public/css/flexslider.css" type="text/css" media="screen" />
+	<link href="http://localhost/web/public/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css' />
 	<!-- Owl-carousel-CSS -->
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="http://localhost/web/public/css/jquery-ui1.css">
+	<link href="http://localhost/web/public/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- font-awesome-icons -->
-	<link href="css/font-awesome.css" rel="stylesheet">
+	<link href="http://localhost/web/public/css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	rel="stylesheet">
@@ -43,14 +37,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- banner -->
 	<div class="banner_top innerpage" id="home">
 		@include('frontend.menu')
-		<!-- //search -->
+
 		<div class="clearfix"></div>
-		<!-- /banner_inner -->
+		
 		<div class="services-breadcrumb_w3ls_agileinfo">
 			<div class="inner_breadcrumb_agileits_w3">
 
 				<ul class="short">
-					<li><a href="index.html">Home</a><i>|</i></li>
+					<li><a href="http://localhost/web/">Home</a><i>|</i></li>
 					<li>Single</li>
 				</ul>
 			</div>
@@ -67,78 +61,62 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="flexslider">
 
 						<ul class="slides">
-							<li data-thumb="images/d2.jpg">
-								<div class="thumb-image"> <img src="images/d2.jpg" data-imagezoom="true" class="img-responsive"> </div>
+							@foreach ($single['images'] as  $val)
+							<li data-thumb="{{asset('lib/public/images_product')}}/{{$val['name']}}">
+								<div class="thumb-image"> <img src="http://localhost/web/public/images/shoes/<?=$val['name']?>" data-imagezoom="true" class="img-responsive"> </div>
 							</li>
-							<li data-thumb="images/d1.jpg">
-								<div class="thumb-image"> <img src="images/d1.jpg" data-imagezoom="true" class="img-responsive"> </div>
-							</li>
-							<li data-thumb="images/d3.jpg">
-								<div class="thumb-image"> <img src="images/d3.jpg" data-imagezoom="true" class="img-responsive"> </div>
-							</li>
+							@endforeach
 						</ul>
 						<div class="clearfix"></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-8 single-right-left simpleCart_shelfItem">
-				<h3>Shoe Rock Vision(SRV) Sneakers (Blue)</h3>
-				<p><span class="item_price">$650</span>
-					<del>$1,199</del>
-				</p>
-				<div class="rating1">
-					<ul class="stars">
-						<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-					</ul>
-				</div>
-				<div class="description">
-					<h5>Check delivery, payment options and charges at your location</h5>
-					<form action="#" method="post">
-						<input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}"
-						required="">
-						<input type="submit" value="Check">
-					</form>
-				</div>
-				<div class="color-quality">
-					<div class="color-quality-right">
-						<h5>Quality :</h5>
-						<select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-							<option value="null">5 Qty</option>
-							<option value="null">6 Qty</option> 
-							<option value="null">7 Qty</option>					
-							<option value="null">10 Qty</option>								
-						</select>
+				<h3><?=$result['Name']?>
+					<?php if ($result['Quantity']<= 0): ?>
+					<br>(Sản phẩm đã hết hàng)
+					<?php endif ?></h3>
+					<p><span class="item_price">$<?=$result['PriceNew']?></span>
+						<del>$<?=$result['Price']?></del>
+					</p>
+					<div class="rating1">
+						<ul class="stars">
+							<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+						</ul>
 					</div>
-				</div>
-				<div class="occasional">
-					<h5>Types :</h5>
-					<div class="colr ert">
-						<label class="radio"><input type="radio" name="radio" checked=""><i></i>Casual Shoes</label>
+					<div class="occasional">
+						<?=$result['Detail'] ?>
+						<div class="clearfix"> </div>
 					</div>
-					<div class="colr">
-						<label class="radio"><input type="radio" name="radio"><i></i>Sneakers </label>
-					</div>
-					<div class="colr">
-						<label class="radio"><input type="radio" name="radio"><i></i>Formal Shoes</label>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="occasion-cart">
-					<div class="shoe single-item single_page_b">
-						<form action="#" method="post">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="add" value="1">
-							<input type="hidden" name="shoe_item" value="Chikku Loafers">
-							<input type="hidden" name="amount" value="405.00">
-							<input type="submit" name="submit" value="Add to cart" class="button add">
+					<div class="occasion-cart">
+						<div class="shoe single-item single_page_b">
+							<form action="" method="POST">
+								<button type="button" name="submit" value="<?=$result['Id']?>" class="addProduct" 
+									<?php if ($result['Quantity']<=0): ?>
+									disabled
+									<?php endif ?> 
+									style="font-size: 13px;
+									color: #fff;
+									background: #1d1d1d;
+									text-decoration: none;
+									position: relative;
+									border: none;
+									border-radius: 0;
+									text-transform: uppercase;
+									padding: .7em 1em;
+									outline: none;
+									letter-spacing: 1px;
+									font-weight: 600;
+								}">
+							Add to cart</button>	
 
-							<a href="#" data-toggle="modal" data-target="#myModal1"></a>
 						</form>
 
+						
 					</div>
 
 				</div>
@@ -172,90 +150,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			</div>
 			<div class="clearfix"> </div>
-			<!--/tabs-->
-			<div class="responsive_tabs">
-				<div id="horizontalTab">
-					<ul class="resp-tabs-list">
-						<li>Description</li>
-						<li>Reviews</li>
-						<li>Information</li>
-					</ul>
-					<div class="resp-tabs-container">
-						<!--/tab_one-->
-						<div class="tab1">
-
-							<div class="single_page">
-								<h6>Lorem ipsum dolor sit amet</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
-									blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-									ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-								magna aliqua.</p>
-								<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
-									blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-									ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-								magna aliqua.</p>
-							</div>
-						</div>
-						<!--//tab_one-->
-						<div class="tab2">
-
-							<div class="single_page">
-								<div class="bootstrap-tab-text-grids">
-									<div class="bootstrap-tab-text-grid">
-										<div class="bootstrap-tab-text-grid-left">
-											<img src="images/t1.jpg" alt=" " class="img-responsive">
-										</div>
-										<div class="bootstrap-tab-text-grid-right">
-											<ul>
-												<li><a href="#">Admin</a></li>
-												<li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</a></li>
-											</ul>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget.Ut enim ad minima veniam,
-												quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
-											autem vel eum iure reprehenderit.</p>
-										</div>
-										<div class="clearfix"> </div>
-									</div>
-									<div class="add-review">
-										<h4>add a review</h4>
-										<form action="#" method="post">
-											<input type="text" name="Name" required="Name">
-											<input type="email" name="Email" required="Email">
-											<textarea name="Message" required=""></textarea>
-											<input type="submit" value="SEND">
-										</form>
-									</div>
-								</div>
-
-							</div>
-						</div>
-						<div class="tab3">
-
-							<div class="single_page">
-								<h6>Shoe Rock Vision(SRV) Sneakers (Blue)</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
-									blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-									ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-								magna aliqua.</p>
-								<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
-									blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-									ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-								magna aliqua.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--//tabs-->
-			<!-- /new_arrivals -->
 			<div class="new_arrivals">
 				<h3>Featured Products</h3>
-				<!-- /womens -->
+				<?php foreach ($special as $key => $value): ?>
 				<div class="col-md-3 product-men women_two">
 					<div class="product-shoe-info shoe">
 						<div class="men-pro-item">
 							<div class="men-thumb-item">
-								<img src="images/s4.jpg" alt="">
+								<img src="<?php echo IMG_PATH ?>shoes/<?=$value['Image']?>">
 								<div class="men-cart-pro">
 									<div class="inner-men-cart-pro">
 										<a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -265,13 +167,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</div>
 							<div class="item-info-product">
 								<h4>
-									<a href="single.html">Shuberry Heels </a>
+									<a href=""><?=$value['Name']?></a>
 								</h4>
 								<div class="info-product-price">
 									<div class="grid_meta">
 										<div class="product_price">
 											<div class="grid-price ">
-												<span class="money ">$575.00</span>
+												<span class="money ">$<?=$value['PriceNew']?></span>
 											</div>
 										</div>
 										<ul class="stars">
@@ -283,16 +185,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										</ul>
 									</div>
 									<div class="shoe single-item hvr-outline-out">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart">
-											<input type="hidden" name="add" value="1">
-											<input type="hidden" name="shoe_item" value="Shuberry Heels">
-											<input type="hidden" name="amount" value="575.00">
-											<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-											<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-										</form>
-
+										<button type="submit" class="shoe-cart pshoe-cart addproduct">
+											<i class="fa fa-cart-plus" aria-hidden="true"></i>
+										</button>
 									</div>
 								</div>
 								<div class="clearfix"></div>
@@ -300,158 +195,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3 product-men women_two">
-					<div class="product-shoe-info shoe">
-						<div class="men-pro-item">
-							<div class="men-thumb-item">
-								<img src="images/s5.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-							</div>
-							<div class="item-info-product">
-								<h4>
-									<a href="single.html">Red Bellies </a>
-								</h4>
-								<div class="info-product-price">
-									<div class="grid_meta">
-										<div class="product_price">
-											<div class="grid-price ">
-												<span class="money ">$325.00</span>
-											</div>
-										</div>
-										<ul class="stars">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-									<div class="shoe single-item hvr-outline-out">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart">
-											<input type="hidden" name="add" value="1">
-											<input type="hidden" name="shoe_item" value="Red Bellies">
-											<input type="hidden" name="amount" value="325.00">
-											<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-											<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-										</form>
-
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 product-men women_two">
-					<div class="product-shoe-info shoe">
-						<div class="men-pro-item">
-							<div class="men-thumb-item">
-								<img src="images/s7.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-							</div>
-							<div class="item-info-product">
-								<h4>
-									<a href="single.html">Running Shoes</a>
-								</h4>
-								<div class="info-product-price">
-									<div class="grid_meta">
-										<div class="product_price">
-											<div class="grid-price ">
-												<span class="money ">$875.00</span>
-											</div>
-										</div>
-										<ul class="stars">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-									<div class="shoe single-item hvr-outline-out">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart">
-											<input type="hidden" name="add" value="1">
-											<input type="hidden" name="shoe_item" value="Running Shoes">
-											<input type="hidden" name="amount" value="875.00">
-											<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-											<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-										</form>
-
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 product-men women_two">
-					<div class="product-shoe-info shoe">
-						<div class="men-pro-item">
-							<div class="men-thumb-item">
-								<img src="images/s8.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-							</div>
-							<div class="item-info-product">
-								<h4>
-									<a href="single.html">Sukun Casuals</a>
-								</h4>
-								<div class="info-product-price">
-									<div class="grid_meta">
-										<div class="product_price">
-											<div class="grid-price ">
-												<span class="money ">$505.00</span>
-											</div>
-										</div>
-										<ul class="stars">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-									<div class="shoe single-item hvr-outline-out">
-										<form action="#" method="post">
-											<input type="hidden" name="cmd" value="_cart">
-											<input type="hidden" name="add" value="1">
-											<input type="hidden" name="shoe_item" value="Sukun Casuals">
-											<input type="hidden" name="amount" value="505.00">
-											<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-											<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-										</form>
-
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- //womens -->
+				<?php endforeach ?>
 				<div class="clearfix"></div>
 			</div>
-			<!--//new_arrivals-->
 
 
 		</div>
@@ -474,64 +220,64 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="item">
 						<div class="row">
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g3.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g3.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g4.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 						</div>
 					</div>
 					<div class="item active">
 						<div class="row">
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g5.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g5.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g6.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g6.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g1.jpg" alt="Image" style="max-width:100%;"></div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="row">
-							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g1.jpg" alt="Image" style="max-width:100%;"></div>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g2.jpg" alt="Image" style="max-width:100%;"></div>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g3.jpg" alt="Image" style="max-width:100%;"></div>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 						</div>
 					</div>
 					<div class="item">
 						<div class="row">
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g3.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g3.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
-								<div class="thumbnail"><img src="images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="row">
+							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+							</div>
+							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+							</div>
+							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g3.jpg" alt="Image" style="max-width:100%;"></div>
+							</div>
+							<div class="col-md-3 col-sm-3 col-xs-3 slidering">
+								<div class="thumbnail"><img src="http://localhost/web/public/images/g4.jpg" alt="Image" style="max-width:100%;"></div>
 							</div>
 						</div>
 					</div>
@@ -551,21 +297,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		<div class="clearfix"> </div>
 	</div>
-	<!-- /newsletter-->
-	<div class="newsletter_w3layouts_agile">
-		<div class="col-sm-6 newsleft">
-			<h3>Sign up for Newsletter !</h3>
-		</div>
-		<div class="col-sm-6 newsright">
-			<form action="#" method="post">
-				<input type="email" placeholder="Enter your email..." name="email" required="">
-				<input type="submit" value="Submit">
-			</form>
-		</div>
-
-		<div class="clearfix"></div>
-	</div>
-	<!-- //newsletter-->
 	<!-- footer -->
 	<div class="footer_agileinfo_w3">
 		<div class="footer_inner_info_w3ls_agileits">
@@ -604,7 +335,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="col-md-4 sign-gd">
 						<h4>Our <span>Information</span> </h4>
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="http://localhost/web/">Home</a></li>
 							<li><a href="about.html">About</a></li>
 							<li><a href="404.html">Services</a></li>
 							<li><a href="404.html">Short Codes</a></li>
@@ -652,15 +383,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="col-md-3 sign-gd flickr-post">
 						<h4>Flickr <span>Posts</span></h4>
 						<ul>
-							<li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="single.html"><img src="http://localhost/web/public/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="single.html"><img src="http://localhost/web/public/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="single.html"><img src="http://localhost/web/public/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="single.html"><img src="http://localhost/web/public/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="single.html"><img src="http://localhost/web/public/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="single.html"><img src="http://localhost/web/public/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="single.html"><img src="http://localhost/web/public/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="single.html"><img src="http://localhost/web/public/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="single.html"><img src="http://localhost/web/public/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
 						</ul>
 					</div>
 					<div class="clearfix"></div>
@@ -675,34 +406,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- //footer -->
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- js -->
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="http://localhost/web/public/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
-<!-- cart-js -->
-<script src="js/minicart.js"></script>
+
+<script language="JavaScript">
+	function setVisibility(id, visibility) {
+		document.getElementById(id).style.display = visibility;
+	}
+</script>
 <script>
-	shoe.render();
-
-	shoe.cart.on('shoe_checkout', function (evt) {
-		var items, len, i;
-
-		if (this.subtotal() > 0) {
-			items = this.items();
-
-			for (i = 0, len = items.length; i < len; i++) {}
-		}
+	
+	$(document).ready(function(){
+		$('.addproduct').click(function(){
+			var id = $(this).attr('value');
+			$.ajax({
+				type : "POST",
+				dataType : "HTML",
+				url : "http://localhost/web/library/shoppingcart.php",
+				data : 
+				{
+					id : id
+				},success: function(result){
+        //window.location.href = "http://localhost/web/frontend/checkout/index";
+        $("#staplesbmincart").show();
+    }
 });
+//     .done(function() {
+//   $( this ).addClass( "done" );
+// });
+});
+	});
 </script>
 <!-- //cart-js -->
 <!-- /nav -->
-<script src="js/modernizr-2.6.2.min.js"></script>
-<script src="js/classie.js"></script>
-<script src="js/demo1.js"></script>
+<script src="http://localhost/web/public/js/modernizr-2.6.2.min.js"></script>
+<script src="http://localhost/web/public/js/classie.js"></script>
+<script src="http://localhost/web/public/js/demo1.js"></script>
 <!-- //nav -->
 <!-- single -->
-<script src="js/imagezoom.js"></script>
+<script src="http://localhost/web/public/js/imagezoom.js"></script>
 <!-- single -->
 <!-- script for responsive tabs -->
-<script src="js/easy-responsive-tabs.js"></script>
+<script src="http://localhost/web/public/js/easy-responsive-tabs.js"></script>
 <script>
 	$(document).ready(function () {
 		$('#horizontalTab').easyResponsiveTabs({
@@ -726,7 +471,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	});
 </script>
 <!-- FlexSlider -->
-<script src="js/jquery.flexslider.js"></script>
+<script src="http://localhost/web/public/js/jquery.flexslider.js"></script>
 <script>
 		// Can also be used with $(document).ready()
 		$(window).load(function () {
@@ -739,11 +484,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //FlexSlider-->
 
 	<!--search-bar-->
-	<script src="js/search.js"></script>
+	<script src="http://localhost/web/public/js/search.js"></script>
 	<!--//search-bar-->
 	<!-- start-smoth-scrolling -->
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript" src="http://localhost/web/public/js/move-top.js"></script>
+	<script type="text/javascript" src="http://localhost/web/public/js/easing.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -755,8 +500,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		});
 	</script>
 	<!-- //end-smoth-scrolling -->
-	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
-
+	<script type="text/javascript" src="http://localhost/web/public/js/bootstrap-3.1.1.min.js"></script>
+	<script src="http://localhost/web/public/js/minicart.js"></script>
 
 </body>
 

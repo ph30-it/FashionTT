@@ -15,7 +15,7 @@ Route::get('index','HomeController@index')->name('index');
 Route::get('shop','HomeController@shop')->name('shop');
 Route::get('checkout','HomeController@checkout')->name('checkout');
 Route::get('payment','HomeController@payment')->name('payment');
-Route::get('single','HomeController@single')->name('single');
+Route::get('single/{id}','HomeController@single')->name('single');
 Route::view('contact', 'frontend.contact');
 Route::view('about', 'frontend.about');
 Route::get('login','admin\LoginController@getLogin')->name('login');
