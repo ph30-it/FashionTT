@@ -23,4 +23,22 @@ class ProductController extends Controller
     	Product::create($data);
     	return redirect()->route('product-list');
     }
+    public function edit($id){
+        $product = Product::with('cate')->find($id);
+        $categoryID = Category::pluck('name', 'id');
+        return view('backend.product.edit', compact('product', 'categoryID'));
+    }
+    public function update(Request $request, $id)
+    {
+        //
+        $product = Product::find($id);
+        $data = $request->all();
+        $product->update($data);
+        return redirect()->route('product-list');
+    }
+    public function destroy($id)
+    {
+        Product::destroy($id);
+        return redirect()->route('product-list');
+    }
 }

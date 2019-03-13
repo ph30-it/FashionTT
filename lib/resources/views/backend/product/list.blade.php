@@ -182,12 +182,12 @@
 											<td>{{$item->category_id}}</td>
 											<td>{{$item->image}}</td>
 											<td>
-												{{-- <a href="{{route('category-edit', $item->id)}}">Edit</a>
-												<form action="{{route('category-delete', $item->id)}}" method="POST">
+												<a href="{{route('product-edit', $item->id)}}">Edit</a>
+												<form action="{{route('product-delete', $item->id)}}" method="POST">
 												@csrf
 													@method("DELETE")
 													<button type="submid" class="btn">Delete</button>
-												</form> --}}
+												</form>
 											</td>
 										</tr>
 										@endforeach

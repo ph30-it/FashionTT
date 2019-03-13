@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -27,7 +27,8 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('backend.category.create');
+        $parent = Category::select('id', 'name', 'parent_id')->get()->toArray();
+        return view('backend.category.create', compact('parent'));
     }
 
     /**

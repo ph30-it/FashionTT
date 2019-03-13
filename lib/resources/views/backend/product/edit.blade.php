@@ -1,14 +1,11 @@
 @extends('backend.layout.master')
-@section('title','Category')
+@section('title','Edit Category')
 @section('content')
 
 <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
 
-
-
-
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
 
             <ul class="nav">
                 <li>
@@ -18,9 +15,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('category-list')}}">
+                    <a href="{{ route('product-list')}}">
                         <i class="pe-7s-user"></i>
-                        <p>Categories</p>
+                        <p>Product</p>
                     </a>
                 </li>
                 <li>
@@ -71,7 +68,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                       <a href="">
+                     <a href="">
                         <i class="fa fa-search"></i>
                         <p class="hidden-lg hidden-md">Search</p>
                     </a>
@@ -80,35 +77,35 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                   <a href="">
-                       <p>Account</p>
-                   </a>
-               </li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <p>
-                      Dropdown
-                      <b class="caret"></b>
-                  </p>
+                 <a href="">
+                     <p>Account</p>
+                 </a>
+             </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <p>
+                  Dropdown
+                  <b class="caret"></b>
+              </p>
 
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <p>Log out</p>
-            </a>
-        </li>
-        <li class="separator hidden-lg hidden-md"></li>
-    </ul>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">
+            <p>Log out</p>
+        </a>
+    </li>
+    <li class="separator hidden-lg hidden-md"></li>
+</ul>
 </div>
 </div>
 </nav>
@@ -120,17 +117,21 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Create Category</h4>
-                        <button type="button" class="btn btn-success"><a href="{{route('category-list')}}">Categories List</a></button>
+                        <h4 class="title">Edit Product</h4>
+                        <button type="button" class="btn btn-success">
+                            <a href="{{route('product-list')}}">Product List</a>
+                        </button>
                     </div>
+
                     <div class="content">
-                        <form action="{{ route('category-store')}}" method="POST">
-                         @csrf
-                         <div class="row">
+                        <form action="{{ route('product-update', $product->id)}}" method="POST">
+                           @csrf
+                           @method('PUT')
+                           <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <input type="text" class="form-control" placeholder="{{$product->name}}" id="name" name="name">
                                 </div>
                             </div>
                         </div>
@@ -138,23 +139,36 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Alias</label>
-                                    <input type="text" class="form-control" name="alias" id="alias">
+                                    <label>Price</label>
+                                    <input type="text" class="form-control" placeholder="{{$product->price}}" name="price" id="price">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Parent Id</label>
-                                    <select class="form-control" name="parent_id">
-                                        <option value="0"> Please Choose Categories</option>
-                                        <?php cate_parent($parent); ?>
-                                    </select>
+                                    <label>Sale</label>
+                                    <input type="text" class="form-control" placeholder="{{$product->sale}}" name="sale" id="sale" >
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Create Category</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="text" class="form-control" placeholder="{{$product->description}}" name="description" id="description" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input type="file" class="form-control" placeholder="{{$product->image}}" name="image" id="image" >
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-info btn-fill pull-right">Edit Product</button>
                         <div class="clearfix"></div>
                     </form>
                 </div>

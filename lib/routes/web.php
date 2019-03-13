@@ -59,8 +59,8 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('/list', 'ProductController@index')->name('product-list');
 		Route::get('/create', 'ProductController@create')->name('product-create');
 		Route::post('/store', 'ProductController@store')->name('product-store');
-		// Route::get('/{id}/edit', 'ProductController@edit')->name('product-edit');
-		// Route::put('/{id}/update', 'ProductController@update')->name('product-update');
-		// Route::delete('/{id}/delete', 'ProductController@destroy')->name('product-delete');
+		Route::get('/{id}/edit', 'ProductController@edit')->name('product-edit');
+		Route::put('/{id}/update', 'ProductController@update')->name('product-update');
+		Route::delete('/{id}/delete', 'ProductController@destroy')->name('product-delete');
 	});
 });
