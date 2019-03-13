@@ -159,56 +159,18 @@
 			<!-- deals -->
 			<div class="deal-leftmk left-side">
 				<h3 class="agileits-sear-head">Special Deals</h3>
+				@foreach($view as $vi)
 				<div class="special-sec1">
 					<div class="col-xs-4 img-deals">
-						<img src="{{asset('lib/public/images/s4.jpg')}}" alt="">
+						<img src="{{asset('lib/public/images_product\/').$vi['image']}}" alt="">
 					</div>
 					<div class="col-xs-8 img-deal1">
-						<h3>Shuberry Heels</h3>
-						<a href="single.html">$180.00</a>
+						<h3>{{$vi['name']}}</h3>
+						<a href="single.html">${{$vi['price']}}</a>
 					</div>
 					<div class="clearfix"></div>
 				</div>
-				<div class="special-sec1">
-					<div class="col-xs-4 img-deals">
-						<img src="{{asset('lib/public/images/s2.jpg')}}" alt="">
-					</div>
-					<div class="col-xs-8 img-deal1">
-						<h3>Chikku Loafers</h3>
-						<a href="single.html">$99.00</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="special-sec1">
-					<div class="col-xs-4 img-deals">
-						<img src="{{asset('lib/public/images/s1.jpg')}}" alt="">
-					</div>
-					<div class="col-xs-8 img-deal1">
-						<h3>Bella Toes</h3>
-						<a href="single.html">$165.00</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="special-sec1">
-					<div class="col-xs-4 img-deals">
-						<img src="{{asset('lib/public/images/s5.jpg')}}" alt="">
-					</div>
-					<div class="col-xs-8 img-deal1">
-						<h3>Red Bellies</h3>
-						<a href="single.html">$225.00</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="special-sec1">
-					<div class="col-xs-4 img-deals">
-						<img src="{{asset('lib/public/images/s3.jpg')}}" alt="">
-					</div>
-					<div class="col-xs-8 img-deal1">
-						<h3>(SRV) Sneakers</h3>
-						<a href="single.html">$169.00</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
+				@endforeach
 			</div>
 			<!-- //deals -->
 
@@ -234,10 +196,10 @@
 						<div class="product-shoe-info shoe">
 							<div class="men-pro-item">
 								<div class="men-thumb-item">
-									<img src="{{asset('lib/public/images_product')}}/{{$val['image']}}" alt="">
+									<img src="{{asset('lib/public/images_product\/').$val['image']}}" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single" class="link-product-add-cart">Quick View</a>
+											<a href="{{route('single',$val['id'])}}" class="link-product-add-cart">Quick View</a>
 										</div>
 									</div>
 									<span class="product-new-top">New</span>
