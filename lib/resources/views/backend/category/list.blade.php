@@ -180,6 +180,7 @@
 											<td>{{$item->updated_at}}</td>
 											<td>{{$item->parent_id}}</td>
 											<td>
+												<a href="{{route('category-edit', $item->id)}}">Edit</a>
 												<form action="{{route('category-delete', $item->id)}}" method="POST">
 												@csrf
 													@method("DELETE")

@@ -43,7 +43,15 @@ Route::get('logout','admin\LoginController@getLogout')->name('logout');
 
 
 //category
-Route::get('admin/category/list', 'CategoryController@index')->name('category-list');
-Route::get('admin/category/create', 'CategoryController@create')->name('category-create');
-Route::post('admin/category/store', 'CategoryController@store')->name('category-store');
-Route::delete('admin/category/{id}/delete', 'CategoryController@destroy')->name('category-delete');
+
+Route::group(['prefix' => 'admin'], function(){
+	//route category
+	Route::group(['prefix' => 'category'], function(){
+		Route::get('/list', 'CategoryController@index')->name('category-list');
+		Route::get('/create', 'CategoryController@create')->name('category-create');
+		Route::post('/store', 'CategoryController@store')->name('category-store');
+		Route::get('/{id}/edit', 'CategoryController@edit')->name('category-edit');
+		Route::put('/{id}/update', 'CategoryController@update')->name('category-update');
+		Route::delete('/{id}/delete', 'CategoryController@destroy')->name('category-delete');
+	});
+});

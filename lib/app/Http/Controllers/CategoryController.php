@@ -61,9 +61,11 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(category $category)
+    public function edit(category $id)
     {
         //
+        $category = category::find($id)->first();
+        return view('backend.category.edit', compact('category'));
     }
 
     /**
@@ -73,9 +75,13 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category $category)
+    public function update(Request $request, $id)
     {
         //
+        $category = category::find($id);
+        $data = $request->all();
+        $category->update($data);
+        return redirect()->route('category-list');
     }
 
     /**
@@ -87,6 +93,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         category::destroy($id);
-        // return redirect()->route('category-list');
+        return redirect()->route('category-list');
     }
 }
