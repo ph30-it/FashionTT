@@ -33,7 +33,7 @@ class HomeController extends Controller
     public function single($id)
     {
         $view=Product::orderBy('view', 'desc')
-        ->take(5)
+        ->take(4)
         ->get();
         $single=Product::with('Images')->where('id',$id)->first()->toArray();
         //dd($single);
