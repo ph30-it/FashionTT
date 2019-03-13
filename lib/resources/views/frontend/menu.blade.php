@@ -14,7 +14,8 @@
 					<li><a href="contact.html">Contact</a></li>
 					@if(Auth::check())
 					<li><a href="{{route('logout')}}">Logout</a></li>
-					<li><b style="color:red"><i>Hello {{Auth::user()->username}}!</i></b></li>
+					<li><b style="color:red"><i>Hello {{Auth::user()->username}}!</i></b><br>
+						<a href="" title="">Go To Admin</a></li>
 					@else
 					<li><a href="{{route('login')}}">Login / Register</a></li>
 					@endif
