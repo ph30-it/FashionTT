@@ -246,8 +246,9 @@
 </body>
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 @if(Auth::check())
-<a href="" id="gotoHome" class="scroll" style="display: block;">
-	<span id="toTopHover" style="opacity: 1;"><b>{{Auth::user()->username}}!</b><br>Đến trang quản trị</span>
+<a href="{{route('category-list')}}" id="gotoHome"  style="display: block;">
+	<span id="toTopHover" style="opacity: 1;"><b>{{Auth::user()->username}}!</b><br>
+	Đến trang quản trị</span>
 </a>
 @endif
 
