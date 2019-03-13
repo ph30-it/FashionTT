@@ -305,6 +305,29 @@
 		});
 	});
 </script>
+<script>
+	$(document).ready(function(){
+		$('.addProduct').click(function(){
+			var id = $(this).attr('value');
+			console.log(id);
+			$.ajax({
+				type : "POST",
+				dataType : "JSON",
+				url : "{{url('shopping/')}}".id,
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				data : 
+				{
+					id : id
+				},success:function(result)
+				{
+					console.log(result);
+				}
+			});
+		});
+	});
+</script>
 @yield('js')
 
 </html>

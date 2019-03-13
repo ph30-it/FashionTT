@@ -23,8 +23,9 @@ Route::POST('login','admin\LoginController@postLogin')->name('logined');
 
 Route::get('logout','admin\LoginController@getLogout')->name('logout');
 
+Route::POST('shopping/{id}','ShoppingCartController@addProduct')->name('shopping');
 
-//category
+
 
 
 Route::group(['middleware' => ['auth']], function () {

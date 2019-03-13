@@ -224,15 +224,9 @@
 											</ul>
 										</div>
 										<div class="shoe single-item hvr-outline-out">
-											<form action="#" method="post">
-												<input type="hidden" name="cmd" value="_cart">
-												<input type="hidden" name="add" value="1">
-												<input type="hidden" name="shoe_item" value="Bella Toes">
-												<input type="hidden" name="amount" value="675.00">
-												<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-												<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-											</form>
+											<button type="button"  value="{{$val['id']}}" class="shoe-cart pshoe-cart addProduct">
+												<i class="fa fa-cart-plus" aria-hidden="true"></i>
+											</button>	
 
 										</div>
 									</div>
