@@ -169,6 +169,7 @@
 										<th>Description</th>
 										<th>Category Id</th>
 										<th>Image</th>
+										<th>View</th>
 										<th>Action</th>
 									</thead>
 									<tbody>
@@ -181,6 +182,7 @@
 											<td>{{$item->description}}</td>
 											<td>{{$item->category_id}}</td>
 											<td>{{$item->image}}</td>
+											<td>{{$item->view}}</td>
 											<td>
 												<a href="{{route('product-edit', $item->id)}}">Edit</a>
 												<form action="{{route('product-delete', $item->id)}}" method="POST">

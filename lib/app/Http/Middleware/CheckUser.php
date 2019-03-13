@@ -3,23 +3,24 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-class RedirectIfAuthenticated
+use Auth;
+class CheckUser
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-
+      if(Auth::check()&&Auth::user()->role_id==2){
+            // Nếu đã chứng thực và level ==1 (là admin)
         return $next($request);
-
+    }
+    else{
+        return redirect()->route('login');
     }
 }
 }

@@ -13,10 +13,14 @@ class HomeController extends Controller
     }
     public function shop()
     {
-        $product=Product::with('Images')->get()->take(20)->toArray();
+        $product=Product::with('images')->get()->take(20)->toArray();
         //dd($product);
+        $view=Product::orderBy('view', 'desc')
+        ->take(5)
+        ->get();
+        // dd($view);
         //$product=Product::all()->with('Image')->take(20)->toArray();
-    	return view('frontend.shop',compact('product'));
+        return view('frontend.shop',compact('product','view'));
     }
     public function checkout()
     {
@@ -26,9 +30,14 @@ class HomeController extends Controller
     {
         return view('frontend.payment');
     }
-    public function single()
+    public function single($id)
     {
-        return view('frontend.single');
+        $view=Product::orderBy('view', 'desc')
+        ->take(4)
+        ->get();
+        $single=Product::with('Images')->where('id',$id)->first()->toArray();
+        //dd($single);
+        return view('frontend.single',compact('view','single'));
     }
     public function contact()
     {

@@ -1,8 +1,7 @@
 @extends('layout')
-@section('css','asd')
 @section('content')
 <div class="banner_top" id="home">
-		@include('frontend.menu')
+@include('frontend.menu')
 			<div class="clearfix"></div>
 		</div>
 		<!-- /slider -->
@@ -64,4 +63,5 @@
 		</ul>
 	</div>
 </div>
+
 @endsection

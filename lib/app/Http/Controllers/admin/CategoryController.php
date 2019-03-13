@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
     /**
@@ -51,7 +51,7 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(category $category)
+    public function show(Category $category)
     {
         //
     }
@@ -62,7 +62,7 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(category $id)
+    public function edit(Category $id)
     {
         //
         $category = Category::find($id)->first();

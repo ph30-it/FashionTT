@@ -5,19 +5,19 @@
 		</div>
 		<div class="overlay overlay-contentpush">
 			<button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
-
 			<nav>
 				<ul>
-					<li><a href="index.html" class="active">Home</a></li>
+					<li><a href="{{route('index')}}" class="active">Home</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="404.html">Team</a></li>
-					<li><a href="shop.html">Shop Now</a></li>
+					<li><a href="{{route('shop')}}">Shop Now</a></li>
 					<li><a href="contact.html">Contact</a></li>
 					@if(Auth::check())
-					<li><a href="logout">Logout</a></li>
-					<li><b style="color:red"><i>Hello {{Auth::user()->username}}!</i></b></li>
+					<li><a href="{{route('logout')}}">Logout</a></li>
+					<li><b style="color:red"><i>Hello {{Auth::user()->username}}!</i></b><br>
+						<a href="{{route('category-list')}}" title="">Go To Admin</a></li>
 					@else
-					<li><a href="login">Login / Register</a></li>
+					<li><a href="{{route('login')}}">Login / Register</a></li>
 					@endif
 				</ul>
 			</nav>
@@ -25,6 +25,7 @@
 		<div class="mobile-nav-button">
 			<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
 		</div>
+
 		<!-- cart details -->
 		<div class="top_nav_right">
 			<div class="shoecart shoecart2 cart cart box_1">

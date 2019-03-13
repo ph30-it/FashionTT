@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->tinyInteger('sale');
             $table->longText('description');
             $table->string('image');
+            $table->integer('view');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();

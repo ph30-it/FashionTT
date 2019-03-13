@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'name', 'price', 'sale','description','category_id', 'image'
+        'name', 'price', 'sale','description','category_id', 'image', 'view'
     ];
     public $timestamps = false;
     public function cate()
