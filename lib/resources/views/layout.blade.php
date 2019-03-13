@@ -15,21 +15,20 @@
 			window.scrollTo(0, 1);
 		}
 	</script>
-	<!-- //custom-theme -->
-	
-	<link href="{{asset('lib/public/css/')}}/@yield('css')" rel="stylesheet" type="text/css" media="all" />
+
 	<link href="{{asset('lib/public/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="{{asset('lib/public/css/shop.css')}}" type="text/css" media="screen" property="" />
 	<link href="{{asset('lib/public/css/style7.css')}}" rel="stylesheet" type="text/css" media="all" />
 	<link href="{{asset('lib/public/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
 	<!-- font-awesome-icons -->
 	<link href="{{asset('lib/public/css/font-awesome.css')}}" rel="stylesheet">
+	@yield('css')
+
 	<!-- //font-awesome-icons -->
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
-
 <body>
 	@yield('content')
 	<div class="mid_slider_w3lsagile">
@@ -246,7 +245,12 @@
 	</div>
 </body>
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-<!-- js -->
+@if(Auth::check())
+<a href="" id="gotoHome" class="scroll" style="display: block;">
+	<span id="toTopHover" style="opacity: 1;"><b>{{Auth::user()->username}}!</b><br>Đến trang quản trị</span>
+</a>
+@endif
+
 <script type="text/javascript" src="{{asset('lib/public/js/jquery-2.1.4.min.js')}}"></script>
 <!-- //js -->
 <!-- /nav -->
@@ -288,9 +292,6 @@
 		});
 	});
 </script>
-
-<!-- js for portfolio lightbox -->
-<!-- start-smoth-scrolling -->
 <script type="text/javascript" src="{{asset('lib/public/js/move-top.js')}}"></script>
 <script type="text/javascript" src="{{asset('lib/public/js/easing.js')}}"></script>
 <script type="text/javascript">
@@ -303,6 +304,6 @@
 		});
 	});
 </script>
-<script type="text/javascript" src="{{asset('lib/public/js/bootstrap-3.1.1.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('lib/public/js/')}}/@yield('js')"></script>
+@yield('js')
+
 </html>
