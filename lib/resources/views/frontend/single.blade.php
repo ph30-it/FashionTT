@@ -11,23 +11,7 @@
 @endsection
 <div class="banner_top innerpage" id="home">
 	@include('frontend.menu')
-
 	<div class="clearfix"></div>
-
-	<div class="services-breadcrumb_w3ls_agileinfo">
-		<div class="inner_breadcrumb_agileits_w3">
-
-			<ul class="short">
-				<li><a href="http://localhost/web/">Home</a><i>|</i></li>
-				<li>Single</li>
-			</ul>
-		</div>
-	</div>
-	<!-- //banner_inner -->
-</div>
-
-<!-- //banner -->
-<!-- top Products -->
 <div class="ads-grid_shop">
 	<div class="shop_inner_inf">
 		<div class="col-md-4 single-right-left ">
