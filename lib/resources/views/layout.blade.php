@@ -294,6 +294,7 @@
 	$(document).ready(function(){
 		var url = '{{route('shopping')}}';
 		var del = '{{route('delete')}}';
+		var update= '{{route('update')}}';
 		var html='';
 		$.ajaxSetup({
 			headers: {
@@ -326,11 +327,11 @@
 							tongtien+=value.price*value.qty;
 							console.log(tongtien);
 							html+='<li class="sbmincart-item"><div class="sbmincart-details-name"><a class="sbmincart-name" href="">'+value.name+'</a><ul class="sbmincart-attributes"></ul></div>';
-							html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" disabled type="text"  value="'+value.qty+'" autocomplete="off"></div>';
+							html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" type="text" data-id="'+value.id+'"  value="'+value.qty+'" autocomplete="off" max="5"></div>';
 							html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
-							html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price+'</span></div></li>';
+							html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price*value.qty+'</span></div></li>';
 						});
-						html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
+						html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
 						$('#staplesbmincart').html(html);
 						$(".sbmincart-empty-text").hide();			
 					}
@@ -360,16 +361,56 @@
 						tongtien+=value.price*value.qty;
 						console.log(tongtien);
 						html+='<li class="sbmincart-item"><div class="sbmincart-details-name"><a class="sbmincart-name" href="">'+value.name+'</a><ul class="sbmincart-attributes"></ul></div>';
-						html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" disabled type="text"  value="'+value.qty+'" autocomplete="off"></div>';
+						html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" type="text" data-id="'+value.id+'"  value="'+value.qty+'" autocomplete="off" max="5"></div>';
 						html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
-						html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price+'</span></div></li>';
+						html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price*value.qty+'</span></div></li>';
 					});
-					html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
+					html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
 					$('#staplesbmincart').html(html);
 					$(".sbmincart-empty-text").hide();	
 					$("#staplesbmincart").show();				
 				}
 			});	
+		});		
+		$('body').on('change','.sbmincart-quantity',function(){
+			var id = $(this).attr('data-id');
+			var qty = $(this).val();
+			console.log(id);	
+			$.ajax({
+				type : "POST",
+				dataType : "JSON",
+				url : update,
+				data : 
+				{
+					id : id,
+					qty : qty,
+					_token: '{!! csrf_token() !!}'
+				},success:function(result)
+				{
+					html ='';
+					html+='<form method="post" class="" action="" target=""><button type="button" class="sbmincart-closer" onclick="none();">×</button>';
+					if (result=='') {
+						html+='<p class="sbmincart-empty-text" style="text-align: center;">Giỏ hàng trống <br>Let Buy Now</p>';
+						$('#staplesbmincart').html(html);
+					}else{
+						tongtien=0;	
+						html+='<ul>';					
+						$.each(result, function(key,value){
+							tongtien+=value.price*value.qty;
+							console.log(tongtien);
+							html+='<li class="sbmincart-item"><div class="sbmincart-details-name"><a class="sbmincart-name" href="">'+value.name+'</a><ul class="sbmincart-attributes"></ul></div>';
+							html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" type="text" data-id="'+value.id+'"  value="'+value.qty+'" autocomplete="off" max="5"></div>';
+							html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
+							html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price*value.qty+'</span></div></li>';
+						});
+						html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
+						$('#staplesbmincart').html(html);
+						$(".sbmincart-empty-text").hide();			
+					}
+					html+='</div></form>';
+
+				}
+			});			
 		});
 	});
 </script>

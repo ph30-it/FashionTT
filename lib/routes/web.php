@@ -25,6 +25,7 @@ Route::get('logout','admin\LoginController@getLogout')->name('logout');
 
 Route::POST('shopping','ShoppingCartController@addProduct')->name('shopping');
 Route::POST('delete','ShoppingCartController@deleteProduct')->name('delete');
+Route::POST('update','ShoppingCartController@updateProduct')->name('update');
 
 
 

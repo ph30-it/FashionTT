@@ -62,4 +62,18 @@ class ShoppingCartController extends Controller
 		}
 		return json_encode($cart);	
 	}
+	public function updateProduct(Request $request)
+	{
+		$id=$request->id;
+		$qty=$request->qty;
+		$cart = session()->get('cart');
+		if ($qty==0) {
+			unset($cart[$id]);
+			session()->put('cart', $cart);
+		}else{
+			$cart[$id]['qty']=$qty;
+			session()->put('cart', $cart);
+		}
+		return json_encode($cart);
+	}
 }
