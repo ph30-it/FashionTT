@@ -23,11 +23,14 @@ Route::POST('login','admin\LoginController@postLogin')->name('logined');
 
 Route::get('logout','admin\LoginController@getLogout')->name('logout');
 
+Route::POST('shopping','ShoppingCartController@addProduct')->name('shopping');
+Route::POST('delete','ShoppingCartController@deleteProduct')->name('delete');
+Route::POST('update','ShoppingCartController@updateProduct')->name('update');
 
-//category
 
 
-Route::group(['middleware' => ['auth']], function () {
+
+Route::group(['middleware' => ['auth']], function () {	
 	Route::group(['prefix' => 'admin','middleware'=>'admin'], function(){
 	//route category
 		Route::group(['prefix' => 'category'], function(){
@@ -38,7 +41,6 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::put('/{id}/update', 'admin\CategoryController@update')->name('category-update');
 			Route::delete('/{id}/delete', 'admin\CategoryController@destroy')->name('category-delete');
 		});
-
 		Route::group(['prefix' => 'product'], function(){
 			Route::get('/list', 'admin\ProductController@index')->name('product-list');
 			Route::get('/create', 'admin\ProductController@create')->name('product-create');
@@ -47,7 +49,6 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::put('/{id}/update', 'admin\ProductController@update')->name('product-update');
 			Route::delete('/{id}/delete', 'admin\ProductController@destroy')->name('product-delete');
 		});
-
 		Route::group(['prefix' => 'user'], function(){
 			Route::get('/list', 'admin\UserController@index')->name('user-list');
 			Route::get('/create', 'admin\UserController@create')->name('user-create');
@@ -57,9 +58,6 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('user-delete');
 		});
 	});
-
-
-	
 });
 
 Route::group(['prefix' => 'user','middleware'=>'user'], function(){
