@@ -173,6 +173,8 @@
                                 </div>
                             </div>
                         </div>
+                                    <input type="hidden" class="form-control" name="view" value="0"  >
+
                         <button type="submit" class="btn btn-info btn-fill pull-right">Create product</button>
                         <div class="clearfix"></div>
                     </form>

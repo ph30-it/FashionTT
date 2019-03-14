@@ -4,27 +4,10 @@
 <div class="banner_top innerpage" id="home">
 	@include('frontend.menu')
 	<div class="clearfix"></div>
-	<!-- /banner_inner -->
-	<div class="services-breadcrumb_w3ls_agileinfo">
-		<div class="inner_breadcrumb_agileits_w3">
-
-			<ul class="short">
-				<li><a href="index.html">Home</a><i>|</i></li>
-				<li>Shop</li>
-			</ul>
-		</div>
-	</div>
-	<!-- //banner_inner -->
 </div>
-
-<!-- //banner -->
-<!-- top Products -->
 <div class="ads-grid_shop">
 	<div class="shop_inner_inf">
-		<!-- tittle heading -->
 
-		<!-- //tittle heading -->
-		<!-- product left -->
 		<div class="side-bar col-md-3">
 			<div class="search-hotel">
 				<h3 class="agileits-sear-head">Search Here..</h3>
@@ -224,15 +207,9 @@
 											</ul>
 										</div>
 										<div class="shoe single-item hvr-outline-out">
-											<form action="#" method="post">
-												<input type="hidden" name="cmd" value="_cart">
-												<input type="hidden" name="add" value="1">
-												<input type="hidden" name="shoe_item" value="Bella Toes">
-												<input type="hidden" name="amount" value="675.00">
-												<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-												<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-											</form>
+											<button type="button"  value="{{$val['id']}}" class="shoe-cart pshoe-cart addProduct">
+												<i class="fa fa-cart-plus" aria-hidden="true"></i>
+											</button>	
 
 										</div>
 									</div>

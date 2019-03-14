@@ -9,6 +9,7 @@
 				} else {
 					echo "<option value = '$id'> $str $name  </option>";
 				}
+			cate_parent($data,$id,$str='--');
 			}
 		}
 	}
