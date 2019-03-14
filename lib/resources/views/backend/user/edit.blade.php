@@ -1,6 +1,8 @@
 @extends('backend.layout.master')
-@section('title','Edit Category')
+@section('title','Create User')
 @section('content')
+
+
 
 
 <div class="content">
@@ -9,7 +11,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Edit Product</h4>
+                        <h4 class="title">Create Product</h4>
                         @if($errors->any())
                         <div class="alert alert-danger">
                             @foreach($errors->all() as $err)
@@ -17,20 +19,17 @@
                             @endforeach
                         </div>
                         @endif
-                        <button type="button" class="btn btn-success">
-                            <a href="{{route('product-list')}}">Product List</a>
-                        </button>
+                        <button type="button" class="btn btn-success"><a href="{{route('user-list')}}">User List</a></button>
                     </div>
-
                     <div class="content">
-                        <form action="{{ route('product-update', $product->id)}}" method="POST">
+                        <form action="{{ route('user-update', $user->id)}}" method="POST">
                          @csrf
                          @method('PUT')
                          <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" class="form-control" placeholder="{{$product->name}}" id="name" name="name">
+                                    <label>User Name</label>
+                                    <input type="text" placeholder="{{$user->username}}" class="form-control" id="username" name="username">
                                 </div>
                             </div>
                         </div>
@@ -38,36 +37,34 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Price</label>
-                                    <input type="text" class="form-control" placeholder="{{$product->price}}" name="price" id="price">
+                                    <label>Email</label>
+                                    <input type="email" placeholder="{{$user->email}}" class="form-control" name="email" id="email">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Sale</label>
-                                    <input type="text" class="form-control" placeholder="{{$product->sale}}" name="sale" id="sale" >
+                                    <label>Password</label>
+                                    <input type="password" placeholder="" class="form-control" name="password" id="password" >
                                 </div>
                             </div>
                         </div>
+                        <label>Role</label>
+                        <select class="form-control" name="role_id">
+                            @foreach ($roleId as $key => $value)
+                            <option value="{{ $value }}" {{ $key == $user->role_id ? 'selected' : '' }}> {{$key}}</option>
+                            @endforeach
+                        </select>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" class="form-control" placeholder="{{$product->description}}" name="description" id="description" >
+                                    <label>Avatar</label>
+                                    <input type="file" class="form-control" name="avatar" id="avatar" >
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Image</label>
-                                    <input type="file" class="form-control" placeholder="{{$product->image}}" name="image" id="image" >
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Edit Product</button>
+                        <button type="submit" class="btn btn-info btn-fill pull-right">Edit User</button>
                         <div class="clearfix"></div>
                     </form>
                 </div>

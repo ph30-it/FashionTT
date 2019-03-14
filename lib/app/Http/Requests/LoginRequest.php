@@ -26,10 +26,10 @@ class LoginRequest extends FormRequest
         return [
            'username'=>'required',
            'password'=>'required'
-        ];
-    }
-    public function messages()
-{
+       ];
+   }
+   public function messages()
+   {
     return [
         'username.required' => 'Bạn chưa điền tên đăng nhập',
         'password.required'  => 'Bạn chưa điền tên mật khẩu',

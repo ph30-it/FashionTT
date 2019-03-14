@@ -38,21 +38,32 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::put('/{id}/update', 'admin\CategoryController@update')->name('category-update');
 			Route::delete('/{id}/delete', 'admin\CategoryController@destroy')->name('category-delete');
 		});
+
+		Route::group(['prefix' => 'product'], function(){
+			Route::get('/list', 'admin\ProductController@index')->name('product-list');
+			Route::get('/create', 'admin\ProductController@create')->name('product-create');
+			Route::post('/store', 'admin\ProductController@store')->name('product-store');
+			Route::get('/{id}/edit', 'admin\ProductController@edit')->name('product-edit');
+			Route::put('/{id}/update', 'admin\ProductController@update')->name('product-update');
+			Route::delete('/{id}/delete', 'admin\ProductController@destroy')->name('product-delete');
+		});
+
+		Route::group(['prefix' => 'user'], function(){
+			Route::get('/list', 'admin\UserController@index')->name('user-list');
+			Route::get('/create', 'admin\UserController@create')->name('user-create');
+			Route::post('/store', 'admin\UserController@store')->name('user-store');
+			Route::get('/{id}/edit', 'admin\UserController@edit')->name('user-edit');
+			Route::put('/{id}/update', 'admin\UserController@update')->name('user-update');
+			Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('user-delete');
+		});
 	});
 
 
-	Route::group(['prefix' => 'product'], function(){
-		Route::get('/list', 'ProductController@index')->name('product-list');
-		Route::get('/create', 'ProductController@create')->name('product-create');
-		Route::post('/store', 'ProductController@store')->name('product-store');
-		Route::get('/{id}/edit', 'ProductController@edit')->name('product-edit');
-		Route::put('/{id}/update', 'ProductController@update')->name('product-update');
-		Route::delete('/{id}/delete', 'ProductController@destroy')->name('product-delete');
-	});
+	
 });
 
-	Route::group(['prefix' => 'user','middleware'=>'user'], function(){
-		Route::view('user','backend.user')->name('user');
-	});	
+Route::group(['prefix' => 'user','middleware'=>'user'], function(){
+	Route::view('user','backend.user')->name('user');
+});	
 
 
