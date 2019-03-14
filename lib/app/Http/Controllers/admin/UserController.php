@@ -1,25 +1,25 @@
 <?php
-
 namespace App\Http\Controllers\admin;
 
-use App\Models\Category;
+use App\Models\User;
+use App\Models\Role;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\UserRequest;
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( )
+    public function index()
     {
         //
-        $category = Category::all();//lay tat ca data bang breed;
-        return view('backend.category.list', compact('category'));
+        $user = User::with('role')->get();
+        return view('backend.user.list', compact('user'));
     }
 
     /**
@@ -30,8 +30,8 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        $parent = Category::select('id', 'name', 'parent_id')->get()->toArray();
-        return view('backend.category.create', compact('parent'));
+        $roleId = Role::pluck('id','name');
+        return view('backend.user.create', compact('roleId'));
     }
 
     /**
@@ -40,12 +40,12 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(UserRequest $request)
     {
         //
         $data = $request->all();
-        Category::create($data);
-        return redirect()->route('category-list');
+        User::create($data);
+        return redirect()->route('user-list');
     }
 
     /**
@@ -54,22 +54,18 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(User $category)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\category  $category
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit( $id)
     {
         //
-        $category = Category::find($id)->first();
-        return view('backend.category.edit', compact('category'));
+        $user = User::with('role')->find($id);
+        $roleId = Role::pluck('id','name');
+        return view('backend.user.edit', compact('user', 'roleId'));
     }
 
     /**
@@ -79,13 +75,13 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(UserRequest $request, $id)
     {
         //
-        $category = Category::find($id);
+        $user = User::find($id);
         $data = $request->all();
-        $category->update($data);
-        return redirect()->route('category-list');
+        $user->update($data);
+        return redirect()->route('user-list');
     }
 
     /**
@@ -96,7 +92,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id);
-        return redirect()->route('category-list');
+        User::destroy($id);
+        return redirect()->route('user-list');
     }
 }

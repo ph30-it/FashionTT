@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
 use App\Models\Category;
 use App\Models\Product;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+
 
 class ProductController extends Controller
 {
@@ -18,7 +22,8 @@ class ProductController extends Controller
     	$categoryID = Category::pluck('name', 'id');
     	return view('backend.product.create' , compact('categoryID'));
     }
-    public function store(Request $request){
+    public function store(ProductRequest $request){
+
     	$data = $request->all();
     	Product::create($data);
     	return redirect()->route('product-list');
@@ -28,7 +33,8 @@ class ProductController extends Controller
         $categoryID = Category::pluck('name', 'id');
         return view('backend.product.edit', compact('product', 'categoryID'));
     }
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
+
     {
         //
         $product = Product::find($id);

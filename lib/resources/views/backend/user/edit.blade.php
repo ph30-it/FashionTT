@@ -1,6 +1,7 @@
 @extends('backend.layout.master')
-@section('title','product')
+@section('title','Create User')
 @section('content')
+
 
 
 
@@ -18,16 +19,17 @@
                             @endforeach
                         </div>
                         @endif
-                        <button type="button" class="btn btn-success"><a href="{{route('product-list')}}">Categories List</a></button>
+                        <button type="button" class="btn btn-success"><a href="{{route('user-list')}}">User List</a></button>
                     </div>
                     <div class="content">
-                        <form action="{{ route('product-store')}}" method="POST">
+                        <form action="{{ route('user-update', $user->id)}}" method="POST">
                          @csrf
+                         @method('PUT')
                          <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <label>User Name</label>
+                                    <input type="text" placeholder="{{$user->username}}" class="form-control" id="username" name="username">
                                 </div>
                             </div>
                         </div>
@@ -35,44 +37,34 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Price</label>
-                                    <input type="nummber" class="form-control" name="price" id="price">
+                                    <label>Email</label>
+                                    <input type="email" placeholder="{{$user->email}}" class="form-control" name="email" id="email">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Sale</label>
-                                    <input type="number" class="form-control" name="sale" id="sale" value="0" >
+                                    <label>Password</label>
+                                    <input type="password" placeholder="" class="form-control" name="password" id="password" >
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" class="form-control" name="description" id="description" >
-                                </div>
-                            </div>
-                        </div>
-                        <label>Categories</label>
-                        <select class="form-control" name="category_id">
-                            @foreach($categoryID as $key => $value)
-                            <option value="{{$key}}">{{$value}}</option>
+                        <label>Role</label>
+                        <select class="form-control" name="role_id">
+                            @foreach ($roleId as $key => $value)
+                            <option value="{{ $value }}" {{ $key == $user->role_id ? 'selected' : '' }}> {{$key}}</option>
                             @endforeach
                         </select>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Image</label>
-                                    <input type="file" class="form-control" name="image" id="image" >
+                                    <label>Avatar</label>
+                                    <input type="file" class="form-control" name="avatar" id="avatar" >
                                 </div>
                             </div>
                         </div>
-                                    <input type="hidden" class="form-control" name="view" value="0"  >
-
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Create product</button>
+                        <button type="submit" class="btn btn-info btn-fill pull-right">Edit User</button>
                         <div class="clearfix"></div>
                     </form>
                 </div>
