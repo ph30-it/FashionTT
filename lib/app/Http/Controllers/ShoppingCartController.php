@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use Respone;
 class ShoppingCartController extends Controller
 {
 	public function addProduct(Request $request)
@@ -78,5 +77,16 @@ class ShoppingCartController extends Controller
 			session()->put('cart', $cart);
 		}
 		return json_encode($cart);
+	}
+	public function searchProduct(Request $request)
+	{
+		$query=$request->search;
+		$products=Product::where('name', 'like', '%'.$query.'%')
+         ->orWhere('price', 'like', '%'.$query.'%')
+         ->orWhere('description', 'like', '%'.$query.'%')
+         ->orWhere('view', 'like', '%'.$query.'%')
+         ->orderBy('view', 'desc')
+         ->get()->toArray();
+         echo json_encode($products);
 	}
 }

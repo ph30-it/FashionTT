@@ -9,8 +9,8 @@ Route::get('/','HomeController@index')->name('index');
 Route::get('index','HomeController@index')->name('index');
 
 Route::get('shop','HomeController@shop')->name('shop');
-Route::get('checkout','HomeController@checkout')->name('checkout');
-Route::get('payment','HomeController@payment')->name('payment');
+Route::get('checkout','CheckoutController@index')->name('checkout');
+Route::get('payment','CheckoutController@payment')->name('payment');
 
 Route::get('single/{id}','HomeController@single')->name('single');
 
@@ -26,6 +26,8 @@ Route::get('logout','admin\LoginController@getLogout')->name('logout');
 Route::POST('shopping','ShoppingCartController@addProduct')->name('shopping');
 Route::POST('delete','ShoppingCartController@deleteProduct')->name('delete');
 Route::POST('update','ShoppingCartController@updateProduct')->name('update');
+Route::POST('search','ShoppingCartController@searchProduct')->name('search');
+
 
 
 
