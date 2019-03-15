@@ -20,7 +20,6 @@
 								<th>Name</th>
 								<th>Price</th>
 								<th>Sale</th>
-								<th>Description</th>
 								<th>Category Id</th>
 								<th>Image</th>
 								<th>View</th>
@@ -33,7 +32,6 @@
 									<td>{{$item->name}}</td>
 									<td>{{$item->price}}</td>
 									<td>{{$item->sale}}</td>
-									<td>{{$item->description}}</td>
 									<td>{{$item->category_id}}</td>
 									<td>{{$item->image}}</td>
 									<td>{{$item->view}}</td>

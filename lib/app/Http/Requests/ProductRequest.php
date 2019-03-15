@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             'name'=>'required|unique:products,name',
             'price'=>'required',
             'sale'=>'required',
-            'decription' => 'required'
+            // 'decription' => 'required'
         ];
     }
     public function messages()
@@ -37,7 +37,7 @@ class ProductRequest extends FormRequest
             'name.required' => 'Bạn chưa điền tên Product',
             'name.unique'  => 'Tên Product bị trùng',
             'sale.required' =>'Bạn chưa nhập giảm giá',
-            'decription.required' =>'Bạn chưa nhập mô tả'
+            // 'decription.required' =>'Bạn chưa nhập mô tả'
         ];
     }
 }
