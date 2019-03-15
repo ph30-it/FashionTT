@@ -1,6 +1,6 @@
 @extends('layout')
 @section('css')
-	<link href="{{asset('lib/public/css/checkout.css')}}" rel="stylesheet" type="text/css" media="all" />
+<link href="{{asset('lib/public/css/checkout.css')}}" rel="stylesheet" type="text/css" media="all" />
 @endsection
 @section('title','Checkout')
 @section('content')
@@ -10,11 +10,12 @@
 </div>
 <div class="ads-grid_shop">
 	<div class="shop_inner_inf">
+		@if($data=Session::get('cart'))
 		<div class="privacy about">
 			<h3>Chec<span>kout</span></h3>
 
 			<div class="checkout-right">
-				<h4>Your shopping cart contains: <span>3 Products</span></h4>
+				<h4>Your shopping cart contains: <span>{{count($data)}} Products</span></h4>
 				<table class="timetable_sub">
 					<thead>
 						<tr>
@@ -27,86 +28,43 @@
 							<th>Remove</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="appear-here">
+						@foreach($data as $k => $val)
+
 						<tr class="rem1">
 							<td class="invert">1</td>
-							<td class="invert-image"><a href="single.html"><img src="{{asset('lib/public/images/s1.jpg')}}" alt=" " class="img-responsive"></a></td>
+							<td class="invert-image" style="width: 40%;"><a href=""><img src="{{asset('lib/public/images_product/')}}/{{$val['image']}}" class="img-responsive"></a></td>
 							<td class="invert">
 								<div class="quantity">
-									<div class="quantity-select">
-										<div class="entry value-minus">&nbsp;</div>
-										<div class="entry value"><span>1</span></div>
-										<div class="entry value-plus active">&nbsp;</div>
+									<div class="quantity-select">								
+										<input class="value sbmincart-quantity" type="text" data-id="{{$val['id']}}" value="{{$val['qty']}}" autocomplete="off" max="5">
 									</div>
 								</div>
 							</td>
-							<td class="invert">Bella Toes</td>
-
-							<td class="invert">$675.00</td>
+							<td class="invert">{{$val['name']}}</td>
+							<td class="invert money{{$val['id']}}" data-idx="{{$val['id']}}">${{$val['qty']*$val['price']}}</td>
 							<td class="invert">
 								<div class="rem">
-									<div class="close1"> </div>
+									<div class="close1 remove"> </div>
 								</div>
 
 							</td>
 						</tr>
-						<tr class="rem2">
-							<td class="invert">2</td>
-							<td class="invert-image"><a href="single.html"><img src="{{asset('lib/public/images/s5.jpg')}}" alt=" " class="img-responsive"></a></td>
-							<td class="invert">
-								<div class="quantity">
-									<div class="quantity-select">
-										<div class="entry value-minus">&nbsp;</div>
-										<div class="entry value"><span>1</span></div>
-										<div class="entry value-plus active">&nbsp;</div>
-									</div>
-								</div>
-							</td>
-							<td class="invert">Red Bellies</td>
-
-							<td class="invert">$325.00</td>
-							<td class="invert">
-								<div class="rem">
-									<div class="close2"> </div>
-								</div>
-
-							</td>
-						</tr>
-						<tr class="rem3">
-							<td class="invert">3</td>
-							<td class="invert-image"><a href="single.html"><img src="{{asset('lib/public/images/s2.jpg')}}" alt=" " class="img-responsive"></a></td>
-							<td class="invert">
-								<div class="quantity">
-									<div class="quantity-select">
-										<div class="entry value-minus">&nbsp;</div>
-										<div class="entry value"><span>1</span></div>
-										<div class="entry value-plus active">&nbsp;</div>
-									</div>
-								</div>
-							</td>
-							<td class="invert">Chikku Loafers</td>
-
-							<td class="invert">$405.00</td>
-							<td class="invert">
-								<div class="rem">
-									<div class="close3"> </div>
-								</div>
-
-							</td>
-						</tr>
-
+						@endforeach
 					</tbody>
 				</table>
 			</div>
 			<div class="checkout-left">
 				<div class="col-md-4 checkout-left-basket">
 					<h4>Continue to basket</h4>
-					<ul>
-						<li>Product1 <i>-</i> <span>$675.00 </span></li>
-						<li>Product2 <i>-</i> <span>$325.00 </span></li>
-						<li>Product3 <i>-</i> <span>$405.00 </span></li>
-						<li>Total Service Charges <i>-</i> <span>$55.00</span></li>
-						<li>Total <i>-</i> <span>$1405.00</span></li>
+					<?php $tongtien=0?>
+					<ul class="appear-here1">@foreach($data as $k => $val)
+						<?php 
+							$tongtien+=$data[$k]['price']*$data[$k]['qty']; 
+						?>	
+						<li>{{$val['name']}} <i>-</i> <span>${{$val['price']}}*{{$val['qty']}}</span></li>
+						@endforeach
+						<li>Total <i>-</i> <span>${{$tongtien}}</span></li>
 					</ul>
 				</div>
 				<div class="col-md-8 address_form">
@@ -163,5 +121,13 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
+		@else
+		<div class="row" style="height: 180px;padding: 15px">
+			<h1 style="text-align: center">Giỏ hàng rỗng</h1>
+			<div class="center-block col-md-2" style="float: none;">
+				<a href="{{route('shop')}}" title="" class="btn btn-primary center-block">Quay về trang chủ</a>
+			</div>
+		</div>
+		@endif
 	</div>
-@endsection
+	@endsection
