@@ -31,8 +31,8 @@
 		</div>
 		<div class="col-md-8 single-right-left simpleCart_shelfItem">
 			<h3><?=$single['name']?>
-				<p><span class="item_price">$<?=$single['price']?></span>
-					<del>$<?=$single['sale']?></del>
+				<p><span class="item_price">${{$single['price']}}</span>
+					<del>${{$single['sale']}}</del>
 				</p>
 				<div class="rating1">
 					<ul class="stars">
@@ -44,13 +44,13 @@
 					</ul>
 				</div>
 				<div class="occasional">
-					<?=$single['description'] ?>
+					{{$single['description']}}
 					<div class="clearfix"> </div>
 				</div>
 				<div class="occasion-cart">
 					<div class="shoe single-item single_page_b">
 						<form action="" method="POST">
-							<button type="button" name="submit" value="<?=$single['id']?>" class="addProduct"					
+							<button type="button" name="submit" value="{{$single['id']}}" class="addProduct"					
 								style="font-size: 13px;
 								color: #fff;
 								background: #1d1d1d;

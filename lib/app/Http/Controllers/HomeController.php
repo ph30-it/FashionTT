@@ -26,20 +26,14 @@ class HomeController extends Controller
         //$product=Product::all()->with('Image')->take(20)->toArray();
         return view('frontend.shop',compact('product','view'));
     }
-    public function checkout()
-    {
-    	return view('frontend.checkout');
-    }
-    public function payment()
-    {
-        return view('frontend.payment');
-    }
+
     public function single($id)
     {
         $view=Product::orderBy('view', 'desc')
         ->take(4)
         ->get();
         $single=Product::with('Images')->where('id',$id)->first()->toArray();
+        //dd($single);
         //dd($single);
         return view('frontend.single',compact('view','single'));
     }

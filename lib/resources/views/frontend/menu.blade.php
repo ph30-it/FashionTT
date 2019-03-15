@@ -42,8 +42,10 @@
 	</div>
 	<div id="cd-search" class="cd-search">
 		<form action="#" method="post">
-			<input name="Search" type="search" placeholder="Click enter after typing...">
+			<input type="text" class="form-controller" id="search" name="search" placeholder="Click enter after typing..."></input>
+			
 		</form>
 	</div>
 </div>
+
 	<!-- //search -->
