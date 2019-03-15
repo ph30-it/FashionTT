@@ -7,6 +7,10 @@ use App\Models\Product;
 use App\Models\Image;
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+     $this->middleware('guest')->except('logout');
+    }
     public function index()
     {
     	return view('frontend.index');

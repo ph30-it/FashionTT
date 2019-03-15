@@ -23,6 +23,7 @@
                     @endif
                     <div class="content">
                         <form action="{{ route('category-store')}}" method="POST">
+
                          @csrf
                          <div class="row">
                             <div class="col-md-5">
@@ -52,6 +53,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <button type="submit" class="btn btn-info btn-fill pull-right">Create Category</button>
                         <div class="clearfix"></div>
                     </form>
