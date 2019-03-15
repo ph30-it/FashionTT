@@ -1238,7 +1238,7 @@ color: #2fdab8;
     min-height: 225px;
 }
 .ads-grid_shop {
-    padding: 6em 0;
+    padding-top: 6em;
 }
 ul.short {
     text-align: left;
@@ -1411,7 +1411,7 @@ p.head_para {
 }
 @media(max-width:1440px){
 	.ads-grid_shop {
-        padding: 4em 0;
+        padding-top: 4em;
     }
     .inner_section_w3ls {
         margin-top: 3em;

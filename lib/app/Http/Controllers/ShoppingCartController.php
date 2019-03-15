@@ -41,7 +41,7 @@ class ShoppingCartController extends Controller
 				"name" => $product->name,
 				"qty" => 1,
 				"price" => $product->price,
-				"photo" => $product->photo
+				"image" => $product->image
 			];
 			session()->put('cart', $cart);
 			return json_encode($cart);			
@@ -52,7 +52,6 @@ class ShoppingCartController extends Controller
 		if($request->id) {
 
 			$cart = session()->get('cart');
-
 			if(isset($cart[$request->id])) {
 
 				unset($cart[$request->id]);
@@ -67,10 +66,14 @@ class ShoppingCartController extends Controller
 		$id=$request->id;
 		$qty=$request->qty;
 		$cart = session()->get('cart');
-		if ($qty==0) {
+		if ($qty==0 ) {
 			unset($cart[$id]);
 			session()->put('cart', $cart);
-		}else{
+		}elseif($qty < 0 || $qty > 10)
+		{
+			$request->session()->flash('status', 'Lỗi, vui lòng kiểm tra lại!');
+		}
+		else{
 			$cart[$id]['qty']=$qty;
 			session()->put('cart', $cart);
 		}

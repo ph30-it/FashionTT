@@ -119,7 +119,7 @@ div#my-cart-modal .close:hover, .close:focus {
 /*-- //Shopping-Cart-PopUp --*/
 /*-- cart-button --*/ 
 /*-- cart-css --*/ 
-#staplesbmincart form {
+#staplesbmincart {
     position: relative;
     padding: 1em;
     background: #fbfbfb;
@@ -135,7 +135,7 @@ div#my-cart-modal .close:hover, .close:focus {
 	-ms-box-shadow: 0px 0px 5px 2px #9a9a9a;
     box-shadow: 0px 0px 5px 2px #9a9a9a;
 }
-#staplesbmincart form  ul {
+#staplesbmincart   ul {
     overflow-y: scroll;
     max-height: 300px;
 }
@@ -155,7 +155,7 @@ div#my-cart-modal .close:hover, .close:focus {
 	-ms-animation: zoomIn .3s ease;
 	animation: zoomIn .3s ease;
 }
-#staplesbmincart form.sbmincart-empty {    font-size: 16px;    font-weight: bold;}
+#staplesbmincart .sbmincart-empty {    font-size: 16px;    font-weight: bold;}
 #staplesbmincart ul {    clear: both;    float: left;    width: 100%;    margin: 5px 0 20px;    padding: 1em;    list-style-type: none;    background: #fff;    border: 1px solid #ccc;    border-radius: 4px;    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);}
 #staplesbmincart .sbmincart-empty ul {    display: none;}
 #staplesbmincart .sbmincart-closer {
@@ -236,11 +236,11 @@ p.sbmincart-empty-text {
     top: 0;
 } 
 /* Let's get this party started */
-#staplesbmincart form  ul::-webkit-scrollbar {
+#staplesbmincart   ul::-webkit-scrollbar {
     width: 5px;
 } 
 /* Track */
-#staplesbmincart form  ul::-webkit-scrollbar-track { 
+#staplesbmincart   ul::-webkit-scrollbar-track { 
 	-webkit-box-shadow: inset 0 0 6px #999; 
 	-moz-box-shadow: inset 0 0 6px #999;
 	-o-box-shadow: inset 0 0 6px #999;
@@ -253,7 +253,7 @@ p.sbmincart-empty-text {
 	border-radius: 10px;
 } 
 /* Handle */
-#staplesbmincart form  ul::-webkit-scrollbar-thumb {
+#staplesbmincart   ul::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	-o-border-radius: 10px;

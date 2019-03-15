@@ -315,29 +315,45 @@
 					_token: '{!! csrf_token() !!}'
 				},success:function(result)
 				{
-					html ='';
-					html+='<form method="post" class="" action="" target=""><button type="button" class="sbmincart-closer" onclick="none();">×</button>';
-					if (result=='') {
-						html+='<p class="sbmincart-empty-text" style="text-align: center;">Giỏ hàng trống <br>Let Buy Now</p>';
-						$('#staplesbmincart').html(html);
-					}else{
-						tongtien=0;	
-						html+='<ul>';					
-						$.each(result, function(key,value){
-							tongtien+=value.price*value.qty;
-							console.log(tongtien);
-							html+='<li class="sbmincart-item"><div class="sbmincart-details-name"><a class="sbmincart-name" href="">'+value.name+'</a><ul class="sbmincart-attributes"></ul></div>';
-							html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" type="text" data-id="'+value.id+'"  value="'+value.qty+'" autocomplete="off" max="5"></div>';
-							html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
-							html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price*value.qty+'</span></div></li>';
-						});
-						html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
-						$('#staplesbmincart').html(html);
-						$(".sbmincart-empty-text").hide();			
-					}
-					html+='</div></form>';
+				html1='';
+				html ='';
+				html2='';
+				html+='<button type="button" class="sbmincart-closer" onclick="none();">×</button>';
+				if (result=='') {
+					html1+='<div class="row" style="height: 180px;padding: 15px"><h1 style="text-align: center">Giỏ hàng rỗng</h1><div class="center-block col-md-2" style="float: none;"><a href="{{route('shop')}}" title="" class="btn btn-primary center-block">Quay về trang chủ</a></div></div>';
+					html+='<p class="sbmincart-empty-text" style="text-align: center;">Giỏ hàng trống <br>Let Buy Now</p>';
+					$('#staplesbmincart').html(html);
+					$('.shop_inner_inf').html(html1);
+				}else{
+					tongtien=0;	
+					html+='<ul>';
+					
+					$.each(result, function(key,value){
+						tongtien+=value.price*value.qty;
+						console.log(tongtien);
+						html+='<li class="sbmincart-item"><div class="sbmincart-details-name"><a class="sbmincart-name" href="">'+value.name+'</a><ul class="sbmincart-attributes"></ul></div>';
+						html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" type="text" data-id="'+value.id+'"  value="'+value.qty+'" autocomplete="off" max="5"></div>';
+						html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
+						html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price*value.qty+'</span></div></li>';
+						html1+='<tr class="rem1">';
+						html1+='<td class="invert">1</td>';
+						html1+='<td class="invert-image" style="width: 40%;"><a href=""><img src="http://localhost/FashionTT/lib/public/images_product/'+value.image+'" class="img-responsive"></a></td>';
+						html1+='<td class="invert"><div class="quantity"><div class="quantity-select"><input class="value sbmincart-quantity" type="text" data-id="'+value.id+'" value="'+value.qty+'" autocomplete="off" max="5"></div></div></td>';
+						html1+='<td class="invert">'+value.name+'</td><td class="invert money1" data-idx="'+value.id+'">$'+value.price*value.qty+'</td><td class="invert"><div class="rem"><div class="close1 remove"> </div></div></td>';
+						html1+='</tr>';
+						html2+='<li>'+value.name+'<i>-</i> <span>$'+value.price+'*'+value.qty+'</span></li>';
 
+					});
+					html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
+					html2+='<li>Total <i>-</i> <span>$'+tongtien+'</span></li>';
+					$('#staplesbmincart').html(html);
+					$(".sbmincart-empty-text").hide();
+					$('.appear-here').html(html1);
+					$('.appear-here1').html(html2);		
 				}
+				html+='</div>';
+				
+			}
 			});
 		});
 		$('.addProduct').click(function(){
@@ -356,7 +372,7 @@
 				{
 					tongtien=0;
 					html ='';
-					html+='<form method="post" class="" action="" target=""><button type="button" class="sbmincart-closer" onclick="none();">×</button><ul>';
+					html+='<button type="button" class="sbmincart-closer" onclick="none();">×</button><ul>';
 					$.each(result, function(key,value){
 						tongtien+=value.price*value.qty;
 						console.log(tongtien);
@@ -365,7 +381,7 @@
 						html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
 						html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price*value.qty+'</span></div></li>';
 					});
-					html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
+					html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div>';
 					$('#staplesbmincart').html(html);
 					$(".sbmincart-empty-text").hide();	
 					$("#staplesbmincart").show();				
@@ -375,7 +391,10 @@
 		$('body').on('change','.sbmincart-quantity',function(){
 			var id = $(this).attr('data-id');
 			var qty = $(this).val();
+			var html1='';
+			var html2='';
 			console.log(id);	
+			console.log(qty);	
 			$.ajax({
 				type : "POST",
 				dataType : "JSON",
@@ -387,30 +406,45 @@
 					_token: '{!! csrf_token() !!}'
 				},success:function(result)
 				{
-					html ='';
-					html+='<form method="post" class="" action="" target=""><button type="button" class="sbmincart-closer" onclick="none();">×</button>';
-					if (result=='') {
-						html+='<p class="sbmincart-empty-text" style="text-align: center;">Giỏ hàng trống <br>Let Buy Now</p>';
-						$('#staplesbmincart').html(html);
-					}else{
-						tongtien=0;	
-						html+='<ul>';					
-						$.each(result, function(key,value){
-							tongtien+=value.price*value.qty;
-							console.log(tongtien);
-							html+='<li class="sbmincart-item"><div class="sbmincart-details-name"><a class="sbmincart-name" href="">'+value.name+'</a><ul class="sbmincart-attributes"></ul></div>';
-							html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" type="text" data-id="'+value.id+'"  value="'+value.qty+'" autocomplete="off" max="5"></div>';
-							html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
-							html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price*value.qty+'</span></div></li>';
-						});
-						html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
-						$('#staplesbmincart').html(html);
-						$(".sbmincart-empty-text").hide();			
-					}
-					html+='</div></form>';
+				html1='';
+				html ='';
+				html2='';
+				html+='<button type="button" class="sbmincart-closer" onclick="none();">×</button>';
+				if (result=='') {
+					html1+='<div class="row" style="height: 180px;padding: 15px"><h1 style="text-align: center">Giỏ hàng rỗng</h1><div class="center-block col-md-2" style="float: none;"><a href="{{route('shop')}}" title="" class="btn btn-primary center-block">Quay về trang chủ</a></div></div>';
+					html+='<p class="sbmincart-empty-text" style="text-align: center;">Giỏ hàng trống <br>Let Buy Now</p>';
+					$('#staplesbmincart').html(html);
+					$('.shop_inner_inf').html(html1);
+				}else{
+					tongtien=0;	
+					html+='<ul>';					
+					$.each(result, function(key,value){
+						tongtien+=value.price*value.qty;
+						//console.log(tongtien);
+						html+='<li class="sbmincart-item"><div class="sbmincart-details-name"><a class="sbmincart-name" href="">'+value.name+'</a><ul class="sbmincart-attributes"></ul></div>';
+						html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" type="text" data-id="'+value.id+'"  value="'+value.qty+'" autocomplete="off" max="5"></div>';
+						html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
+						html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price*value.qty+'</span></div></li>';
+						html1+='<tr class="rem1">';
+						html1+='<td class="invert">1</td>';
+						html1+='<td class="invert-image" style="width: 40%;"><a href=""><img src="http://localhost/FashionTT/lib/public/images_product/'+value.image+'" class="img-responsive"></a></td>';
+						html1+='<td class="invert"><div class="quantity"><div class="quantity-select"><input class="value sbmincart-quantity" type="text" data-id="'+value.id+'" value="'+value.qty+'" autocomplete="off" max="5"></div></div></td>';
+						html1+='<td class="invert">'+value.name+'</td><td class="invert money1" data-idx="'+value.id+'">$'+value.price*value.qty+'</td><td class="invert"><div class="rem"><div class="close1 remove"> </div></div></td>';
+						html1+='</tr>';
+						html2+='<li>'+value.name+'<i>-</i> <span>$'+value.price+'*'+value.qty+'</span></li>';
 
+					});
+					html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
+					html2+='<li>Total <i>-</i> <span>$'+tongtien+'</span></li>';
+					$('#staplesbmincart').html(html);
+					$(".sbmincart-empty-text").hide();
+					$('.appear-here').html(html1);
+					$('.appear-here1').html(html2);		
 				}
-			});			
+				html+='</div>';
+				
+			}
+		});			
 		});
 	});
 </script>
@@ -428,4 +462,9 @@
 
 </html>
 
+
+
+	
+	
+	
 
