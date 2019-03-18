@@ -41,10 +41,12 @@
 		</ul>
 	</div>
 	<div id="cd-search" class="cd-search">
-		<form action="#" method="post">
-			<input type="text" class="form-controller" id="search" name="search" placeholder="Click enter after typing..."></input>
+		
+			<input type="text" class="form-controller" id="search" name="search" placeholder="Click enter after typing...">
+				
+			</input>
 			
-		</form>
+	
 	</div>
 </div>
 
