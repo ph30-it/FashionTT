@@ -13,7 +13,7 @@ Route::get('checkout','CheckoutController@index')->name('checkout');
 Route::get('payment','CheckoutController@payment')->name('payment');
 
 Route::get('single/{id}','HomeController@single')->name('single');
-Route::POST('comment/{id}/{uid}','HomeController@comment')->name('comment');
+Route::POST('comment','HomeController@comment')->name('comment');
 Route::view('contact', 'frontend.contact');
 Route::view('about', 'frontend.about');
 Route::get('login','admin\LoginController@getLogin')->middleware('checkrole')->name('login');

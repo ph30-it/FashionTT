@@ -32,33 +32,11 @@
 			<!--preference -->
 			<div class="left-side">
 				<h3 class="agileits-sear-head">Categories</h3>
-				{{-- <ul>
-					<li>
-						<input type="checkbox" class="checked" id="search" value="nike">
-						<span class="span">Casuals</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked" id="search" value="adias">
-						<span class="span">Party</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked" id="search" value="converse">
-						<span class="span">Wedding</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked" id="search" value="nike">
-						<span class="span">Ethnic</span>
-					</li>
-				</ul> --}}
-
 				<ul  name="parent_id">
-					<li value="0"> Please Choose Categories</li>
 					<?php menu($category); ?>
 				</ul>
 			</div>
-			<!-- // preference -->
-			<!-- discounts -->
-			<div class="left-side">
+			{{-- <div class="left-side">
 				<h3 class="agileits-sear-head">Discount</h3>
 				<ul>
 					<li>
@@ -86,7 +64,7 @@
 						<span class="span">60% or More</span>
 					</li>
 				</ul>
-			</div>
+			</div> --}}
 			<!-- //discounts -->
 			<!-- reviews -->
 			<div class="customer-rev left-side">

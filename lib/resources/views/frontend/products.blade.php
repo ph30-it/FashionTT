@@ -44,5 +44,4 @@
 </div>
 @endforeach
 <div class="clearfix"></div>
-
-{{ $product->links('pagination::bootstrap-4') }}
+{{$product->render()}}
