@@ -29,9 +29,9 @@
 			@endif
 			<form action="{{route('registered')}}" method="POST" >
 				@csrf
-				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Username">
-				<input type="text"  class="fadeIn third" name="email" placeholder="Email">	
-				<input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Username" {{old('username')}}>
+				<input type="text"  class="fadeIn third" name="email" placeholder="Email" {{old('email')}}>	
+				<input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" {{old('password')}}>
 				<input type="submit" class="fadeIn fourth" value="Register"><br>
 
 			</form>

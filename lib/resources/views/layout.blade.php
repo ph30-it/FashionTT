@@ -125,8 +125,7 @@
 
 		<div class="clearfix"> </div>
 	</div>
-	<!-- /newsletter-->
-	<div class="newsletter_w3layouts_agile">
+{{-- 	<div class="newsletter_w3layouts_agile">
 		<div class="col-sm-6 newsleft">
 			<h3>Sign up for Newsletter !</h3>
 		</div>
@@ -138,8 +137,7 @@
 		</div>
 
 		<div class="clearfix"></div>
-	</div>
-	<!-- //newsletter-->
+	</div> --}}
 	<!-- footer -->
 	<div class="footer_agileinfo_w3">
 		<div class="footer_inner_info_w3ls_agileits">
@@ -280,6 +278,8 @@
 </script>
 <script type="text/javascript" src="{{asset('lib/public/js/move-top.js')}}"></script>
 <script type="text/javascript" src="{{asset('lib/public/js/easing.js')}}"></script>
+<script type="text/javascript" src="{{asset('lib/public/js/jquery.flexslider.js')}}"></script>
+
 <script type="text/javascript">
 	jQuery(document).ready(function ($) {
 		$(".scroll").click(function (event) {
@@ -324,8 +324,9 @@
 					if (result=='') {
 						html1+='<div class="row" style="height: 180px;padding: 15px"><h1 style="text-align: center">Giỏ hàng rỗng</h1><div class="center-block col-md-2" style="float: none;"><a href="{{route('shop')}}" title="" class="btn btn-primary center-block">Quay về trang chủ</a></div></div>';
 						html+='<p class="sbmincart-empty-text" style="text-align: center;">Giỏ hàng trống <br>Let Buy Now</p>';
-						$('#staplesbmincart').html(html);
-						$('.shop_inner_inf').html(html1);
+						//$('.shop_inner_inf').html(html1);						
+						//$('#staplesbmincart').html(html);
+						location.reload();
 					}else{
 						tongtien=0;	
 						html+='<ul>';
@@ -448,28 +449,35 @@
 				}
 			});			
 		});
-		$('#search').on('keyup',function(){
+		$('body').on('keyup click','#search',function(){
+		//$('#search').on('keyup',function(){
 			var search = $(this).val();
-			//console.log(search);
+			console.log(search);
 			product ='';
 			var url_image="{{asset('lib/public/images_product/')}}";
 			$.ajax({
 				type : 'POST',
+				dataType : "JSON",
 				url : searchurl,
 				data:{'search':search,_token: '{!! csrf_token() !!}'},
 				success:function(result){
-					$.each(JSON.parse(result), function(key,value){
-						product+='<div class="col-md-4 product-men"><div class="product-shoe-info shoe"><div class="men-pro-item"><div class="men-thumb-item"><img src="'+url_image+'/'+value.image+'" alt=""><div class="men-cart-pro"><a href="{{url('single')}}'+value.id+'" class="link-product-add-cart">Quick View</a></div></div><span class="product-new-top">New</span></div><div class="item-info-product"><h4><a href="single.html">'+value.name+'</a></h4><div class="info-product-price"><div class="grid_meta"><div class="product_price"><div class="grid-price "><span class="money ">$'+value.price+'</span></div></div><ul class="stars"><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li></ul></div><div class="shoe single-item hvr-outline-out"><button type="button"  value="'+value.id+'" class="shoe-cart pshoe-cart addProduct"><i class="fa fa-cart-plus" aria-hidden="true"></i></button></div></div><div class="clearfix"></div></div></div></div></div>';
-					});
-					product+='<div class="clearfix"></div>';
-					//$("").hide();	
-					$('.product-sec1').html(product);
-					
+					if (result=='') {
+						product+='<div style="height:300px"><p style="text-align:center" class="center-block">Không tìm thấy sản phẩm thích hợp</p></div>';
+						$('.product-sec1').html(product);
+					}else{
+						$.each(result, function(key,value){
+							product+='<div class="col-md-4 product-men"><div class="product-shoe-info shoe"><div class="men-pro-item"><div class="men-thumb-item"><img src="'+url_image+'/'+value.image+'" alt=""><div class="men-cart-pro"><div class="inner-men-cart-pro"><a href="{{url('single')}}'+value.id+'" class="link-product-add-cart" style="">Quick View</a></div></div></div><span class="product-new-top">New</span></div><div class="item-info-product"><h4><a href="single.html">'+value.name+'</a></h4><div class="info-product-price"><div class="grid_meta"><div class="product_price"><div class="grid-price "><span class="money ">$'+value.price+'</span></div></div><ul class="stars"><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li></ul></div><div class="shoe single-item hvr-outline-out"><button type="button"  value="'+value.id+'" class="shoe-cart pshoe-cart addProduct"><i class="fa fa-cart-plus" aria-hidden="true"></i></button></div></div><div class="clearfix"></div></div></div></div></div>';
+						});
+						product+='<div class="clearfix"></div>';
+											//$("").hide();	
+						$('.product-sec1').html(product);
+					}
 				}
 			});
 		});
 	});
 </script>
+
 <script language="JavaScript">
 	function none() {
 		document.getElementById("staplesbmincart").style.display = "none";

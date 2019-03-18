@@ -35,8 +35,8 @@
 			@endif
 			<form action="{{route('logined')}}" method="POST" >
 				@csrf
-				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Username">
-				<input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Username" {{old('username')}}>
+				<input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" {{old('password')}}>
 				<input type="submit" class="fadeIn fourth" value="Log In"><br>
 				<input type="checkbox" name="remember" value="remember">Remember me
 
