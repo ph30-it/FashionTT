@@ -60,50 +60,55 @@
 					<?php $tongtien=0?>
 					<ul class="appear-here1">@foreach($data as $k => $val)
 						<?php 
-							$tongtien+=$data[$k]['price']*$data[$k]['qty']; 
+						$tongtien+=$data[$k]['price']*$data[$k]['qty']; 
 						?>	
 						<li>{{$val['name']}} <i>-</i> <span>${{$val['price']}}*{{$val['qty']}}</span></li>
 						@endforeach
 						<li>Total <i>-</i> <span>${{$tongtien}}</span></li>
 					</ul>
 				</div>
+				@if(Auth::check())
 				<div class="col-md-8 address_form">
+					@include('error')
 					<h4>Add a new Details</h4>
-					<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+					<form action="{{route('checkout')}}" method="post" class="creditly-card-form agileinfo_form">
+						@csrf
 						<section class="creditly-wrapper wrapper">
 							<div class="information-wrapper">
 								<div class="first-row form-group">
 									<div class="controls">
-										<label class="control-label">Full name: </label>
-										<input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
+										<label class="control-label">Address :</label>
+										<input class="billing-address-name form-control" type="text" name="address" placeholder="Address">
 									</div>
 									<div class="card_number_grids">
 										<div class="card_number_grid_left">
 											<div class="controls">
-												<label class="control-label">Mobile number:</label>
-												<input class="form-control" type="text" placeholder="Mobile number">
+												<label class="control-label">Country :</label>
+												<input class="form-control" name="country" type="text" placeholder="Country">
+											</div>
+										</div>
+										<div class="card_number_grid_left">
+											<div class="controls">
+												<label class="control-label">Zipcode :</label>
+												<input class="form-control" name="zip_code" type="number" placeholder="Country">
 											</div>
 										</div>
 										<div class="card_number_grid_right">
 											<div class="controls">
-												<label class="control-label">Landmark: </label>
-												<input class="form-control" type="text" placeholder="Landmark">
+												<label class="control-label">Town/Cty :</label>
+												<input class="form-control" name="cty" type="text" placeholder="Cty">
 											</div>
 										</div>
 										<div class="clear"> </div>
 									</div>
 									<div class="controls">
-										<label class="control-label">Town/City: </label>
-										<input class="form-control" type="text" placeholder="Town/City">
+										<label class="control-label">Phone : </label>
+										<input class="form-control"  name="phone" type="text" placeholder="Phone Number">
 									</div>
 									<div class="controls">
-										<label class="control-label">Address type: </label>
-										<select class="form-control option-w3ls">
-											<option>Office</option>
-											<option>Home</option>
-											<option>Commercial</option>
-
-										</select>
+										<label class="control-label">Total : </label>
+										<input class="form-control"  name="total" type="text" value="${{$tongtien}}" disabled>
+										<input class="form-control"  name="total" type="hidden" value="{{$tongtien}}">
 									</div>
 								</div>
 								<button class="submit check_out">Delivery to this Address</button>
@@ -111,13 +116,15 @@
 						</section>
 					</form>
 					<div class="checkout-right-basket">
-						<a href="payment.html">Make a Payment </a>
+						
 					</div>
 				</div>
-
+				@else
+				<div class="col-md-8 address_form">
+					<h2>Bạn cần <a href="{{route('login')}}" title="">đăng nhập</a> để thực hiện thanh toán</h2>
+				</div>
+				@endif()
 				<div class="clearfix"> </div>
-
-
 				<div class="clearfix"></div>
 			</div>
 		</div>

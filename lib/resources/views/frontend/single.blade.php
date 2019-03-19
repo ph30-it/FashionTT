@@ -1,5 +1,3 @@
-
-
 @extends('layout')
 @section('title', 'Shop')
 @section('content')
