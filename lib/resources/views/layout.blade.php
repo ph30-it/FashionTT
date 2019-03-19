@@ -259,6 +259,9 @@
 <!-- //nav -->
 <script src="{{asset('lib/public/js/search.js')}}"></script>
 <script src="{{asset('lib/public/js/responsiveslides.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('lib/public/js/bootstrap-3.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('lib/public/js/easy-responsive-tabs.js')}}"></script>
+
 <script>
 	$(function () {
 		$("#slider4").responsiveSlides({

@@ -1,25 +1,25 @@
 <?php
 
-Route::get('/','ProductController@index')->name('list-product');
-route::view('ahihi', 'backend.category.list');
-
-Route::get('/','HomeController@index')->name('list-product');
-
-Route::get('/','HomeController@index')->name('index');
+Route::get('/','HomeController@index')->name('/');
 Route::get('index','HomeController@index')->name('index');
 
 Route::get('shop','HomeController@shop')->name('shop');
-Route::get('checkout','CheckoutController@index')->name('checkout');
-Route::get('payment','CheckoutController@payment')->name('payment');
 
+Route::get('checkout','CheckoutController@index')->name('checkout');
+Route::POST('checkout','CheckoutController@postCheckout')->name('checkout');
+Route::get('payment','CheckoutController@payment')->name('payment');
+Route::POST('sendmail','CheckoutController@sendMail')->name('sendmail');
 Route::get('single/{id}','HomeController@single')->name('single');
 Route::POST('comment','HomeController@comment')->name('comment');
 Route::view('contact', 'frontend.contact');
-Route::view('about', 'frontend.about');
+Route::view('about', 'frontend.about')->name('about');
+
+
 Route::get('login','admin\LoginController@getLogin')->middleware('checkrole')->name('login');
+Route::POST('login','admin\LoginController@postLogin')->name('logined');
+
 Route::get('register','admin\LoginController@getRegister')->name('register');
 Route::POST('register','admin\LoginController@postRegister')->name('registered');
-Route::POST('login','admin\LoginController@postLogin')->name('logined');
 
 Route::get('logout','admin\LoginController@getLogout')->name('logout');
 
