@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\Category;
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -54,10 +55,12 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
-    {
-        //
-    }
+    // public function show(Category $id)
+    // {
+    //     //
+    //     $datas = Product::with('cate')->where('category_id', $id)->get()->toArray();
+    //     return view('backend.category.show', compact('datas'));
+    // }
 
     /**
      * Show the form for editing the specified resource.

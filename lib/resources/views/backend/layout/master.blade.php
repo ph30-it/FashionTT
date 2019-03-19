@@ -10,7 +10,7 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap core CSS     -->
     <link href="{{asset('lib/public/admin/css/bootstrap.min.css')}}" rel="stylesheet" />
 
@@ -50,39 +50,27 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('product-list')}}">
+                        <a href="{{ route('category-list')}}">
                             <i class="pe-7s-user"></i>
                             <p>Categories</p>
                         </a>
                     </li>
                     <li>
-                        <a href="table.html">
+                        <a href="{{ route('product-list')}}">
                             <i class="pe-7s-note2"></i>
-                            <p>Table List</p>
+                            <p>Products</p>
                         </a>
                     </li>
                     <li>
-                        <a href="typography.html">
+                        <a href="{{ route('user-list')}}">
                             <i class="pe-7s-news-paper"></i>
-                            <p>Typography</p>
+                            <p>Users</p>
                         </a>
                     </li>
                     <li>
-                        <a href="icons.html">
-                            <i class="pe-7s-science"></i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="maps.html">
-                            <i class="pe-7s-map-marker"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="notifications.html">
-                            <i class="pe-7s-bell"></i>
-                            <p>Notifications</p>
+                        <a href="{{ route('user-list')}}">
+                            <i class="pe-7s-news-paper"></i>
+                            <p>Oreders</p>
                         </a>
                     </li>
                 </ul>

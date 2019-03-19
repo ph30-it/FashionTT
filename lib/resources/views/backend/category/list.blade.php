@@ -28,7 +28,7 @@
 										@foreach($category as $item)
 										<tr>
 											<td>{{$item->id}}</td>
-											<td>{{$item->name}}</td>
+											<td><a href="{{route('category-show', $item->id)}}">{{$item->name}}</a></td>
 											<td>{{$item->alias}}</td>
 											<td>{{$item->created_at}}</td>
 											<td>{{$item->updated_at}}</td>
