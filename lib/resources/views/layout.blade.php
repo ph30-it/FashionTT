@@ -30,6 +30,10 @@
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 </head>
 <body>
+	<div class="banner_top innerpage" id="home">
+		@include('frontend.menu')
+		<div class="clearfix"></div>
+	</div>
 	@yield('content')
 	<div class="mid_slider_w3lsagile">
 		<div class="col-md-3 mid_slider_text">
@@ -163,83 +167,83 @@
 							<div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
 						</a>
 					</li>
-						<a href="#" class="pinterest">
-							<div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-							<div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-md-9 footer-right">
-				<div class="sign-grds">
-					<div class="col-md-4 sign-gd">
-						<h4>Our <span>Information</span> </h4>
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="404.html">Services</a></li>
-							<li><a href="404.html">Short Codes</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</div>
+					<a href="#" class="pinterest">
+						<div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+						<div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-9 footer-right">
+			<div class="sign-grds">
+				<div class="col-md-4 sign-gd">
+					<h4>Our <span>Information</span> </h4>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="404.html">Services</a></li>
+						<li><a href="404.html">Short Codes</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
 
-					<div class="col-md-5 sign-gd-two">
-						<h4>Store <span>Information</span></h4>
-						<div class="address">
-							<div class="address-grid">
-								<div class="address-left">
-									<i class="fa fa-phone" aria-hidden="true"></i>
-								</div>
-								<div class="address-right">
-									<h6>Phone Number</h6>
-									<p>+1 234 567 8901</p>
-								</div>
-								<div class="clearfix"> </div>
+				<div class="col-md-5 sign-gd-two">
+					<h4>Store <span>Information</span></h4>
+					<div class="address">
+						<div class="address-grid">
+							<div class="address-left">
+								<i class="fa fa-phone" aria-hidden="true"></i>
 							</div>
-							<div class="address-grid">
-								<div class="address-left">
-									<i class="fa fa-envelope" aria-hidden="true"></i>
-								</div>
-								<div class="address-right">
-									<h6>Email Address</h6>
-									<p>Email :<a href="mailto:example@email.com"> mail@example.com</a></p>
-								</div>
-								<div class="clearfix"> </div>
+							<div class="address-right">
+								<h6>Phone Number</h6>
+								<p>+1 234 567 8901</p>
 							</div>
-							<div class="address-grid">
-								<div class="address-left">
-									<i class="fa fa-map-marker" aria-hidden="true"></i>
-								</div>
-								<div class="address-right">
-									<h6>Location</h6>
-									<p>Broome St, NY 10002,California, USA.
+							<div class="clearfix"> </div>
+						</div>
+						<div class="address-grid">
+							<div class="address-left">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+							</div>
+							<div class="address-right">
+								<h6>Email Address</h6>
+								<p>Email :<a href="mailto:example@email.com"> mail@example.com</a></p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="address-grid">
+							<div class="address-left">
+								<i class="fa fa-map-marker" aria-hidden="true"></i>
+							</div>
+							<div class="address-right">
+								<h6>Location</h6>
+								<p>Broome St, NY 10002,California, USA.
 
-									</p>
-								</div>
-								<div class="clearfix"> </div>
+								</p>
 							</div>
+							<div class="clearfix"> </div>
 						</div>
 					</div>
-					<div class="col-md-3 sign-gd flickr-post">
-						<h4>Flickr <span>Posts</span></h4>
-						<ul>
-							<li><a href="single.html"><img src="{{asset('lib/public/images/t1.jpg')}}" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="{{asset('lib/public/images/t2.jpg')}}" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="{{asset('lib/public/images/t3.jpg')}}" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="{{asset('lib/public/images/t4.jpg')}}" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="{{asset('lib/public/images/t1.jpg')}}" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="{{asset('lib/public/images/t2.jpg')}}" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="{{asset('lib/public/images/t3.jpg')}}" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="{{asset('lib/public/images/t2.jpg')}}" alt=" " class="img-responsive" /></a></li>
-							<li><a href="single.html"><img src="{{asset('lib/public/images/t4.jpg')}}" alt=" " class="img-responsive" /></a></li>
-						</ul>
-					</div>
-					<div class="clearfix"></div>
 				</div>
+				<div class="col-md-3 sign-gd flickr-post">
+					<h4>Flickr <span>Posts</span></h4>
+					<ul>
+						<li><a href="single.html"><img src="{{asset('lib/public/images/t1.jpg')}}" alt=" " class="img-responsive" /></a></li>
+						<li><a href="single.html"><img src="{{asset('lib/public/images/t2.jpg')}}" alt=" " class="img-responsive" /></a></li>
+						<li><a href="single.html"><img src="{{asset('lib/public/images/t3.jpg')}}" alt=" " class="img-responsive" /></a></li>
+						<li><a href="single.html"><img src="{{asset('lib/public/images/t4.jpg')}}" alt=" " class="img-responsive" /></a></li>
+						<li><a href="single.html"><img src="{{asset('lib/public/images/t1.jpg')}}" alt=" " class="img-responsive" /></a></li>
+						<li><a href="single.html"><img src="{{asset('lib/public/images/t2.jpg')}}" alt=" " class="img-responsive" /></a></li>
+						<li><a href="single.html"><img src="{{asset('lib/public/images/t3.jpg')}}" alt=" " class="img-responsive" /></a></li>
+						<li><a href="single.html"><img src="{{asset('lib/public/images/t2.jpg')}}" alt=" " class="img-responsive" /></a></li>
+						<li><a href="single.html"><img src="{{asset('lib/public/images/t4.jpg')}}" alt=" " class="img-responsive" /></a></li>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
 			</div>
-			<div class="clearfix"></div>
 		</div>
+		<div class="clearfix"></div>
 	</div>
+</div>
 </body>
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 @if(Auth::check())
@@ -476,10 +480,10 @@
 						});
 						product+='<div class="clearfix"></div>';
 											//$("").hide();	
-						$('.product-sec1').html(product);
-					}
-				}
-			});
+											$('.product-sec1').html(product);
+										}
+									}
+								});
 		});
 	});
 </script>

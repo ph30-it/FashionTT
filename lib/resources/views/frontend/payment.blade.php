@@ -6,10 +6,6 @@
 @endsection
 @section('title','Payment')
 @section('content')
-<div class="banner_top innerpage" id="home">
-	@include('frontend.menu')
-	<div class="clearfix"></div>
-</div>
 <div class="ads-grid_shop">
 	<div class="shop_inner_inf">
 		<div class="privacy about">

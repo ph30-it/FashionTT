@@ -1,9 +1,6 @@
 @extends('layout')
-@section('title', 'Shop')
+@section('title', 'List Search')
 @section('content')
-<div class="banner_top innerpage" id="home">
-	@include('frontend.menu')
-</div>
 <div class="container">
 	@if(isset($product))
 	<h3 style="text-align: center;margin-top:10px">Danh sách tìm kiếm : Tìm thấy {{count($product)}} sản phẩm hợp lệ</h3>
@@ -75,54 +72,3 @@
 	</div>
 </div>
 @stop
-@section('js')
-<script type="text/javascript">
-	$(window).on('hashchange', function() {
-		if (window.location.hash) {
-			var page = window.location.hash.replace('#', '');
-			if (page == Number.NaN || page <= 0) {
-				return false;
-			}else{
-				getData(page);
-			}
-		}
-	});
-
-	$(document).ready(function()
-	{
-		$(document).on('click', '.pagination a',function(event)
-		{
-			event.preventDefault();
-
-			$('li').removeClass('active');
-			$(this).parent('li').addClass('active');
-
-			var myurl = $(this).attr('href');
-			var page=$(this).attr('href').split('page=')[1];
-
-			getData(page);
-		});
-
-	});
-
-	function getData(page){
-		$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
-		});
-		$.ajax(
-		{
-			url: '?page=' + page,
-			type: "POST",
-			data: {_token: '{!! csrf_token() !!}'},
-			datatype: "html"
-		}).done(function(data){
-			$(".ads-grid_shop").empty().html(data);
-			location.hash = page;
-		}).fail(function(jqXHR, ajaxOptions, thrownError){
-			alert('No response from server');
-		});
-	}
-</script>
-@endsection

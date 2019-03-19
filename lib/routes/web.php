@@ -11,7 +11,7 @@ Route::get('payment','CheckoutController@payment')->name('payment');
 Route::POST('sendmail','CheckoutController@sendMail')->name('sendmail');
 Route::get('single/{id}','HomeController@single')->name('single');
 Route::POST('comment','HomeController@comment')->name('comment');
-Route::view('contact', 'frontend.contact');
+Route::view('contact', 'frontend.contact')->name('contact');
 Route::view('about', 'frontend.about')->name('about');
 
 Route::get('ADMIN',function(){

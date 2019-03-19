@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Shop')
+@section('title', 'Details')
 @section('content')
 @section('css')
 <link rel="stylesheet" href="{{asset('lib/public/css/flexslider.css')}}" type="text/css" media="screen" />
@@ -7,9 +7,6 @@
 <!-- Owl-carousel-CSS -->
 <link rel="stylesheet" type="text/css" href="{{asset('lib/public/css/jquery-ui1.css')}}">
 @endsection
-<div class="banner_top innerpage" id="home">
-	@include('frontend.menu')
-	<div class="clearfix"></div>
 	<div class="ads-grid_shop">
 		<div class="shop_inner_inf">
 			<div class="col-md-4 single-right-left ">
