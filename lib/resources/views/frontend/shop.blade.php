@@ -11,8 +11,8 @@
 		<div class="side-bar col-md-3">
 			<div class="search-hotel">
 				<h3 class="agileits-sear-head">Search Here..</h3>
-				<form action="#">
-					
+				<form action="{{route('list-search')}}" method="POST">
+					@csrf
 					<input type="search" class="form-controller" id="search" name="search" placeholder="Click enter after typing...">
 					<input type="submit" value=" ">
 				</form>
@@ -159,9 +159,8 @@
 				<div class="product-sec1">
 					<!--/mens-->
 					@include('frontend.products')
-					
-
 				</div>
+
 
 				<!-- //product-sec1 -->
 				<div class="col-md-6 shop_left shp">

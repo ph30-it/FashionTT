@@ -81,7 +81,6 @@ class ShoppingCartController extends Controller
 	public function searchProduct(Request $request)
 	{
 		$query=$request->search;
-
 			$products=Product::where('name', 'like', '%'.$query.'%')
 			->orWhere('price', 'like', '%'.$query.'%')
 			->orWhere('description', 'like', '%'.$query.'%')

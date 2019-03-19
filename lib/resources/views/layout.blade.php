@@ -243,7 +243,7 @@
 </body>
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 @if(Auth::check())
-<a href="{{route('category-list')}}" id="gotoHome"  style="display: block;">
+<a href="{{url("ADMIN")}}" id="gotoHome"  style="display: block;">
 	<span id="toTopHover" style="opacity: 1;"><b>{{Auth::user()->username}}!</b><br>
 	Đến trang quản trị</span>
 </a>
@@ -343,7 +343,7 @@
 							html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
 							html+='<div class="sbmincart-details-price"><span class="sbmincart-price">$'+value.price*value.qty+'</span></div></li>';
 							html1+='<tr class="rem1">';
-							html1+='<td class="invert">1</td>';
+							html1+='<td class="invert">'+i+'</td>';
 							html1+='<td class="invert-image" style="width: 40%;"><a href=""><img src="http://localhost/FashionTT/lib/public/images_product/'+value.image+'" class="img-responsive"></a></td>';
 							html1+='<td class="invert"><div class="quantity"><div class="quantity-select"><input class="value sbmincart-quantity" type="text" data-id="'+value.id+'" value="'+value.qty+'" autocomplete="off" max="5"></div></div></td>';
 							html1+='<td class="invert">'+value.name+'</td><td class="invert money1" data-idx="'+value.id+'">$'+value.price*value.qty+'</td><td class="invert"><div class="rem"><div class="close1 remove" data-sbmincart-idx="'+value.id+'" > </div></div></td>';
