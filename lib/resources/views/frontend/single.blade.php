@@ -124,6 +124,7 @@
 
 						<div class="single_page">
 							<div class="bootstrap-tab-text-grids">
+								@if($comment)
 								<div class="bootstrap-tab-text-grid" style="height:500px;overflow: auto">
 									@foreach($comment as $k => $val)
 									<p><img src="{{asset('lib/public/images/')}}/{{$val['user']['avatar']}}" alt="" width="50px"><b>{{$val['user']['username']}} : </b>{{$val['content']}}</p>
@@ -131,17 +132,23 @@
 									@endforeach
 									<div class="clearfix"></div>
 								</div>
-								@if(Auth::check())
+								@else
+								<div class="bootstrap-tab-text-grid">
+									<p style="font-size:20px;color:green;text-align: center;">Hãy là người đầu tiên bình luận sản phẩm này</p>
+								</div>
+								@endif
 								<div class="add-review">
+									@if(Auth::check())								
 									<h4>add a comment</h4>
-
 									<form action="{{route('comment')}}" id="formComment" method="POST">
 										@csrf
 										<textarea name="Message" id="message" required=""></textarea>
 										<input type="submit" value="SEND">
-									</form>
+									</form>								
+									@else
+									<p style="font-size:20px">Bạn cần <a href="{{route('login')}}" title="">đăng nhập</a> để bình luận</p>
+									@endif
 								</div>
-								@endif
 							</div>
 
 						</div>
@@ -231,19 +238,19 @@
 				data: {
 					content:message,
 					id:{{$single['id']}},
-					user_id:{{Auth::user()->id}},
 					_token: '{!! csrf_token() !!}'
 				},
 				success: function(msg) {
+					console.log(msg)
 					$.each(JSON.parse(msg), function(key,value){
 						html+='<p><img src="http://localhost/FashionTT/lib/public/images/'+value.user.avatar+'" width="50px"><b>'+value.user.username+' : </b>'+value.content+'</p><a  href="" title="'+value.created_at+'">'+value.created_at+'</a>';
 					});
 					html+='<div class="clearfix"></div>';
 					$('.bootstrap-tab-text-grid').html(html);
 				}
+			});
 		});
-	});
-			$('#horizontalTab').easyResponsiveTabs({
+		$('#horizontalTab').easyResponsiveTabs({
 				type: 'default', //Types: default, vertical, accordion           
 				width: 'auto', //auto or any width like 600px
 				fit: true, // 100% fit in a container
@@ -256,36 +263,36 @@
 					$info.show();
 				}
 			});
-			$('#verticalTab').easyResponsiveTabs({
-				type: 'vertical',
-				width: 'auto',
-				fit: true
-			});
+		$('#verticalTab').easyResponsiveTabs({
+			type: 'vertical',
+			width: 'auto',
+			fit: true
 		});
-	</script>
+	});
+</script>
 
-	<script>
-		$(window).load(function () {
-			$('.flexslider').flexslider({
-				animation: "slide",
-				controlNav: "thumbnails"
-			});
+<script>
+	$(window).load(function () {
+		$('.flexslider').flexslider({
+			animation: "slide",
+			controlNav: "thumbnails"
 		});
-	</script>
-	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
+	});
+</script>
+<script type="text/javascript">
+	jQuery(document).ready(function ($) {
+		$(".scroll").click(function (event) {
+			event.preventDefault();
+			$('html,body').animate({
+				scrollTop: $(this.hash).offset().top
+			}, 1000);
 		});
-	</script>
-	@section('js')
-	<script type="text/javascript" src="{{asset('lib/public/js/bootstrap-3.1.1.min.js')}}"></script>
-	<script type="text/javascript" src="{{asset('lib/public/js/imagezoom.js')}}"></script>
-	<script type="text/javascript" src="{{asset('lib/public/js/jquery.flexslider.js')}}"></script>
-	<script type="text/javascript" src="{{asset('lib/public/js/easy-responsive-tabs.js')}}"></script>
-	@endsection
-	@stop
+	});
+</script>
+@section('js')
+<script type="text/javascript" src="{{asset('lib/public/js/bootstrap-3.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('lib/public/js/imagezoom.js')}}"></script>
+<script type="text/javascript" src="{{asset('lib/public/js/jquery.flexslider.js')}}"></script>
+<script type="text/javascript" src="{{asset('lib/public/js/easy-responsive-tabs.js')}}"></script>
+@endsection
+@stop

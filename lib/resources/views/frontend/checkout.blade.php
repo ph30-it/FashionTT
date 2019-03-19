@@ -29,10 +29,11 @@
 						</tr>
 					</thead>
 					<tbody class="appear-here">
+						<?php $i=1 ?>
 						@foreach($data as $k => $val)
 
 						<tr class="rem1">
-							<td class="invert">1</td>
+							<td class="invert">{{$i}}</td>
 							<td class="invert-image" style="width: 40%;"><a href=""><img src="{{asset('lib/public/images_product/')}}/{{$val['image']}}" class="img-responsive"></a></td>
 							<td class="invert">
 								<div class="quantity">
@@ -50,6 +51,7 @@
 
 							</td>
 						</tr>
+						<?php $i++ ?>
 						@endforeach
 					</tbody>
 				</table>

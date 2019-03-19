@@ -22,7 +22,7 @@ function menu($data,$level=0,$text='&nbsp;&nbsp;')
 			if ($value['parent_id']==0) {
 				echo '<b>'.$text.$value['name'].'</b><br />';
 			}else{
-				echo '<a href="?cate='.$value['id'].'" title="">'.$text.$value['name'].'</a><br />';
+				echo '<a href="'.route("list-search").'?cate='.$value['id'].'" title="">'.$text.$value['name'].'</a><br />';
 			}
 			
 		// lưu id = với khóa 
