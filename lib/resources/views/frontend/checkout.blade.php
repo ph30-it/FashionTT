@@ -15,7 +15,7 @@
 			<h3>Chec<span>kout</span></h3>
 
 			<div class="checkout-right">
-				<h4>Your shopping cart contains: <span>{{count($data)}} Products</span></h4>
+				<h4>Your shopping cart contains: <span class="count">{{count($data)}} Products</span></h4>
 				<table class="timetable_sub">
 					<thead>
 						<tr>
@@ -45,7 +45,7 @@
 							<td class="invert money{{$val['id']}}" data-idx="{{$val['id']}}">${{$val['qty']*$val['price']}}</td>
 							<td class="invert">
 								<div class="rem">
-									<div class="close1 remove"> </div>
+									<div class="close1 remove" data-sbmincart-idx="{{$val['id']}}"> </div>
 								</div>
 
 							</td>
@@ -56,7 +56,7 @@
 			</div>
 			<div class="checkout-left">
 				<div class="col-md-4 checkout-left-basket">
-					<h4>Continue to basket</h4>
+					<h4><a href="{{route('shop')}}" title="" style="color:white">Continue Shopping</a></h4>
 					<?php $tongtien=0?>
 					<ul class="appear-here1">@foreach($data as $k => $val)
 						<?php 
@@ -69,7 +69,7 @@
 				</div>
 				@if(Auth::check())
 				<div class="col-md-8 address_form">
-					@include('error')
+					@include('errors.error')
 					<h4>Add a new Details</h4>
 					<form action="{{route('checkout')}}" method="post" class="creditly-card-form agileinfo_form">
 						@csrf

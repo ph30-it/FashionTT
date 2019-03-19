@@ -15,13 +15,7 @@
 			<h2 class="inactive underlineHover"><a href="{{route('login')}}" title="">Sign In</a> </h2>
 			<h2 class="active">Sign Up </h2>
 			<!-- Login Form -->
-			@if($errors->any())
-			<div class="alert alert-danger">
-				@foreach($errors->all() as $err)
-				<li>{{$err}}</li>
-				@endforeach
-			</div>
-			@endif
+			@include('errors.error')
 			@if(session('class'))
 			<div class="alert alert-{{session('class')}}">
 				<li>{{session('message')}}</li>
