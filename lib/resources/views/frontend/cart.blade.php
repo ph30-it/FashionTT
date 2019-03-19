@@ -1,5 +1,4 @@
 	<div class="shoecart shoecart2 cart cart box_1">
-
 		<div id="staplesbmincart" style="display: inline;">
 			<button type="button" class="sbmincart-closer" onclick="none();">×</button>    
 			<?php $data=Session::get('cart');

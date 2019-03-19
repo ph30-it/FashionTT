@@ -8,10 +8,9 @@
 			<nav>
 				<ul>
 					<li><a href="{{route('index')}}" class="active">Home</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="404.html">Team</a></li>
+					<li><a href="{{route('about')}}">About</a></li>
 					<li><a href="{{route('shop')}}">Shop Now</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="{{route('contact')}}">Contact</a></li>
 					@if(Auth::check())
 					<li><a href="{{route('logout')}}">Logout</a></li>
 					<li><b style="color:red"><i>Hello {{Auth::user()->username}}!</i></b><br>
