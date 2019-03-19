@@ -14,7 +14,6 @@ Route::POST('comment','HomeController@comment')->name('comment');
 Route::view('contact', 'frontend.contact');
 Route::view('about', 'frontend.about')->name('about');
 
-
 Route::get('login','admin\LoginController@getLogin')->middleware('checkrole')->name('login');
 Route::POST('login','admin\LoginController@postLogin')->name('logined');
 

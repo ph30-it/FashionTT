@@ -6,12 +6,6 @@
 <link href="{{asset('lib/public/css/easy-responsive-tabs.css')}}" rel='stylesheet' type='text/css' />
 <!-- Owl-carousel-CSS -->
 <link rel="stylesheet" type="text/css" href="{{asset('lib/public/css/jquery-ui1.css')}}">
-<style type="text/css">
-@media (max-width: 1600px)
-.mid_services_img {
-    min-height: 0px;
-}
-</style>
 @endsection
 <div class="banner_top innerpage" id="home">
 		<div class="wrapper_top_w3layouts">

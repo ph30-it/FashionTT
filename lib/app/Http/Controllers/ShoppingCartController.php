@@ -49,7 +49,6 @@ class ShoppingCartController extends Controller
 	public function deleteProduct(Request $request)
 	{
 		if($request->id) {
-
 			$cart = session()->get('cart');
 			if(isset($cart[$request->id])) {
 
@@ -58,6 +57,7 @@ class ShoppingCartController extends Controller
 				session()->put('cart', $cart);
 			}
 		}
+		$cart = session()->get('cart');
 		return json_encode($cart);	
 	}
 	public function updateProduct(Request $request)

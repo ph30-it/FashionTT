@@ -20,7 +20,7 @@
 				<img src="{{asset('lib/public/images/user.png')}}" id="icon" alt="User Icon" />
 			</div>
 
-			@include('error')
+			@include('errors.error')
 			@if(session('class'))
 			<div class="alert alert-{{session('class')}}">
 				<li>{{session('message')}}</li>

@@ -41,7 +41,7 @@
 			</div>   
 			<?php else: ?> 
 			<p class="sbmincart-empty-text" style="text-align: center;">Giỏ hàng trống <br>
-				Let Buy Now
+				<a href="{{route('shop')}}" title="">Let Buy Now</a>
 			</p>
 			@endif 
 

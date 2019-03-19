@@ -14,7 +14,7 @@
 	<div class="shop_inner_inf">
 		<div class="privacy about">
 			<h3>Pay<span>ment</span></h3>
-			@include('error')
+			@include('errors.error')
 			<div class="responsive_tabs">
 				<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 					<ul class="resp-tabs-list">

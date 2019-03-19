@@ -146,24 +146,23 @@
 				<p>Lorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
 				<ul class="social-nav model-3d-0 footer-social social two">
 					<li>
-						<a href="#" class="facebook">
+						<a href="https://www.facebook.com/thuongnguyen130499" class="facebook" target="blank">
 							<div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 							<div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="twitter">
+						<a href="https://twitter.com/@thuongchul1304" class="twitter" target="blank">
 							<div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
 							<div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="instagram">
+						<a href="https://www.instagram.com/thuongnguyen1304/" class="instagram" target="blank">
 							<div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
 							<div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
 						</a>
 					</li>
-					<li>
 						<a href="#" class="pinterest">
 							<div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
 							<div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
@@ -309,7 +308,7 @@
 		$('body').on('click','.remove',function(){
 			html ='';
 			var id = $(this).attr('data-sbmincart-idx');
-			console.log(id)
+			//console.log(id)
 			$.ajax({
 				type : "POST",
 				dataType : "JSON",
@@ -320,23 +319,25 @@
 					_token: '{!! csrf_token() !!}'
 				},success:function(result)
 				{
+					console.log(result)
 					html1='';
 					html ='';
 					html2='';
 					html+='<button type="button" class="sbmincart-closer" onclick="none();">×</button>';
 					if (result=='') {
-						html1+='<div class="row" style="height: 180px;padding: 15px"><h1 style="text-align: center">Giỏ hàng rỗng</h1><div class="center-block col-md-2" style="float: none;"><a href="{{route('shop')}}" title="" class="btn btn-primary center-block">Quay về trang chủ</a></div></div>';
-						html+='<p class="sbmincart-empty-text" style="text-align: center;">Giỏ hàng trống <br>Let Buy Now</p>';
+						// html1+='<div class="row" style="height: 180px;padding: 15px"><h1 style="text-align: center">Giỏ hàng rỗng</h1><div class="center-block col-md-2" style="float: none;"><a href="" title="" class="btn btn-primary center-block">Quay về trang chủ</a></div></div>';
+						// html+='<p class="sbmincart-empty-text" style="text-align: center;">Giỏ hàng trống <br>Let Buy Now</p>';
 						//$('.shop_inner_inf').html(html1);						
 						//$('#staplesbmincart').html(html);
 						location.reload();
 					}else{
 						tongtien=0;	
 						html+='<ul>';
-
+						var i=0;
 						$.each(result, function(key,value){
 							tongtien+=value.price*value.qty;
-							console.log(tongtien);
+							i++;
+							console.log(i);
 							html+='<li class="sbmincart-item"><div class="sbmincart-details-name"><a class="sbmincart-name" href="">'+value.name+'</a><ul class="sbmincart-attributes"></ul></div>';
 							html+='<div class="sbmincart-details-quantity"><input class="sbmincart-quantity" type="text" data-id="'+value.id+'"  value="'+value.qty+'" autocomplete="off" max="5"></div>';
 							html+='<div class="sbmincart-details-remove"> <button type="button" class="sbmincart-remove remove" data-sbmincart-idx="'+value.id+'">×</button></div>';
@@ -345,17 +346,19 @@
 							html1+='<td class="invert">1</td>';
 							html1+='<td class="invert-image" style="width: 40%;"><a href=""><img src="http://localhost/FashionTT/lib/public/images_product/'+value.image+'" class="img-responsive"></a></td>';
 							html1+='<td class="invert"><div class="quantity"><div class="quantity-select"><input class="value sbmincart-quantity" type="text" data-id="'+value.id+'" value="'+value.qty+'" autocomplete="off" max="5"></div></div></td>';
-							html1+='<td class="invert">'+value.name+'</td><td class="invert money1" data-idx="'+value.id+'">$'+value.price*value.qty+'</td><td class="invert"><div class="rem"><div class="close1 remove"> </div></div></td>';
+							html1+='<td class="invert">'+value.name+'</td><td class="invert money1" data-idx="'+value.id+'">$'+value.price*value.qty+'</td><td class="invert"><div class="rem"><div class="close1 remove" data-sbmincart-idx="'+value.id+'" > </div></div></td>';
 							html1+='</tr>';
 							html2+='<li>'+value.name+'<i>-</i> <span>$'+value.price+'*'+value.qty+'</span></li>';
 
 						});
+						i+= ' Products';
 						html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div></form>';
 						html2+='<li>Total <i>-</i> <span>$'+tongtien+'</span></li>';
 						$('#staplesbmincart').html(html);
 						$(".sbmincart-empty-text").hide();
 						$('.appear-here').html(html1);
-						$('.appear-here1').html(html2);		
+						$('.appear-here1').html(html2);	
+						$('.count').html(i);	
 					}
 					html+='</div>';
 
@@ -365,7 +368,7 @@
 		$('.addProduct').click(function(){
 			html ='';  
 			var id = $(this).attr('value');
-			//console.log(html);			
+			console.log(id);			
 			$.ajax({
 				type : "POST",
 				dataType : "JSON",
