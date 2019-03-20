@@ -58,6 +58,12 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::get('/{id}/edit', 'admin\ProductController@edit')->name('product-edit');
 			Route::put('/{id}/update', 'admin\ProductController@update')->name('product-update');
 			Route::delete('/{id}/delete', 'admin\ProductController@destroy')->name('product-delete');
+			Route::get('/{id}/showcate', 'admin\ProductController@showCate')->name('category-show');
+			Route::get('/{id}/show', 'admin\ProductController@show')->name('product-show');
+		});
+		Route::group(['prefix' => 'image'], function(){
+			Route::get('/create', 'ImageController@create')->name('image-create');
+			Route::post('/store', 'ImageController@store')->name('image-store');
 		});
 		Route::group(['prefix' => 'user'], function(){
 			Route::get('/list', 'admin\UserController@index')->name('user-list');
@@ -67,8 +73,24 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::put('/{id}/update', 'admin\UserController@update')->name('user-update');
 			Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('user-delete');
 		});
+		Route::group(['prefix' => 'order'], function(){
+			Route::get('/list', 'admin\OrderController@index')->name('order-list');
+		// Route::get('/create', 'admin\UserController@create')->name('user-create');
+		// Route::post('/store', 'admin\UserController@store')->name('user-store');
+			Route::get('/{id}/edit', 'admin\OrderController@edit')->name('order-edit');
+			Route::put('/{id}/update', 'admin\OrderController@update')->name('order-update');
+		// Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('user-delete');
+
+			Route::group(['prefix' =>'orderDetail'], function(){
+				Route::get('/list', 'admin\OrderController@index')->name('orderDetail-list');
+				Route::get('/{id}/edit', 'admin\OrderController@edit')->name('orderDetail-edit');
+				Route::put('/{id}/update', 'admin\OrderController@update')->name('orderDetail-update');
+				Route::get('/{id}/showorder', 'admin\OrderController@showorder')->name('orderDetail-show');
+			});
+		});
 	});
 });
+
 
 Route::group(['prefix' => 'user','middleware'=>'user'], function(){
 	Route::view('user','backend.user')->name('user');

@@ -51,11 +51,28 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" class="form-control" name="description" id="description" >
+                                    <label>View</label>
+                                    <input type="number" class="form-control" name="view" id="view" value="0" >
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" name="description" id="editor1"></textarea>                        
+                                    <script> CKEDITOR.replace( 'editor1', {
+                                        filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+                                        filebrowserImageBrowseUrl: '{{ asset('lib/public/admin/ckfinder/ckfinder.html?type=Images') }}',
+                                        filebrowserFlashBrowseUrl: '{{ asset('lib/public/admin/ckfinder/ckfinder.html?type=Flash') }}',
+                                        filebrowserUploadUrl: '{{ asset('lib/public/admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+                                        filebrowserImageUploadUrl: '{{ asset('lib/public/admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+                                        filebrowserFlashUploadUrl: '{{ asset('lib/public/admin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+                                    } ); </script>
+                                </div>
+                            </div>
+                        </div>
+
                         <label>Categories</label>
                         <select class="form-control" name="category_id">
                             @foreach($categoryID as $key => $value)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Image;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,5 +47,14 @@ class ProductController extends Controller
     {
         Product::destroy($id);
         return redirect()->route('product-list');
+    }
+    public function showCate($id){
+        $datas = Product::with('cate')->where('category_id',$id)->get();
+        return view('backend.category.show', compact('datas'));
+    }
+    public function show($id){
+        $product = Product::with('cate')->where('id', $id)->get();
+        $images = Image::with('product')->where('id', $id)->get();
+        return view('backend.product.show', compact('product','images'));
     }
 }
