@@ -1,7 +1,5 @@
-
-
 @extends('layout')
-@section('title', 'Shop')
+@section('title', 'Details')
 @section('content')
 @section('css')
 <link rel="stylesheet" href="{{asset('lib/public/css/flexslider.css')}}" type="text/css" media="screen" />
@@ -9,48 +7,45 @@
 <!-- Owl-carousel-CSS -->
 <link rel="stylesheet" type="text/css" href="{{asset('lib/public/css/jquery-ui1.css')}}">
 @endsection
-<div class="banner_top innerpage" id="home">
-	@include('frontend.menu')
-	<div class="clearfix"></div>
-<div class="ads-grid_shop">
-	<div class="shop_inner_inf">
-		<div class="col-md-4 single-right-left ">
-			<div class="grid images_3_of_2">
-				<div class="flexslider">
+	<div class="ads-grid_shop">
+		<div class="shop_inner_inf">
+			<div class="col-md-4 single-right-left ">
+				<div class="grid images_3_of_2">
+					<div class="flexslider">
 
-					<ul class="slides">
-						@foreach ($single['images'] as  $val)
-						<li data-thumb="{{asset('lib/public/images_product')}}/{{$val['name']}}">
-							<div class="thumb-image"> <img src="http://localhost/web/public/images/shoes/<?=$val['name']?>" data-imagezoom="true" class="img-responsive"> </div>
-						</li>
-						@endforeach
-					</ul>
-					<div class="clearfix"></div>
+						<ul class="slides">
+							@foreach ($single['images'] as  $val)
+							<li data-thumb="{{asset('lib/public/images_product')}}/{{$val['name']}}">
+								<div class="thumb-image"> <img src="http://localhost/web/public/images/shoes/<?=$val['name']?>" data-imagezoom="true" class="img-responsive"> </div>
+							</li>
+							@endforeach
+						</ul>
+						<div class="clearfix"></div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-8 single-right-left simpleCart_shelfItem">
-			<h3><?=$single['name']?>
-				<p><span class="item_price">$<?=$single['price']?></span>
-					<del>$<?=$single['sale']?></del>
-				</p>
-				<div class="rating1">
-					<ul class="stars">
-						<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-					</ul>
-				</div>
-				<div class="occasional">
-					<?=$single['description'] ?>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="occasion-cart">
-					<div class="shoe single-item single_page_b">
-						<form action="" method="POST">
-							<button type="button" name="submit" value="<?=$single['id']?>" class="addProduct"					
+			<div class="col-md-8 single-right-left simpleCart_shelfItem">
+				<h3><?=$single['name']?>
+					<p><span class="item_price">${{$single['price']}}</span>
+						<del>${{$single['sale']}}</del>
+					</p>
+					<div class="rating1">
+						<ul class="stars">
+							<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+					<div class="occasional">
+						{{$single['description']}}
+						<div class="clearfix"> </div>
+					</div>
+					<div class="occasion-cart">
+						<div class="shoe single-item single_page_b">
+							<form action="" method="POST">
+								<button type="button" name="submit" value="{{$single['id']}}" class="addProduct"					
 								style="font-size: 13px;
 								color: #fff;
 								background: #1d1d1d;
@@ -102,6 +97,62 @@
 
 		</div>
 		<div class="clearfix"> </div>
+		<div class="responsive_tabs">
+			<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+				<ul class="resp-tabs-list">
+					<li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab">Description</li>
+					<li class="resp-tab-item" aria-controls="tab_item-1" role="tab">Commnet</li>
+				</ul>
+				<div class="resp-tabs-container">
+					<!--/tab_one-->
+					<h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>Description</h2><div class="tab1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
+
+						<div class="single_page">
+							<h6>{{$single['name']}}</h6>
+							<p>{{$single['description']}}</p>
+							<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
+								blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+								ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
+							magna aliqua.</p>
+						</div>
+					</div>
+					<!--//tab_one-->
+					<h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span>Reviews</h2><div class="tab2 resp-tab-content" aria-labelledby="tab_item-1">
+
+						<div class="single_page">
+							<div class="bootstrap-tab-text-grids">
+								@if($comment)
+								<div class="bootstrap-tab-text-grid" style="height:500px;overflow: auto">
+									@foreach($comment as $k => $val)
+									<p><img src="{{asset('lib/public/images/')}}/{{$val['user']['avatar']}}" alt="" width="50px"><b>{{$val['user']['username']}} : </b>{{$val['content']}}</p>
+									<a  href="" title="{{$val['created_at']}}">{{\Carbon\Carbon::createFromTimeStamp(strtotime($val['created_at']))->diffforHumans()}}</a>
+									@endforeach
+									<div class="clearfix"></div>
+								</div>
+								@else
+								<div class="bootstrap-tab-text-grid">
+									<p style="font-size:20px;color:green;text-align: center;">Hãy là người đầu tiên bình luận sản phẩm này</p>
+								</div>
+								@endif
+								<div class="add-review">
+									@if(Auth::check())								
+									<h4>add a comment</h4>
+									<form action="{{route('comment')}}" id="formComment" method="POST">
+										@csrf
+										<textarea name="Message" id="message" required=""></textarea>
+										<input type="submit" value="SEND">
+									</form>								
+									@else
+									<p style="font-size:20px">Bạn cần <a href="{{route('login')}}" title="">đăng nhập</a> để bình luận</p>
+									@endif
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="new_arrivals">
 			<h3>Featured Products</h3>
 			@foreach ($view as $key => $value)
@@ -148,7 +199,9 @@
 				</div>
 			</div>
 			@endforeach
+
 			<div class="clearfix"></div>
+
 		</div>
 
 
@@ -168,6 +221,32 @@
 
 <script>
 	$(document).ready(function () {
+		$('#formComment').on('submit', function(e) {
+			var message = $('#message').val();
+			var html='';
+			console.log(message);
+			e.preventDefault();
+			$.ajax({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				type: "POST",
+				url: '{{url('comment')}}',
+				data: {
+					content:message,
+					id:{{$single['id']}},
+					_token: '{!! csrf_token() !!}'
+				},
+				success: function(msg) {
+					console.log(msg)
+					$.each(JSON.parse(msg), function(key,value){
+						html+='<p><img src="http://localhost/FashionTT/lib/public/images/'+value.user.avatar+'" width="50px"><b>'+value.user.username+' : </b>'+value.content+'</p><a  href="" title="'+value.created_at+'">'+value.created_at+'</a>';
+					});
+					html+='<div class="clearfix"></div>';
+					$('.bootstrap-tab-text-grid').html(html);
+				}
+			});
+		});
 		$('#horizontalTab').easyResponsiveTabs({
 				type: 'default', //Types: default, vertical, accordion           
 				width: 'auto', //auto or any width like 600px

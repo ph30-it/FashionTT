@@ -19,7 +19,7 @@ class LoginController extends Controller
 		$remember=$request->has('remember') ? true : false;
 		$credentials = $request->only('username', 'password');
 		if (Auth::attempt($credentials,$remember)) {
-			return redirect()->route('index');
+			return redirect()->route('/');
 		}else{
 			return redirect()->back()->with(['class'=>'danger','message'=>'Đăng nhập thất bại']);
 		}

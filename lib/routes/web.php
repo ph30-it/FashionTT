@@ -1,31 +1,41 @@
 <?php
 
-Route::get('/','ProductController@index')->name('list-product');
-route::view('ahihi', 'backend.category.list');
-
-Route::get('/','HomeController@index')->name('list-product');
-
-Route::get('/','HomeController@index')->name('index');
+Route::get('/','HomeController@index')->name('/');
 Route::get('index','HomeController@index')->name('index');
 
 Route::get('shop','HomeController@shop')->name('shop');
-Route::get('checkout','HomeController@checkout')->name('checkout');
-Route::get('payment','HomeController@payment')->name('payment');
-
+Route::any('list-search','HomeController@postSearch')->name('list-search');
+Route::get('checkout','CheckoutController@index')->name('checkout');
+Route::POST('checkout','CheckoutController@postCheckout')->name('checkout');
+Route::get('payment','CheckoutController@payment')->name('payment');
+Route::POST('sendmail','CheckoutController@sendMail')->name('sendmail');
 Route::get('single/{id}','HomeController@single')->name('single');
+Route::POST('comment','HomeController@comment')->name('comment');
+Route::view('contact', 'frontend.contact')->name('contact');
+Route::view('about', 'frontend.about')->name('about');
 
-Route::view('contact', 'frontend.contact');
-Route::view('about', 'frontend.about');
+Route::get('ADMIN',function(){
+	if (\Auth::user()->id==1) {
+		return redirect()->route('category-list');
+	}else{
+	return	redirect()->route('user');
+	}
+});
+
 Route::get('login','admin\LoginController@getLogin')->middleware('checkrole')->name('login');
+Route::POST('login','admin\LoginController@postLogin')->name('logined');
+
 Route::get('register','admin\LoginController@getRegister')->name('register');
 Route::POST('register','admin\LoginController@postRegister')->name('registered');
-Route::POST('login','admin\LoginController@postLogin')->name('logined');
 
 Route::get('logout','admin\LoginController@getLogout')->name('logout');
 
 Route::POST('shopping','ShoppingCartController@addProduct')->name('shopping');
 Route::POST('delete','ShoppingCartController@deleteProduct')->name('delete');
 Route::POST('update','ShoppingCartController@updateProduct')->name('update');
+Route::POST('search','ShoppingCartController@searchProduct')->name('search');
+
+
 
 
 

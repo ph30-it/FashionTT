@@ -20,14 +20,7 @@
 				<img src="{{asset('lib/public/images/user.png')}}" id="icon" alt="User Icon" />
 			</div>
 
-			<!-- Login Form -->
-			@if($errors->any())
-			<div class="alert alert-danger">
-				@foreach($errors->all() as $err)
-				<li>{{$err}}</li>
-				@endforeach
-			</div>
-			@endif
+			@include('errors.error')
 			@if(session('class'))
 			<div class="alert alert-{{session('class')}}">
 				<li>{{session('message')}}</li>
@@ -35,8 +28,8 @@
 			@endif
 			<form action="{{route('logined')}}" method="POST" >
 				@csrf
-				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Username">
-				<input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Username" value="{{old('username')}}">
+				<input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" value="{{old('password')}}">
 				<input type="submit" class="fadeIn fourth" value="Log In"><br>
 				<input type="checkbox" name="remember" value="remember">Remember me
 

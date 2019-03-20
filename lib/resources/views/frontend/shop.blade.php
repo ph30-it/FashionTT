@@ -1,18 +1,15 @@
 @extends('layout')
 @section('title', 'Shop')
 @section('content')
-<div class="banner_top innerpage" id="home">
-	@include('frontend.menu')
-	<div class="clearfix"></div>
-</div>
 <div class="ads-grid_shop">
 	<div class="shop_inner_inf">
 
 		<div class="side-bar col-md-3">
 			<div class="search-hotel">
 				<h3 class="agileits-sear-head">Search Here..</h3>
-				<form action="#" method="post">
-					<input type="search" placeholder="Product name..." name="search" required="">
+				<form action="{{route('list-search')}}" method="POST">
+					@csrf
+					<input type="search" class="form-controller" id="search" name="search" placeholder="Click enter after typing...">
 					<input type="submit" value=" ">
 				</form>
 			</div>
@@ -30,29 +27,12 @@
 			<!-- //price range -->
 			<!--preference -->
 			<div class="left-side">
-				<h3 class="agileits-sear-head">Occasion</h3>
-				<ul>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">Casuals</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">Party</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">Wedding</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">Ethnic</span>
-					</li>
+				<h3 class="agileits-sear-head">Categories</h3>
+				<ul  name="parent_id">
+					<?php menu($category); ?>
 				</ul>
 			</div>
-			<!-- // preference -->
-			<!-- discounts -->
-			<div class="left-side">
+			{{-- <div class="left-side">
 				<h3 class="agileits-sear-head">Discount</h3>
 				<ul>
 					<li>
@@ -80,7 +60,7 @@
 						<span class="span">60% or More</span>
 					</li>
 				</ul>
-			</div>
+			</div> --}}
 			<!-- //discounts -->
 			<!-- reviews -->
 			<div class="customer-rev left-side">
@@ -174,54 +154,9 @@
 				<!-- product-sec1 -->
 				<div class="product-sec1">
 					<!--/mens-->
-					@foreach($product as $val)
-					<div class="col-md-4 product-men">
-						<div class="product-shoe-info shoe">
-							<div class="men-pro-item">
-								<div class="men-thumb-item">
-									<img src="{{asset('lib/public/images_product\/').$val['image']}}" alt="">
-									<div class="men-cart-pro">
-										<div class="inner-men-cart-pro">
-											<a href="{{route('single',$val['id'])}}" class="link-product-add-cart">Quick View</a>
-										</div>
-									</div>
-									<span class="product-new-top">New</span>
-								</div>
-								<div class="item-info-product">
-									<h4>
-										<a href="single.html">{{$val['name']}}</a>
-									</h4>
-									<div class="info-product-price">
-										<div class="grid_meta">
-											<div class="product_price">
-												<div class="grid-price ">
-													<span class="money ">${{$val['price']}}</span>
-												</div>
-											</div>
-											<ul class="stars">
-												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-												<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-											</ul>
-										</div>
-										<div class="shoe single-item hvr-outline-out">
-											<button type="button"  value="{{$val['id']}}" class="shoe-cart pshoe-cart addProduct">
-												<i class="fa fa-cart-plus" aria-hidden="true"></i>
-											</button>	
-
-										</div>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					@endforeach
-					<div class="clearfix"></div>
-
+					@include('frontend.products')
 				</div>
+
 
 				<!-- //product-sec1 -->
 				<div class="col-md-6 shop_left shp">
@@ -235,8 +170,65 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
+		
 		<div class="clearfix"></div>
+
 	</div>
 </div>
 </div>
+@endsection
+<style type="text/css" media="screen">
+	.inner-men-cart-pro .link-product-add-cart {
+		width: 51%;
+		top: 0px;
+		left: 25%;
+		margin: 0 auto;
+		position: absolute;
+		transition: all 0.5s ease-out 0s;
+	}
+</style>
+@section('js')
+<script type="text/javascript">
+	$(window).on('hashchange', function() {
+		if (window.location.hash) {
+			var page = window.location.hash.replace('#', '');
+			if (page == Number.NaN || page <= 0) {
+				return false;
+			}else{
+				getData(page);
+			}
+		}
+	});
+
+	$(document).ready(function()
+	{
+		$(document).on('click', '.pagination a',function(event)
+		{
+			event.preventDefault();
+
+			$('li').removeClass('active');
+			$(this).parent('li').addClass('active');
+
+			var myurl = $(this).attr('href');
+			var page=$(this).attr('href').split('page=')[1];
+
+			getData(page);
+		});
+
+	});
+
+	function getData(page){
+		$.ajax(
+		{
+			url: '?page=' + page,
+			type: "get",
+			datatype: "html"
+		}).done(function(data){
+			$(".product-sec1").empty().html(data);
+			location.hash = page;
+		}).fail(function(jqXHR, ajaxOptions, thrownError){
+			alert('No response from server');
+		});
+	}
+</script>
 @endsection

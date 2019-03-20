@@ -121,15 +121,16 @@
                     <li class="divider"></li>
                     <li><a href="#">Separated link</a></li>
                 </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <p>Log out</p>
-                </a>
-            </li>
-            <li class="separator hidden-lg hidden-md"></li>
-        </ul>
-    </div>
+            
+    </li>
+    <li>
+        <a href="{{route('logout')}}">
+            <p>Log out</p>
+        </a>
+    </li>
+    <li class="separator hidden-lg hidden-md"></li>
+</ul>
+</div>
 </div>
 </nav>
 @yield('content')

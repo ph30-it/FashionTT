@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use Respone;
 class ShoppingCartController extends Controller
 {
 	public function addProduct(Request $request)
@@ -41,7 +40,7 @@ class ShoppingCartController extends Controller
 				"name" => $product->name,
 				"qty" => 1,
 				"price" => $product->price,
-				"photo" => $product->photo
+				"image" => $product->image
 			];
 			session()->put('cart', $cart);
 			return json_encode($cart);			
@@ -50,9 +49,7 @@ class ShoppingCartController extends Controller
 	public function deleteProduct(Request $request)
 	{
 		if($request->id) {
-
 			$cart = session()->get('cart');
-
 			if(isset($cart[$request->id])) {
 
 				unset($cart[$request->id]);
@@ -60,6 +57,7 @@ class ShoppingCartController extends Controller
 				session()->put('cart', $cart);
 			}
 		}
+		$cart = session()->get('cart');
 		return json_encode($cart);	
 	}
 	public function updateProduct(Request $request)
@@ -67,13 +65,30 @@ class ShoppingCartController extends Controller
 		$id=$request->id;
 		$qty=$request->qty;
 		$cart = session()->get('cart');
-		if ($qty==0) {
+		if ($qty==0 ) {
 			unset($cart[$id]);
 			session()->put('cart', $cart);
-		}else{
+		}elseif($qty < 0 || $qty > 10)
+		{
+			$request->session()->flash('status', 'Lỗi, vui lòng kiểm tra lại!');
+		}
+		else{
 			$cart[$id]['qty']=$qty;
 			session()->put('cart', $cart);
 		}
 		return json_encode($cart);
+	}
+	public function searchProduct(Request $request)
+	{
+		$query=$request->search;
+			$products=Product::where('name', 'like', '%'.$query.'%')
+			->orWhere('price', 'like', '%'.$query.'%')
+			->orWhere('description', 'like', '%'.$query.'%')
+			->orWhere('view', 'like', '%'.$query.'%')
+			->orderBy('view', 'desc')
+			->get()->toArray();
+	
+	// 	print_r($products);
+		echo json_encode($products);
 	}
 }
