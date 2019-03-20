@@ -17,7 +17,7 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <th>ID</th>
-                                <th>Name</th>
+                             
                                 <th>Adress</th>
                                 <th>Cty</th>
                                 <th>Zip Code</th>
@@ -33,6 +33,7 @@
                                 @foreach($order as $item)
                                 <tr>
                                     <td><a href="{{route('orderDetail-show', $item->id)}}">{{$item->id}}</a></td>
+
                                     <td>{{$item->adress}}</td>
                                     <td>{{$item->cty}}</td>
                                     <td>{{$item->zip_code}}</td>
@@ -97,9 +98,4 @@
 
 </div>
 </div>
-
-
-
-
-
 @endsection

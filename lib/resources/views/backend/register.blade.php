@@ -16,11 +16,6 @@
 			<h2 class="active">Sign Up </h2>
 			<!-- Login Form -->
 			@include('errors.error')
-			@if(session('class'))
-			<div class="alert alert-{{session('class')}}">
-				<li>{{session('message')}}</li>
-			</div>
-			@endif
 			<form action="{{route('registered')}}" method="POST" >
 				@csrf
 				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Username" value="{{old('username')}}">
@@ -35,4 +30,10 @@
 
 	</div>
 </body>
+<script type="text/javascript" src="{{asset('lib/public/js/bootstrap-3.1.1.min.js')}}"></script>
+<script type="text/javascript">
+	setTimeout(function() {
+	$('#status').slideUp('slow');
+}, 3000);
+</script>
 </html>
