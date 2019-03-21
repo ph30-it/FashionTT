@@ -19,13 +19,7 @@
 			<div class="fadeIn first">
 				<img src="{{asset('lib/public/images/user.png')}}" id="icon" alt="User Icon" />
 			</div>
-
 			@include('errors.error')
-			@if(session('class'))
-			<div class="alert alert-{{session('class')}}">
-				<li>{{session('message')}}</li>
-			</div>
-			@endif
 			<form action="{{route('logined')}}" method="POST" >
 				@csrf
 				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Username" value="{{old('username')}}">
@@ -44,4 +38,10 @@
 
 	</div>
 </body>
+<script type="text/javascript" src="{{asset('lib/public/js/jquery-2.1.4.min.js')}}"></script>
+<script type="text/javascript">
+	setTimeout(function() {
+	$('#status').slideUp('slow');
+}, 3000);
+</script>
 </html>

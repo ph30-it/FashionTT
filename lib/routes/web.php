@@ -15,10 +15,14 @@ Route::view('contact', 'frontend.contact')->name('contact');
 Route::view('about', 'frontend.about')->name('about');
 
 Route::get('ADMIN',function(){
-	if (\Auth::user()->id==1) {
-		return redirect()->route('category-list');
+	if (Auth::check()) {
+		if (\Auth::user()->id==1) {
+			return redirect()->route('category-list');
+		}else{
+			return	redirect()->route('user');
+		}
 	}else{
-	return	redirect()->route('user');
+		return	redirect()->route('login');
 	}
 });
 
@@ -88,12 +92,20 @@ Route::group(['middleware' => ['auth']], function () {
 				Route::get('/{id}/showorder', 'admin\OrderController@showorder')->name('orderDetail-show');
 			});
 		});
-	});
+	});	Route::group(['prefix' => 'user','middleware'=>'user'], function(){
+
+		Route::get('user','user\UserController@index')->name('user');
+		Route::get('/','user\UserController@index')->name('user');
+		Route::POST('imageUP','user\UserController@upload')->name('imageUP');
+		Route::get('refreshcaptcha', 'user\UserController@refreshCaptcha')->name('refreshcaptcha');
+		Route::POST('changed', 'user\UserController@change')->name('changed');
+		Route::get('lis-transaction','user\UserController@listtran')->name('list-tran');
+		Route::get('transaction-details/{id}','user\UserController@detail')->name('transaction-details');
+	});	
+
+
 });
 
 
-Route::group(['prefix' => 'user','middleware'=>'user'], function(){
-	Route::view('user','backend.user')->name('user');
-});	
 
 
