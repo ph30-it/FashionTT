@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index( )
     {
         //
-        $category = Category::all();//lay tat ca data bang breed;
+        $category = Category::paginate(10);;//lay tat ca data bang breed;
         return view('backend.category.list', compact('category'));
     }
 

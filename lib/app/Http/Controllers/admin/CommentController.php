@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class CommentController extends Controller
 {
 	public function index(){
-		$cmt = Comment::with('product', 'user')->get();
+		$cmt = Comment::with('product', 'user')->paginate(10);
 		return view('backend.comment.list', compact('cmt'));
 	}
 	public function destroy($id){

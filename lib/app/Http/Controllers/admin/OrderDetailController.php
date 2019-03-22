@@ -14,7 +14,7 @@ class OrderDetailController extends Controller
 {
     //
     public function index(){
-    	$orderDetail = Orderdetail::with('order')->get();
+    	$orderDetail = Orderdetail::with('order')->paginate(10);
     	return view('backend.orderdetail.list', compact('orderDetail'));
     }
     public function showOrder($id){

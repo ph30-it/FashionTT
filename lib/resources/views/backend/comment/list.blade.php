@@ -43,7 +43,7 @@
 								@endforeach
 							</tbody>
 						</table>
-
+						{{$cmt->links()}}
 					</div>
 				</div>
 			</div>
