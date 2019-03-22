@@ -17,7 +17,6 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <th>ID</th>
-                                <th>Name</th>
                                 <th>Adress</th>
                                 <th>Cty</th>
                                 <th>Zip Code</th>
