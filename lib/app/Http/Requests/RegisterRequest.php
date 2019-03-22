@@ -24,13 +24,14 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-           'username'=>'required|min:6|max:16|unique:users,username',
-           'password'=>'required|min:6|max:16|',
-           'email'=>'required|email|unique:users,email'
-       ];
-   }
-   public function messages()
-   {
+         'username'=>'required|min:6|max:16|unique:users,username',
+         'password'=>'required|min:6|max:16|',
+         'email'=>'required|email|unique:users,email',
+         'captcha' => 'required|captcha'
+     ];
+ }
+ public function messages()
+ {
     return [
         'username.required' => 'Bạn chưa điền tên đăng nhập',
         'username.min' => 'Username phải từ 6 kí tự trở lên',
@@ -42,6 +43,8 @@ class RegisterRequest extends FormRequest
         'email.required' => 'Bạn chưa điền Email',
         'email.email' => 'Email không đúng định dạng',
         'email.unique' => 'Email này đã được sử dụng',
+        'captcha.required'=>'Vui lòng nhập mã xác thực',
+        'captcha.captcha'=>'Captcha không đúng',
     ];
 }
 }

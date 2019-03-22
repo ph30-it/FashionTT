@@ -3,6 +3,7 @@
 @section('content')
 <div class="wrapper">
 	<table class="table table-striped">
+		@if($list)
 		<thead>
 			<tr>
 				<th scope="col">Show</th>
@@ -31,6 +32,13 @@
 				</tbody>
 
 			</table>
+		@else
+		<div  style="transform: translateY(-50%);top:50%;position: absolute;left: 40%">
+			<h2>
+				<a href="{{route('shop')}}" title="">Let buy now</a><i class="glyphicon glyphicon-shopping-cart" style="transform:rotateY(150deg);"></i>
+			</h2>
+		</div>
+		@endif
 
 		</div>
 		

@@ -55,7 +55,7 @@ class UserController extends Controller
 	}
 	public function listtran()
 	{
-		$list=Order::with('orderdetails')->where('user_id',\Auth::user()->id)->get()->toArray();
+		$list=Order::with('orderdetails')->where('user_id',\Auth::user()->id)->orderBy('status','desc')->get()->toArray();
 		return view('frontend.user.list-tran',compact('list'));
 	}
 	public function detail($id)
