@@ -146,7 +146,7 @@
 	<div class="footer_agileinfo_w3">
 		<div class="footer_inner_info_w3ls_agileits">
 			<div class="col-md-3 footer-left">
-				<h2><a href="index.html"><span>D</span>owny Shoes </a></h2>
+				<h2><a href="{{url('/')}}"><span>D</span>owny Shoes </a></h2>
 				<p>Lorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
 				<ul class="social-nav model-3d-0 footer-social social two">
 					<li>
@@ -179,11 +179,11 @@
 				<div class="col-md-4 sign-gd">
 					<h4>Our <span>Information</span> </h4>
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="about.html">About</a></li>
+						<li><a href="{{url('/')}}">Home</a></li>
+						<li><a href="{{url('about')}}">About</a></li>
 						<li><a href="404.html">Services</a></li>
-						<li><a href="404.html">Short Codes</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="">Short Codes</a></li>
+						<li><a href="{{route('contact')}}">Contact</a></li>
 					</ul>
 				</div>
 
@@ -486,6 +486,9 @@
 								});
 		});
 	});
+setTimeout(function() {
+	$('#status').slideUp('slow');
+}, 3000);
 </script>
 
 <script language="JavaScript">

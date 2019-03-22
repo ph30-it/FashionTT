@@ -13,25 +13,23 @@ function cate_parent($data, $parent = 0, $str = '--', $select = 0){
 	}
 }
 
-	function menu($data,$level=0,$text='&nbsp;&nbsp;')
-	{
+			function menu($data,$level=0,$text='&nbsp;&nbsp;')
+			{
 // lặp $data lấy từ database
-		foreach ($data as $k => $value) {
+				foreach ($data as $k => $value) {
 		// Nếu level id con = level id cha thì xuất ra tên con
-			if ($value['parent_id']==$level) {
-				if ($value['parent_id']==0) {
-					echo '<b>'.$text.$value['name'].'</b><br />';
-				}else{
-					echo '<a href="'.route("list-search").'?cate='.$value['id'].'" title="">'.$text.$value['name'].'</a><br />';
-				}
+					if ($value['parent_id']==$level) {
+						if ($value['parent_id']==0) {
+							echo '<b>'.$text.$value['name'].'</b><br />';
+						}else{
+							echo '<a href="'.route("list-search").'?cate='.$value['id'].'" title="">'.$text.$value['name'].'</a><br />';
+						}
 
 		// lưu id = với khóa 
-				$id=$value['id'];
+						$id=$value['id'];
 		// hủy mảng vừa lặp
-				unset($data[$k]);
-				menu($data,$id,$text.'&nbsp;&nbsp;');
+						unset($data[$k]);
+						menu($data,$id,$text.'&nbsp;&nbsp;');
+					}
+				}
 			}
-		}
-	}
-	?>
-

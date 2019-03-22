@@ -32,6 +32,7 @@
                                 @foreach($order as $item)
                                 <tr>
                                     <td><a href="{{route('orderDetail-show', $item->id)}}">{{$item->id}}</a></td>
+
                                     <td>{{$item->adress}}</td>
                                     <td>{{$item->cty}}</td>
                                     <td>{{$item->zip_code}}</td>
@@ -96,9 +97,4 @@
 
 </div>
 </div>
-
-
-
-
-
 @endsection

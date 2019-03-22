@@ -37,7 +37,7 @@ public function single($id)
   $view=Product::orderBy('view', 'desc')
   ->take(4)
   ->get();
-  $single=Product::with('Images')->where('id',$id)->first()->toArray();
+  $single=Product::with('Images')->where('id',$id)->firstOrFail()->toArray();
                       //dd($single);
                       //dd($single);
   return view('frontend.single',compact('view','single','comment'));

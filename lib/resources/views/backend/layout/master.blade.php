@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>@yield('title')</title>
+    <title>@yield('title')</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -68,9 +68,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('user-list')}}">
+                        <a href="{{ route('order-list')}}">
                             <i class="pe-7s-news-paper"></i>
                             <p>Oreders</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('comment-list')}}">
+                            <i class="pe-7s-news-paper"></i>
+                            <p>Comment</p>
                         </a>
                     </li>
                 </ul>
@@ -78,60 +84,60 @@
         </div>
 
         <div class="main-panel">
-            <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li>
-                               <a href="">
-                                <i class="fa fa-search"></i>
-                                <p class="hidden-lg hidden-md">Search</p>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
+          <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
                         <li>
-                           <a href="">
-                               <p>Account</p>
-                           </a>
-                       </li>
-                       <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <p>
-                              Dropdown
-                              <b class="caret"></b>
-                          </p>
+                         <a href="">
+                            <i class="fa fa-search"></i>
+                            <p class="hidden-lg hidden-md">Search</p>
+                        </a>
+                    </li>
+                </ul>
 
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{route('logout')}}">
-                        <p>Log out</p>
-                    </a>
-                </li>
-                <li class="separator hidden-lg hidden-md"></li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                     <a href="">
+                         <p>Account</p>
+                     </a>
+                 </li>
+                 <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <p>
+                      Dropdown
+                      <b class="caret"></b>
+                  </p>
+
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
             </ul>
-        </div>
-
-    </div>
+            
+        </li>
+        <li>
+            <a href="{{route('logout')}}">
+                <p>Log out</p>
+            </a>
+        </li>
+        <li class="separator hidden-lg hidden-md"></li>
+    </ul>
+</div>
+</div>
 </nav>
 @yield('content')
 </body>
@@ -154,4 +160,20 @@
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="{{asset('admin/js/demo.js')}}"></script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        demo.initChartist();
+
+        $.notify({
+            icon: 'pe-7s-gift',
+            message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+
+        },{
+            type: 'info',
+            timer: 4000
+        });
+
+    });
+</script>
 </html>
