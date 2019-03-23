@@ -20,7 +20,7 @@
                         <ul class="slides">
                             @foreach ($images as  $val)
                             <li data-thumb="{{asset('lib/public/images')}}/{{$val['name']}}">
-                                <div class="thumb-image"> <img src="http://localhost:81/fashionTT/public/images/<?=$val['name']?>" data-imagezoom="true" class="img-responsive"> </div>
+                                <div class="thumb-image"> <img src="http://localhost:81/fashionTT/lib/public/images_product/<?=$val['name']?>" data-imagezoom="true" class="img-responsive"> </div>
                             </li>
                             @endforeach
                         </ul>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row">
                     <div>
-                        <button type="button" class="btn btn-primary"><a style="color: white" href="{{Route('image-create', $item->id)}}">Thêm Ảnh</a></button>
+                        <button type="button" class="btn btn-primary"><a style="color: white" href="{{Route('image-create')}}?id={{$item->id}}">Thêm Ảnh</a></button>
                     </div>
                     <div>
                         <form action="{{route('product-delete', $item->id)}}" method="POST">

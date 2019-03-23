@@ -12,6 +12,7 @@ function cate_parent($data, $parent = 0, $str = '--', $select = 0){
 		}
 	}
 }
+
 			function menu($data,$level=0,$text='&nbsp;&nbsp;')
 			{
 // lặp $data lấy từ database

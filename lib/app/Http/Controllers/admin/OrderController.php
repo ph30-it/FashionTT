@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 class OrderController extends Controller
 {
 	public function index(){
-		$order = Order::with('user')->get();
+		$order = Order::with('user')->paginate(10);
 		return view('backend.order.list', compact('order'));
 	}
 	public function edit(){

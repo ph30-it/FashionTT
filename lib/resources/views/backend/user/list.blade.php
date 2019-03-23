@@ -4,61 +4,61 @@
 
 
 
-		<div class="content">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="card">
-							<div class="header">
-								<h4 class="title">Striped Table with Hover</h4>
-								<p class="category">Here is a subtitle for this table</p>
-							</div>
-							<div class="content table-responsive table-full-width">
-								<button class="btn btn-susscec"><a href="{{route('user-create')}}">Create Product</a></button>
-								<table class="table table-hover table-striped">
-									<thead>
-										<th>ID</th>
-										<th>User Name</th>
-										<th>Email</th>
-										<th>Email Verified At</th>
-										<th>Avatar</th>
-										<th>Role Id</th>
-										<th>Action</th>
-									</thead>
-									<tbody>
-										@foreach($user as $item)
-										<tr>
-											<td>{{$item->id}}</td>
-											<td>{{$item->username}}</td>
-											<td>{{$item->email}}</td>
-											<td>{{$item->email_verified_at}}</td>
-											<td>{{$item->avatar}}</td>
-											<td>{{$item->role_id}}</td>
-
-											<td>
-												<a href="{{route('user-edit', $item->id)}}">Edit</a>
-												<form action="{{route('user-delete', $item->id)}}" method="POST">
-												@csrf
-													@method("DELETE")
-													<button type="submid" class="btn">Delete</button>
-												</form>
-											</td>
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
-
-							</div>
-						</div>
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="header">
+						<h4 class="title">Striped Table with Hover</h4>
+						<p class="category">Here is a subtitle for this table</p>
 					</div>
+					<div class="content table-responsive table-full-width">
+						<button class="btn btn-susscec"><a href="{{route('user-create')}}">Create Product</a></button>
+						<table class="table table-hover table-striped">
+							<thead>
+								<th>ID</th>
+								<th>User Name</th>
+								<th>Email</th>
+								<th>Email Verified At</th>
+								<th>Avatar</th>
+								<th>Role Id</th>
+								<th>Action</th>
+							</thead>
+							<tbody>
+								@foreach($user as $item)
+								<tr>
+									<td>{{$item->id}}</td>
+									<td>{{$item->username}}</td>
+									<td>{{$item->email}}</td>
+									<td>{{$item->email_verified_at}}</td>
+									<td>{{$item->avatar}}</td>
+									<td>{{$item->role_id}}</td>
+
+									<td>
+										<a href="{{route('user-edit', $item->id)}}">Edit</a>
+										<form action="{{route('user-delete', $item->id)}}" method="POST">
+											@csrf
+											@method("DELETE")
+											<button type="submid" class="btn">Delete</button>
+										</form>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+						{{$user->links()}}
+					</div>
+				</div>
+			</div>
 
 
-					<div class="col-md-12">
-						<div class="card card-plain">
-							<div class="header">
-								<h4 class="title">Table on Plain Background</h4>
-								<p class="category">Here is a subtitle for this table</p>
-							</div>
+			<div class="col-md-12">
+				<div class="card card-plain">
+					<div class="header">
+						<h4 class="title">Table on Plain Background</h4>
+						<p class="category">Here is a subtitle for this table</p>
+					</div>
 							{{-- <div class="content table-responsive table-full-width">
 								<table class="table table-hover">
 									<thead>

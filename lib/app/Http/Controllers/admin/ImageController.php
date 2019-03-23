@@ -11,7 +11,9 @@ class ImageController extends Controller
 {
     //
     public function create(){
+
     	$productId = Product::pluck('name','id');
+    	
     	return view('backend.image.create', compact('productId'));
     }
     public function store(request $request){

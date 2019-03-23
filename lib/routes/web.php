@@ -22,6 +22,8 @@ Route::get('ADMIN',function(){
 			return	redirect()->route('user');
 		}
 	}else{
+
+
 		return	redirect()->route('login');
 	}
 });
@@ -76,6 +78,10 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::get('/{id}/edit', 'admin\UserController@edit')->name('user-edit');
 			Route::put('/{id}/update', 'admin\UserController@update')->name('user-update');
 			Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('user-delete');
+		});
+		Route::group(['prefix' => 'comment'], function(){
+			Route::get('/list', 'admin\CommentController@index')->name('comment-list');
+			Route::delete('/{id}/delete', 'admin\CommentController@destroy')->name('comment-delete');
 		});
 		Route::group(['prefix' => 'order'], function(){
 			Route::get('/list', 'admin\OrderController@index')->name('order-list');

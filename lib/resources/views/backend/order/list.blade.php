@@ -17,7 +17,6 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <th>ID</th>
-                             
                                 <th>Adress</th>
                                 <th>Cty</th>
                                 <th>Zip Code</th>
@@ -55,7 +54,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-
+                        {{$order->links()}}
                     </div>
                 </div>
             </div>

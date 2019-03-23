@@ -1,6 +1,7 @@
 @extends('backend.layout.master')
-@section('title','Category')
+@section('title','Comment')
 @section('content')
+
 
 
 <div class="content">
@@ -13,29 +14,26 @@
 						<p class="category">Here is a subtitle for this table</p>
 					</div>
 					<div class="content table-responsive table-full-width">
-						<button class="btn btn-susscec"><a href="{{route('category-create')}}">Create Category</a></button>
+						<button class="btn btn-susscec"><a href="{{route('product-list')}}">List Product</a></button>
 						<table class="table table-hover table-striped">
 							<thead>
 								<th>ID</th>
-								<th>Name</th>
-								<th>Alias</th>
-								<th>Created At</th>
-								<th>Updated At</th>
-								<th>Parent Id</th>
+								<th>Content</th>
+								<th>User Id</th>
+								<th>Product Id</th>
+								<th>Create At</th>
 								<th>Action</th>
 							</thead>
 							<tbody>
-								@foreach($category as $item)
+								@foreach($cmt as $item)
 								<tr>
 									<td>{{$item->id}}</td>
-									<td><a href="{{route('category-show', $item->id)}}">{{$item->name}}</a></td>
-									<td>{{$item->alias}}</td>
-									<td>{{$item->created_at}}</td>
-									<td>{{$item->updated_at}}</td>
-									<td>{{$item->parent_id}}</td>
+									<td>{{$item->content}}</td>
+									<td>{{$item->user_id}}</td>
+									<td>{{$item->product_id}}</td>
+									<td>{{$item->created_at	}}</td>
 									<td>
-										<a href="{{route('category-edit', $item->id)}}">Edit</a>
-										<form action="{{route('category-delete', $item->id)}}" method="POST">
+										<form action="{{route('comment-delete', $item->id)}}" method="POST">
 											@csrf
 											@method("DELETE")
 											<button type="submid" class="btn">Delete</button>
@@ -45,7 +43,7 @@
 								@endforeach
 							</tbody>
 						</table>
-						{{$category->links()}}
+						{{$cmt->links()}}
 					</div>
 				</div>
 			</div>
@@ -56,39 +54,6 @@
 					<div class="header">
 						<h4 class="title">Table on Plain Background</h4>
 						<p class="category">Here is a subtitle for this table</p>
-					</div>
-					<div class="content table-responsive table-full-width">
-						<table class="table table-hover">
-							<thead>
-								<th>ID</th>
-								<th>Name</th>
-								<th>Alias</th>
-								<th>Created At</th>
-								<th>Updated At</th>
-								<th>Parent Id</th>
-								<th>Action</th>
-							</thead>
-							<tbody>
-								@foreach($category as $item)
-								<tr>
-									<td>{{$item->id}}</td>
-									<td>{{$item->name}}</td>
-									<td>{{$item->alias}}</td>
-									<td>{{$item->created_at}}</td>
-									<td>{{$item->updated_at}}</td>
-									<td>{{$item->parent_id}}</td>
-									<td>
-										<form action="{{route('category-delete', $item->id)}}" method="POST">
-											@csrf
-											@method("DELETE")
-											<button type="submid" class="btn">Delete</button>
-										</form>
-									</td>
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-
 					</div>
 				</div>
 			</div>

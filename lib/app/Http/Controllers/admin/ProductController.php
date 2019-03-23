@@ -15,7 +15,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-    	$product = Product::with('cate')->get();
+    	$product = Product::with('cate')->paginate(10);
     	return view('backend.product.list', compact('product'));
     }
     public function create()
