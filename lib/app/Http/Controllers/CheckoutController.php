@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,7 +7,7 @@ use App\Http\Requests\SendmailRequest;
 use App\Models\Order;
 use App\Models\Orderdetail;
 use Illuminate\Support\Str;
-use Mail;
+use Mail,DB;
 use App\Mail\SendBillMail;
 class CheckoutController extends Controller
 {
@@ -18,29 +17,37 @@ class CheckoutController extends Controller
 	}
 	public function postCheckout(CheckoutRequest $request)
 	{
-		$order = new Order;
-		$data=session()->get('cart');
-		$order->adress = $request->address;
-		$order->cty = $request->cty;
-		$order->zip_code = $request->zip_code; 
-		$order->country = $request->country; 
-		$order->phone = $request->phone; 
-		$order->total = $request->total;
-		$order->status=0;
-		$codegd=$order->code=bcrypt(Str::random(64));
-		$order->user_id=\Auth::user()->id;
-		$order->save();
-		session()->put('codegd',$codegd);
-		foreach ($data as $key => $val) {
-			$datas[]=[
-				'qty'=>$val['qty'],
-				'price'=>$val['price'],
-				'order_id'=>$order->id,
-				'product_id'=>$val['id']
-			];		
+		DB::beginTransaction();
+		try {
+			$order = new Order;
+			$data=session()->get('cart');
+			$order->adress = $request->address;
+			$order->cty = $request->cty;
+			$order->zip_code = $request->zip_code; 
+			$order->country = $request->country; 
+			$order->phone = $request->phone; 
+			$order->total = $request->total;
+			$order->status=0;
+			$codegd=$order->code=bcrypt(Str::random(64));
+			$order->user_id=\Auth::user()->id;
+			$order->save();
+			session()->put('codegd',$codegd);
+			foreach ($data as $key => $val) {
+				$datas[]=[
+					'qty'=>$val['qty'],
+					'price'=>$val['price'],
+					'order_id'=>$order->id,
+					'product_id'=>$val['id']
+				];		
+			}
+			Orderdetail::insert($datas);
+			DB::commit();
+			return redirect()->route('payment');
+		}catch (Exception $e) {
+			DB::rollBack();
+
+			throw new Exception($e->getMessage());
 		}
-		Orderdetail::insert($datas);
-		return redirect()->route('payment');
 	}
 	public function payment()
 	{
@@ -61,8 +68,8 @@ class CheckoutController extends Controller
 			'code'=>$code
 		];
 		Mail::to($request->email)
-        ->send( new SendBillMail($data));
-        session()->forget(['cart', 'codegd']);
-        return redirect()->route('about');
+		->send( new SendBillMail($data));
+		session()->forget(['cart', 'codegd']);
+		return redirect()->route('about');
 	}
 }

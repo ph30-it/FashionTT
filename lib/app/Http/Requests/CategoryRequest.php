@@ -26,7 +26,6 @@ class CategoryRequest extends FormRequest
         return [
             //
             'name'=>'required|unique:categories,name',
-            'alias'=>'required',
         ];
         
     }
@@ -35,7 +34,6 @@ class CategoryRequest extends FormRequest
         return [
             'name.required' => 'Bạn chưa điền tên đăng nhập',
             'name.unique' => 'Tên đã bị trùng ',
-            'alias.required' => 'Bạn chưa điền Alias'
         ];
     }
 

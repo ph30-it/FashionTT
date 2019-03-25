@@ -2,9 +2,6 @@
 @section('title','Create User')
 @section('content')
 
-
-
-
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -12,14 +9,8 @@
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Create Product</h4>
-                        @if($errors->any())
-                        <div class="alert alert-danger">
-                            @foreach($errors->all() as $err)
-                            <li>{{$err}}</li>
-                            @endforeach
-                        </div>
-                        @endif
-                        <button type="button" class="btn btn-success"><a href="{{route('user-list')}}">User List</a></button>
+                        @include('errors.error')
+                        <a href="{{route('user-list')}}" class="btn btn-success">User List</a>
                     </div>
                     <div class="content">
                         <form action="{{ route('user-store')}}" method="POST">
@@ -63,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Create product</button>
+                        <button type="submit" class="btn btn-info btn-fill pull-right">Create user</button>
                         <div class="clearfix"></div>
                     </form>
                 </div>

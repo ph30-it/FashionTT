@@ -1,8 +1,8 @@
 @foreach($product as $val)
 <div class="col-md-4 product-men">
 	<div class="product-shoe-info shoe">
-		<div class="men-pro-item">
-			<div class="men-thumb-item">
+		<div class="men-pro-item" >
+			<div class="men-thumb-item" style="height: 235.844px">
 				<img src="{{asset('lib/public/images_product\/').$val['image']}}" alt="">
 				<div class="men-cart-pro">
 					<div class="inner-men-cart-pro">

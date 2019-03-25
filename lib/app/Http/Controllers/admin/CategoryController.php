@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index( )
     {
         //
-        $category = Category::all();//lay tat ca data bang breed;
+        $category = Category::orderBy('parent_id','asc')->paginate(10);
         return view('backend.category.list', compact('category'));
     }
 
@@ -30,10 +30,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
-        $parent = Category::select('id', 'name', 'parent_id')->get()->toArray();
-        return view('backend.category.create', compact('parent'));
-    }
+     $list_cate = Category::all()->toArray();
+     $parent = Category::select('id', 'name', 'parent_id')->get()->toArray();
+     return view('backend.category.create', compact('parent','list_cate'));
+ }
 
     /**
      * Store a newly created resource in storage.
@@ -43,10 +43,13 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        //
-        $data = $request->all();
-        Category::create($data);
-        return redirect()->route('category-list');
+
+        $category= new Category;
+        $category->name=$request->name;
+        $category->alias=str_slug($request->name);
+        $category->parent_id=$request->category_id;
+        $category->save();
+        return redirect()->route('category-list')->with(['class'=>'success','message'=>'Tạo danh mục thành công']);
     }
 
     /**
@@ -68,11 +71,11 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
-        //
-        $category = Category::find($id)->first();
-        return view('backend.category.edit', compact('category'));
+        $list_cate = Category::all()->toArray();
+        $category = Category::find($id);
+        return view('backend.category.edit', compact('category','list_cate'));
     }
 
     /**
@@ -84,11 +87,13 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        //
+
         $category = Category::find($id);
-        $data = $request->all();
-        $category->update($data);
-        return redirect()->route('category-list');
+        $category->name=$request->name;
+        $category->alias=str_slug($request->name);
+        $category->parent_id=$request->category_id;
+        $category->save();
+        return redirect()->route('category-list')->with(['class'=>'success','message'=>'Cập nhật danh mục thành công']);
     }
 
     /**
@@ -100,6 +105,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::destroy($id);
-        return redirect()->route('category-list');
+        Category::where('parent_id',$id)->delete();
+        return redirect()->route('category-list')->with(['class'=>'success','message'=>'Xóa danh mục thành công']);
     }
 }

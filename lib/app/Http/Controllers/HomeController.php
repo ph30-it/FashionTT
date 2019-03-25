@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Image;
 use App\Models\Category;
-use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 class HomeController extends Controller
 {
@@ -42,22 +41,10 @@ public function single($id)
                       //dd($single);
   return view('frontend.single',compact('view','single','comment'));
 }
-public function comment(CommentRequest $request)
-{
-  $comment = new Comment;
-  $comment->content = $request->content;
-  $comment->user_id=\Auth::user()->id;
-  $comment->product_id= $request->id;
-  $comment->save();
-  $data=$comment=Comment::with('user')->where('product_id',$request->id)->get()->toArray();
-  echo json_encode($data);
-}
 public function postSearch(Request $req)
 {
   if (request()->cate) {
     $product=Product::where('category_id',request()->cate)->get()->toArray();
-    // $product=Category::with('products')->where('parent_id',1)->get()->toArray();
-    // dd($product);
     return view('frontend.search',compact('product')); 
   }elseif($query=$req->search){
    $query=$req->search;

@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>@yield('title')</title>
+    <title>@yield('title')</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,7 +19,7 @@
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="{{asset('lib/public/admin/css/light-bootstrap-dashboard.css?v=1.4.0')}}" rel="stylesheet"/>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="{{asset('lib/public/admin/css/demo.css')}}" rel="stylesheet" />
@@ -68,9 +68,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('user-list')}}">
+                        <a href="{{ route('order-list')}}">
                             <i class="pe-7s-news-paper"></i>
                             <p>Oreders</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('comment-list')}}">
+                            <i class="pe-7s-news-paper"></i>
+                            <p>Comment</p>
                         </a>
                     </li>
                 </ul>
@@ -101,36 +107,18 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                        <a href="">
-                           <p>Account</p>
+                        <p> Hi ! {{Auth::user()->username}}</p>
                        </a>
                    </li>
-                   <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <p>
-                          Dropdown
-                          <b class="caret"></b>
-                      </p>
-
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
-            
-    </li>
-    <li>
-        <a href="{{route('logout')}}">
-            <p>Log out</p>
-        </a>
-    </li>
-    <li class="separator hidden-lg hidden-md"></li>
-</ul>
-</div>
+               </li>
+               <li>
+                <a href="{{route('logout')}}">
+                    <p>Log out</p>
+                </a>
+            </li>
+            <li class="separator hidden-lg hidden-md"></li>
+        </ul>
+    </div>
 </div>
 </nav>
 @yield('content')
@@ -155,6 +143,15 @@
 <script src="{{asset('admin/js/demo.js')}}"></script>
 
 <script type="text/javascript">
+    function confirmdel(msg)
+    {
+        if(window.confirm(msg)){
+            event.preventdefault();
+            return true;
+        }
+        return false;
+
+    }
     $(document).ready(function(){
 
         demo.initChartist();
@@ -169,5 +166,10 @@
         });
 
     });
+    setTimeout(function() {
+        $('#status').slideUp('slow');
+    }, 3000);
+    
 </script>
+@yield('js');
 </html>
