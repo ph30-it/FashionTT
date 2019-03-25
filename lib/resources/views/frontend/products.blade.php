@@ -44,4 +44,4 @@
 </div>
 @endforeach
 <div class="clearfix"></div>
-{{$product->render()}}
+{{$product->links()}}
