@@ -186,7 +186,7 @@
 		position: absolute;
 		transition: all 0.5s ease-out 0s;
 	}
-</style>
+</style>{{-- 
 @section('js')
 <script type="text/javascript">
 	$(window).on('hashchange', function() {
@@ -199,24 +199,18 @@
 			}
 		}
 	});
-
 	$(document).ready(function()
 	{
-		$(document).on('click', '.pagination a',function(event)
-		{
+		$(document).on('click', '.pagination a',function(event)		{
 			event.preventDefault();
-
 			$('li').removeClass('active');
 			$(this).parent('li').addClass('active');
-
 			var myurl = $(this).attr('href');
-			var page=$(this).attr('href').split('page=')[1];
-
+			var page=$(this).attr('href').split('page=')[1];			
 			getData(page);
 		});
 
 	});
-
 	function getData(page){
 		$.ajax(
 		{
@@ -225,10 +219,10 @@
 			datatype: "html"
 		}).done(function(data){
 			$(".product-sec1").empty().html(data);
-			location.hash = page;
+			location.hash = page;			
 		}).fail(function(jqXHR, ajaxOptions, thrownError){
 			alert('No response from server');
 		});
 	}
 </script>
-@endsection
+@endsection --}}

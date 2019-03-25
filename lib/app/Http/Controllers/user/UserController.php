@@ -9,9 +9,8 @@ use App\Models\Orderdetail;
 use App\Http\Requests\UploadRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Models\User;
-use File;
-use Hash;
-class UserController extends Controller
+use File,Hash,DB;
+	class UserController extends Controller
 {
 	public function index()
 	{
@@ -55,22 +54,22 @@ class UserController extends Controller
 
 				DB::commit();
 				return back()->with(['class'=>'success','message'=>'Thay đổi ảnh đại diện thành công']);
-			} catch (Exception $e) {
-				DB::rollBack();
-
-				throw new Exception($e->getMessage());
 			}
+		} catch (Exception $e) {
+			DB::rollBack();
+
+			throw new Exception($e->getMessage());
 		}
 	}
-	public function listtran()
-	{
-		$list=Order::with('orderdetails')->where('user_id',\Auth::user()->id)->orderBy('status','desc')->get()->toArray();
-		return view('frontend.user.list-tran',compact('list'));
-	}
-	public function detail($id)
-	{
-		$data=Orderdetail::with('product')->where('order_id',$id)->get()->toArray();
-		return view('frontend.user.detail-tran',compact('data'));
+public function listtran()
+{
+	$list=Order::with('orderdetails')->where('user_id',\Auth::user()->id)->orderBy('status','desc')->get()->toArray();
+	return view('frontend.user.list-tran',compact('list'));
+}
+public function detail($id)
+{
+	$data=Orderdetail::with('product')->where('order_id',$id)->get()->toArray();
+	return view('frontend.user.detail-tran',compact('data'));
 
-	}
+}
 }

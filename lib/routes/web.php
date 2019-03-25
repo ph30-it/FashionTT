@@ -26,7 +26,6 @@ Route::get('ADMIN',function(){
 		return	redirect()->route('login');
 	}
 });
-
 Route::get('login','admin\LoginController@getLogin')->middleware('checkrole')->name('login');
 Route::POST('login','admin\LoginController@postLogin')->name('logined');
 
@@ -39,11 +38,6 @@ Route::POST('shopping','ShoppingCartController@addProduct')->name('shopping');
 Route::POST('delete','ShoppingCartController@deleteProduct')->name('delete');
 Route::POST('update','ShoppingCartController@updateProduct')->name('update');
 Route::POST('search','ShoppingCartController@searchProduct')->name('search');
-
-
-
-
-
 
 Route::group(['middleware' => ['auth']], function () {	
 	Route::group(['prefix' => 'admin','middleware'=>'admin'], function(){
@@ -85,8 +79,6 @@ Route::group(['middleware' => ['auth']], function () {
 		});
 		Route::group(['prefix' => 'order'], function(){
 			Route::get('/list', 'admin\OrderController@index')->name('order-list');
-		// Route::get('/create', 'admin\UserController@create')->name('user-create');
-		// Route::post('/store', 'admin\UserController@store')->name('user-store');
 			Route::get('/{id}/edit', 'admin\OrderController@edit')->name('order-edit');
 			Route::put('/{id}/update', 'admin\OrderController@update')->name('order-update');
 			Route::get('/{id}/comfirm', 'admin\OrderController@confirm')->name('order-comfirm');
