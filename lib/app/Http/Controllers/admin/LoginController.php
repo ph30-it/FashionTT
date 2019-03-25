@@ -35,6 +35,7 @@ class LoginController extends Controller
 	{
 		return view('backend.register');
 	}
+
 	public function postRegister(RegisterRequest $request)
 	{
 		$user = User::create(
@@ -46,6 +47,6 @@ class LoginController extends Controller
 				'email' => $request->email,
 			]
 		);
-		return  redirect()->back()->with(['class'=>'success','message'=>'Đăng kí thành công']);
+		return  redirect()->route('login')->with(['class'=>'success','message'=>'Đăng kí thành công']);
 	}
 }

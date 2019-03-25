@@ -12,11 +12,13 @@
 			<div class="col-md-4 single-right-left ">
 				<div class="grid images_3_of_2">
 					<div class="flexslider">
-
 						<ul class="slides">
+						<li data-thumb="{{asset('lib/public/images_product')}}/{{$single['image']}}">
+								<div class="thumb-image"> <img src="{{asset('lib/public/images_product')}}/{{$single['image']}}" data-imagezoom="true" class="img-responsive"> </div>
+							</li>
 							@foreach ($single['images'] as  $val)
 							<li data-thumb="{{asset('lib/public/images_product')}}/{{$val['name']}}">
-								<div class="thumb-image"> <img src="http://localhost/web/public/images/shoes/<?=$val['name']?>" data-imagezoom="true" class="img-responsive"> </div>
+								<div class="thumb-image"> <img src="{{asset('lib/public/images_product')}}/{{$val['name']}}" data-imagezoom="true" class="img-responsive"> </div>
 							</li>
 							@endforeach
 						</ul>
@@ -124,7 +126,12 @@
 								@if($comment)
 								<div class="bootstrap-tab-text-grid" style="height:500px;overflow: auto">
 									@foreach($comment as $k => $val)
-									<p><img src="{{asset('lib/public/images/')}}/{{$val['user']['avatar']}}" alt="" width="50px"><b>{{$val['user']['username']}} : </b>{{$val['content']}}</p>
+									<?php 
+										if ($val['user']['avatar']=='') {
+											$val['user']['avatar']='user1.png';
+										}
+									?>
+									<p style="background-color:#e9ebee;border-radius:10px"><img src="{{asset('lib/public/images/')}}/{{$val['user']['avatar']}}" alt="" width="50px"><b>{{$val['user']['username']}} : </b>{{$val['content']}}</p>
 									<a  href="" title="{{$val['created_at']}}">{{\Carbon\Carbon::createFromTimeStamp(strtotime($val['created_at']))->diffforHumans()}}</a>
 									@endforeach
 									<div class="clearfix"></div>
@@ -224,23 +231,26 @@
 		$('#formComment').on('submit', function(e) {
 			var message = $('#message').val();
 			var html='';
-			console.log(message);
+			//console.log(message);
 			e.preventDefault();
 			$.ajax({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				},
 				type: "POST",
-				url: '{{url('comment')}}',
+				url: '{{route('comment')}}',
 				data: {
 					content:message,
 					id:{{$single['id']}},
 					_token: '{!! csrf_token() !!}'
 				},
 				success: function(msg) {
-					console.log(msg)
+					//console.log(msg)
 					$.each(JSON.parse(msg), function(key,value){
-						html+='<p><img src="http://localhost/FashionTT/lib/public/images/'+value.user.avatar+'" width="50px"><b>'+value.user.username+' : </b>'+value.content+'</p><a  href="" title="'+value.created_at+'">'+value.created_at+'</a>';
+						if (value.user.avatar=='') {
+							value.user.avatar="user1.png";
+						}
+						html+='<p style="background-color:#e9ebee;border-radius:10px"><img src="http://localhost/FashionTT/lib/public/images/'+value.user.avatar+'" width="50px"><b>'+value.user.username+' : </b>'+value.content+'</p><a  href="" title="'+value.created_at+'">'+value.created_at+'</a>';
 					});
 					html+='<div class="clearfix"></div>';
 					$('.bootstrap-tab-text-grid').html(html);

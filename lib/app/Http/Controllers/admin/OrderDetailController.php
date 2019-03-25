@@ -12,13 +12,8 @@ use App\Http\Controllers\Controller;
 
 class OrderDetailController extends Controller
 {
-    //
-    public function index(){
-    	$orderDetail = Orderdetail::with('order')->paginate(10);
-    	return view('backend.orderdetail.list', compact('orderDetail'));
-    }
-    public function showOrder($id){
-    	$datas = Orderdetail::with('order')->where('order_id', $id)->get();
-    	return view('backend.orderdetail.listorder',  compact('datas'));
+    public function show($id){
+    	$data=Orderdetail::with('order','product')->where('order_id',$id)->get();
+    	return view('backend.order.orderdetail',compact('data'));
     }
 }

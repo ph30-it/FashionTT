@@ -2,9 +2,6 @@
 @section('title','Create User')
 @section('content')
 
-
-
-
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -12,24 +9,18 @@
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Create Product</h4>
-                        @if($errors->any())
-                        <div class="alert alert-danger">
-                            @foreach($errors->all() as $err)
-                            <li>{{$err}}</li>
-                            @endforeach
-                        </div>
-                        @endif
-                        <button type="button" class="btn btn-success"><a href="{{route('user-list')}}">User List</a></button>
+                       @include('errors.error')
+                       <a href="{{route('user-list')}}" class="btn btn-success">User List</a>
                     </div>
                     <div class="content">
-                        <form action="{{ route('user-update', $user->id)}}" method="POST">
+                        <form action="{{ route('user-update', $user->id)}}" method="POST" enctype="multipart/form-data">
                          @csrf
                          @method('PUT')
                          <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>User Name</label>
-                                    <input type="text" placeholder="{{$user->username}}" class="form-control" id="username" name="username">
+                                    <input type="text" value="{{$user->username}}" class="form-control" id="username" name="username">
                                 </div>
                             </div>
                         </div>
@@ -38,7 +29,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" placeholder="{{$user->email}}" class="form-control" name="email" id="email">
+                                    <input type="email" value="{{$user->email}}" class="form-control" name="email" id="email">
                                 </div>
                             </div>
                         </div>
@@ -46,7 +37,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" placeholder="" class="form-control" name="password" id="password" >
+                                    <input type="password"  class="form-control" name="password" id="password" >
                                 </div>
                             </div>
                         </div>

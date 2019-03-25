@@ -3,7 +3,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\User;
 use App\Models\Role;
-
+use File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
@@ -42,12 +42,26 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //
-        $data = $request->all();
-        User::create($data);
-        return redirect()->route('user-list');
-    }
+        if ($request->hasFile('avatar')) {
+          $path = public_path('images_product/');
+          $image = $request->file('avatar');
+          $name = md5($image->getClientOriginalName()).'.'.$image->getClientOriginalExtension();
+          $image->move($path,$name);    
+      }else{
+        $name='';
+      }
+      $user = User::create(
+        [
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'avatar' => $name,
+            'role_id' => 2,
+            'email' => $request->email,
+        ]
+    );
 
+      return  redirect()->route('user-list')->with(['class'=>'success','message'=>'Tạo USER thành công']);
+  }
     /**
      * Display the specified resource.
      *
@@ -60,7 +74,7 @@ class UserController extends Controller
     }
 
 
-    public function edit( $id)
+    public function edit($id)
     {
         //
         $user = User::with('role')->find($id);
@@ -79,9 +93,24 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
-        $data = $request->all();
-        $user->update($data);
-        return redirect()->route('user-list');
+        $path = public_path('images_product/');
+        $nameimgcurt=$user->avatar;
+        if ($request->hasFile('avatar')) {
+            $image = $request->file('avatar');
+            $name = md5($image->getClientOriginalName()).'.'.$image->getClientOriginalExtension();
+            $user->avatar=$name;
+            $imgcur=$path.$nameimgcurt;
+            $image->move($path,$name);
+            if(File::exists($imgcur)) {
+                File::delete($imgcur);
+            }
+        }
+        $user->username=$request->username;
+        $user->email=$request->email;
+        $user->password=$request->password;
+        $user->role_id=$request->role_id; 
+        $user->save();
+        return  redirect()->route('user-list')->with(['class'=>'success','message'=>'Cập nhật thành công']);
     }
 
     /**
@@ -93,6 +122,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect()->route('user-list');
+        return  redirect()->route('user-list')->with(['class'=>'success','message'=>'Xóa thành công']);
     }
 }

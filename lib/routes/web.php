@@ -10,7 +10,6 @@ Route::POST('checkout','CheckoutController@postCheckout')->name('checkout');
 Route::get('payment','CheckoutController@payment')->name('payment');
 Route::POST('sendmail','CheckoutController@sendMail')->name('sendmail');
 Route::get('single/{id}','HomeController@single')->name('single');
-Route::POST('comment','HomeController@comment')->name('comment');
 Route::view('contact', 'frontend.contact')->name('contact');
 Route::view('about', 'frontend.about')->name('about');
 
@@ -80,6 +79,7 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('user-delete');
 		});
 		Route::group(['prefix' => 'comment'], function(){
+			Route::POST('comment','admin\CommentController@comment')->name('comment');
 			Route::get('/list', 'admin\CommentController@index')->name('comment-list');
 			Route::delete('/{id}/delete', 'admin\CommentController@destroy')->name('comment-delete');
 		});
@@ -89,13 +89,9 @@ Route::group(['middleware' => ['auth']], function () {
 		// Route::post('/store', 'admin\UserController@store')->name('user-store');
 			Route::get('/{id}/edit', 'admin\OrderController@edit')->name('order-edit');
 			Route::put('/{id}/update', 'admin\OrderController@update')->name('order-update');
-		// Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('user-delete');
-
+			Route::get('/{id}/comfirm', 'admin\OrderController@confirm')->name('order-comfirm');
 			Route::group(['prefix' =>'orderDetail'], function(){
-				Route::get('/list', 'admin\OrderController@index')->name('orderDetail-list');
-				Route::get('/{id}/edit', 'admin\OrderController@edit')->name('orderDetail-edit');
-				Route::put('/{id}/update', 'admin\OrderController@update')->name('orderDetail-update');
-				Route::get('/{id}/showorder', 'admin\OrderController@showorder')->name('orderDetail-show');
+				Route::get('/{id}/orderdetail', 'admin\OrderDetailController@show')->name('orderDetail-show');
 			});
 		});
 	});	Route::group(['prefix' => 'user','middleware'=>'user'], function(){

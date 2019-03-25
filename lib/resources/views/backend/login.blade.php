@@ -14,7 +14,6 @@
 			<!-- Tabs Titles -->
 			<h2 class="active">Sign In</a> </h2>
 			<h2 class="inactive underlineHover"><a href="{{route('register')}}" title="">Sign Up</a> </h2>
-
 			<!-- Icon -->
 			<div class="fadeIn first">
 				<img src="{{asset('lib/public/images/user.png')}}" id="icon" alt="User Icon" />

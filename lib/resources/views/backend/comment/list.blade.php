@@ -13,9 +13,10 @@
 						<h4 class="title">Striped Table with Hover</h4>
 						<p class="category">Here is a subtitle for this table</p>
 					</div>
+					@include('errors.error')
 					<div class="content table-responsive table-full-width">
 						<button class="btn btn-susscec"><a href="{{route('product-list')}}">List Product</a></button>
-						<table class="table table-hover table-striped">
+						<table class="table table-hover table-striped" style="margin-bottom: 0">
 							<thead>
 								<th>ID</th>
 								<th>Content</th>
@@ -36,7 +37,7 @@
 										<form action="{{route('comment-delete', $item->id)}}" method="POST">
 											@csrf
 											@method("DELETE")
-											<button type="submid" class="btn">Delete</button>
+											<button type="submid" class="btn" onclick=" return confirmdel()">Delete</button>
 										</form>
 									</td>
 								</tr>
@@ -47,60 +48,11 @@
 					</div>
 				</div>
 			</div>
-
-
-			<div class="col-md-12">
-				<div class="card card-plain">
-					<div class="header">
-						<h4 class="title">Table on Plain Background</h4>
-						<p class="category">Here is a subtitle for this table</p>
-					</div>
-				</div>
-			</div>
-
-
 		</div>
 	</div>
-</div>
-
-<footer class="footer">
-	<div class="container-fluid">
-		<nav class="pull-left">
-			<ul>
-				<li>
-					<a href="#">
-						Home
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						Company
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						Portfolio
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						Blog
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<p class="copyright pull-right">
-			&copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-		</p>
-	</div>
-</footer>
-
-
-</div>
-</div>
 
 
 
 
 
-@endsection
+	@endsection

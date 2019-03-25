@@ -1,9 +1,6 @@
 @extends('backend.layout.master')
 @section('title','product')
 @section('content')
-
-
-
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -11,17 +8,11 @@
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Create Product</h4>
-                        @if($errors->any())
-                        <div class="alert alert-danger">
-                            @foreach($errors->all() as $err)
-                            <li>{{$err}}</li>
-                            @endforeach
-                        </div>
-                        @endif
-                        <button type="button" class="btn btn-success"><a href="{{route('product-list')}}">Categories List</a></button>
+                        @include('errors.error')
+                        <a href="{{route('product-list')}}" class="btn btn-success">Categories List</a>
                     </div>
                     <div class="content">
-                        <form action="{{ route('product-store')}}" method="POST">
+                        <form action="{{ route('product-store')}}" method="POST" enctype="multipart/form-data">
                          @csrf
                          <div class="row">
                             <div class="col-md-5">
@@ -50,9 +41,9 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="form-group" style="display: none">
                                     <label>View</label>
-                                    <input type="number" class="form-control" name="view" id="view" value="0" >
+                                    <input type="number" class="form-control" name="view" id="view" value="0">
                                 </div>
                             </div>
                         </div>
@@ -82,19 +73,33 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Image</label>
+                                    <label>Ảnh đại diện</label>
                                     <input type="file" class="form-control" name="image" id="image" >
                                 </div>
                             </div>
                         </div>
-                                    <input type="hidden" class="form-control" name="view" value="0"  >
-
+                        <input type="hidden" class="form-control" name="view" value="0"  >
                         <button type="submit" class="btn btn-info btn-fill pull-right">Create product</button>
                         <div class="clearfix"></div>
-                    </form>
+                    </div>
                 </div>
+
             </div>
-        </div>
+            <div class="col-md-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Ảnh chi tiết</label>
+                        <input type="file" class="form-control" name="ImageProductDetail[]" id="image" >
+                        <label>Ảnh chi tiết</label>
+                        <input type="file" class="form-control" name="ImageProductDetail[]" id="image" >
+                        <label>Ảnh chi tiết</label>
+                        <input type="file" class="form-control" name="ImageProductDetail[]" id="image" >
+                    </div>
+                    <div class="form-group here"></div>
+                </div>
+                <button type="button" class="btn btn-primary" id="addimg">Thêm Image</button>
+            </div>
+        </form>
     </div>
 </div>
 </div>
@@ -108,4 +113,15 @@
 </div>
 </div>
 
+
+@endsection
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function(){
+        var html = '<label>Ảnh chi tiết</label><input type="file" class="form-control" name="ImageProductDetail[]" id="image" >';
+        $('#addimg').click(function(){
+            $('.here').append(html);
+        });
+    });
+</script>
 @endsection

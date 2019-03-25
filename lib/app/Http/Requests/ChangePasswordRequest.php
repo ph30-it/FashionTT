@@ -35,8 +35,8 @@ class ChangePasswordRequest extends FormRequest
         return [
             'oldpass.required'=>'Mật khẩu cũ không được bỏ trống',
             'newpass.required'=>'Vui lòng nhập mật khẩu mới',
-            'newpass.min.'=>'Mật khẩu mới ít nhất 6 kí tự',
-            'newpass.different.'=>'Mật khẩu mới không được trùng với mật khẩu cũ',
+            'newpass.min'=>'Mật khẩu mới ít nhất 6 kí tự',
+            'newpass.different'=>'Mật khẩu mới không được trùng với mật khẩu cũ',
             'renewpass.required'=>'Vui lòng xác nhận lại mật khẩu mới',
             'renewpass.same'=>'Xác thực mật khẩu không đúng',
             'captcha.required'=>'Vui lòng nhập mã xác thực',
