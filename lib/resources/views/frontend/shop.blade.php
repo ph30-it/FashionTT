@@ -125,11 +125,11 @@
 				@foreach($view as $vi)
 				<div class="special-sec1">
 					<div class="col-xs-4 img-deals">
-						<img src="{{asset('lib/public/images_product\/').$vi['image']}}" alt="">
+						<a href="{{route('single',$vi['id'])}}"><img src="{{asset('lib/public/images_product\/').$vi['image']}}" alt=""></a>
 					</div>
 					<div class="col-xs-8 img-deal1">
 						<h3>{{$vi['name']}}</h3>
-						<a href="single.html">${{$vi['price']}}</a>
+						<a href="{{route('single',$vi['id'])}}">${{$vi['price']}}</a>
 					</div>
 					<div class="clearfix"></div>
 				</div>

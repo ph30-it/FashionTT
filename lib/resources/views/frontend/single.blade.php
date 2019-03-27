@@ -41,7 +41,7 @@
 						</ul>
 					</div>
 					<div class="occasional">
-						{{$single['description']}}
+						{!!html_entity_decode($single['description'])!!}
 						<div class="clearfix"> </div>
 					</div>
 					<div class="occasion-cart">
@@ -111,7 +111,7 @@
 
 						<div class="single_page">
 							<h6>{{$single['name']}}</h6>
-							<p>{{$single['description']}}</p>
+							<p>{!!html_entity_decode($single['description'])!!}</p>
 							<p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
 								blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
 								ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
@@ -195,7 +195,7 @@
 									</ul>
 								</div>
 								<div class="shoe single-item hvr-outline-out">
-									<button type="submit" class="shoe-cart pshoe-cart addproduct">
+									<button type="button"  value="{{$value['id']}}" class="shoe-cart pshoe-cart addProduct">
 										<i class="fa fa-cart-plus" aria-hidden="true"></i>
 									</button>
 								</div>
@@ -250,7 +250,7 @@
 						if (value.user.avatar=='') {
 							value.user.avatar="user1.png";
 						}
-						html+='<p style="background-color:#e9ebee;border-radius:10px"><img src="http://localhost/FashionTT/lib/public/images/'+value.user.avatar+'" width="50px"><b>'+value.user.username+' : </b>'+value.content+'</p><a  href="" title="'+value.created_at+'">'+value.created_at+'</a>';
+						html+='<p style="background-color:#e9ebee;border-radius:10px"><img src="http://localhost/FashionTT/lib/public/images/'+value.user.avatar+'" width="50px"><b>'+value.user.username+' : </b>'+value.content+'</p><a  href="" title="'+value.created_at+'">'+moment(value.created_at).fromNow();+'</a>';
 					});
 					html+='<div class="clearfix"></div>';
 					$('.bootstrap-tab-text-grid').html(html);
@@ -297,6 +297,7 @@
 	});
 </script>
 @section('js')
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
 <script type="text/javascript" src="{{asset('lib/public/js/bootstrap-3.1.1.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('lib/public/js/imagezoom.js')}}"></script>
 <script type="text/javascript" src="{{asset('lib/public/js/jquery.flexslider.js')}}"></script>

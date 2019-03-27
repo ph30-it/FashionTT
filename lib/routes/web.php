@@ -38,6 +38,8 @@ Route::POST('shopping','ShoppingCartController@addProduct')->name('shopping');
 Route::POST('delete','ShoppingCartController@deleteProduct')->name('delete');
 Route::POST('update','ShoppingCartController@updateProduct')->name('update');
 Route::POST('search','ShoppingCartController@searchProduct')->name('search');
+Route::POST('comment','admin\CommentController@comment')->name('comment');
+
 
 Route::group(['middleware' => ['auth']], function () {	
 	Route::group(['prefix' => 'admin','middleware'=>'admin'], function(){
@@ -73,7 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::delete('/{id}/delete', 'admin\UserController@destroy')->name('user-delete');
 		});
 		Route::group(['prefix' => 'comment'], function(){
-			Route::POST('comment','admin\CommentController@comment')->name('comment');
+			
 			Route::get('/list', 'admin\CommentController@index')->name('comment-list');
 			Route::delete('/{id}/delete', 'admin\CommentController@destroy')->name('comment-delete');
 		});
