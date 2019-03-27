@@ -19,7 +19,6 @@
 							<th>Product</th>
 							<th>Quality</th>
 							<th>Product Name</th>
-
 							<th>Price</th>
 							<th>Remove</th>
 						</tr>
@@ -30,7 +29,7 @@
 
 						<tr class="rem1">
 							<td class="invert">{{$i}}</td>
-							<td class="invert-image" style="width: 40%;"><a href=""><img src="{{asset('lib/public/images_product/')}}/{{$val['image']}}" class="img-responsive"></a></td>
+							<td class="invert-image" style="width: 40%;"><a href="{{route('single',$val['id'])}}"><img src="{{asset('lib/public/images_product/')}}/{{$val['image']}}" class="img-responsive"></a></td>
 							<td class="invert">
 								<div class="quantity">
 									<div class="quantity-select">								
