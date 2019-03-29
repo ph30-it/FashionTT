@@ -18,7 +18,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}">
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Price</label>
-                                    <input type="nummber" class="form-control" name="price" id="price">
+                                    <input type="nummber" class="form-control" name="price" id="price" value="{{old('price')}}">
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea class="form-control" name="description" id="editor1"></textarea>                        
+                                    <textarea class="form-control" name="description" id="editor1">{{old('description')}}</textarea>                           
                                     <script> CKEDITOR.replace( 'editor1', {
                                         filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
                                         filebrowserImageBrowseUrl: '{{ asset('lib/public/admin/ckfinder/ckfinder.html?type=Images') }}',

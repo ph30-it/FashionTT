@@ -247,7 +247,7 @@
 </body>
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 @if(Auth::check())
-<a href="{{url("ADMIN")}}" id="gotoHome"  style="display: block;">
+<a href="{{route('admin-profile')}}" id="gotoHome"  style="display: block;">
 	<span id="toTopHover" style="opacity: 1;"><b>{{Auth::user()->username}}!</b><br>
 	Đến trang quản trị</span>
 </a>
@@ -309,7 +309,7 @@
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
 		});
-		$('body').on('click','.remove',function(){
+		$('body').on('click','.remove',function(){ 
 			html ='';
 			var id = $(this).attr('data-sbmincart-idx');
 			//console.log(id)
@@ -397,7 +397,10 @@
 					html+='</ul><div class="sbmincart-footer"><div class="sbmincart-subtotal"><p class="totalsub">Subtotal: $'+tongtien+' USD</p></div><a href="{{route('checkout')}}" class="sbmincart-submit" type="submit" data-sbmincart-alt="undefined">Check Out</a></div>';
 					$('#staplesbmincart').html(html);
 					$(".sbmincart-empty-text").hide();	
-					$("#staplesbmincart").show();				
+					$("#staplesbmincart").show();		
+					setTimeout(function() {
+						$('#staplesbmincart').slideUp('slow');
+					}, 3000);		
 				}
 			});	
 		});		
@@ -488,6 +491,9 @@
 	});
 setTimeout(function() {
 	$('#status').slideUp('slow');
+}, 3000);
+setTimeout(function() {
+	$('#staplesbmincart').slideUp('slow');
 }, 3000);
 </script>
 

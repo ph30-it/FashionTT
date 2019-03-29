@@ -2,8 +2,8 @@
 <div class="col-md-4 product-men">
 	<div class="product-shoe-info shoe">
 		<div class="men-pro-item" >
-			<div class="men-thumb-item" style="height: 235.844px">
-				<img src="{{asset('lib/public/images_product\/').$val['image']}}" alt="">
+			<div class="men-thumb-item" >
+				<img  class="img-responsive" src="{{asset('lib/public/images_product\/').$val['image']}}" alt="" style="height: 235.844px">
 				<div class="men-cart-pro">
 					<div class="inner-men-cart-pro">
 						<a href="{{route('single',$val['id'])}}" class="link-product-add-cart">Quick View</a>

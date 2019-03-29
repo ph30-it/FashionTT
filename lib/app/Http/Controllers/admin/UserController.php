@@ -17,16 +17,21 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        $user = User::with('role')->paginate(10);
-        return view('backend.user.list', compact('user'));
+        if (request()->search) 
+        {
+          $query=request()->search;
+          $user = User::where('username', 'like', '%'.$query.'%')
+          ->orWhere('email', 'like', '%'.$query.'%')
+          ->orderBy('id', 'desc')->get();
+          $search=1;
+        }else{
+        $user=$this->ordertable('App\Models\User','role');
+        $search=2;
+        }
+        return view('backend.user.list', compact('user','search'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
@@ -49,8 +54,8 @@ class UserController extends Controller
           $image->move($path,$name);    
       }else{
         $name='';
-      }
-      $user = User::create(
+    }
+    $user = User::create(
         [
             'username' => $request->username,
             'password' => bcrypt($request->password),
@@ -60,8 +65,8 @@ class UserController extends Controller
         ]
     );
 
-      return  redirect()->route('user-list')->with(['class'=>'success','message'=>'Tạo USER thành công']);
-  }
+    return  redirect()->route('user-list')->with(['class'=>'success','message'=>'Tạo USER thành công']);
+}
     /**
      * Display the specified resource.
      *

@@ -21,14 +21,8 @@
     <link href="{{asset('lib/public/admin/css/light-bootstrap-dashboard.css?v=1.4.0')}}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{asset('lib/public/admin/css/demo.css')}}" rel="stylesheet" />
-
-
-    <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="{{asset('lib/public/admin/css/css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
     <script src="{{ asset('lib/public/admin/ckeditor/ckeditor.js') }}"></script>
 
 </head>
@@ -36,15 +30,10 @@
 
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
-
-
-
-
             <div class="sidebar-wrapper">
-
                 <ul class="nav">
                     <li>
-                        <a href="dashboard.html">
+                        <a href="{{route('admin-profile')}}">
                             <i class="pe-7s-graph"></i>
                             <p>Dashboard</p>
                         </a>
@@ -79,6 +68,9 @@
                             <p>Comment</p>
                         </a>
                     </li>
+                    <li>
+                        
+                    </li>
                 </ul>
             </div>
         </div>
@@ -95,15 +87,6 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li>
-                           <a href="">
-                            <i class="fa fa-search"></i>
-                            <p class="hidden-lg hidden-md">Search</p>
-                        </a>
-                    </li>
-                </ul>
-
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                        <a href="">
@@ -123,26 +106,20 @@
 </nav>
 @yield('content')
 </body>
-<!--   Core JS Files   -->
-<script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-<!--  Charts Plugin -->
-<script src="{{asset('admin/js/chartist.min.js')}}"></script>
-
-<!--  Notifications Plugin    -->
-<script src="{{asset('admin/js/bootstrap-notify.js')}}"></script>
-
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
-<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="{{asset('admin/js/light-bootstrap-dashboard.js?v=1.4.0')}}"></script>
-
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="{{asset('admin/js/demo.js')}}"></script>
 
 <script type="text/javascript">
+        function showSearch() {
+        var x = document.getElementById("search");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+            document.getElementById('btn-show').innerHTML='<i class="fa fa-search"></i>';
+        } else {
+            x.style.display = "block";
+            document.getElementById('btn-show').innerHTML="Hủy";
+        }
+
+    }
     function confirmdel(msg)
     {
         if(window.confirm(msg)){
@@ -152,20 +129,6 @@
         return false;
 
     }
-    $(document).ready(function(){
-
-        demo.initChartist();
-
-        $.notify({
-            icon: 'pe-7s-gift',
-            message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-        },{
-            type: 'info',
-            timer: 4000
-        });
-
-    });
     setTimeout(function() {
         $('#status').slideUp('slow');
     }, 3000);

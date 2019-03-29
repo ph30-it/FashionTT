@@ -30,10 +30,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-     $list_cate = Category::all()->toArray();
-     $parent = Category::select('id', 'name', 'parent_id')->get()->toArray();
-     return view('backend.category.create', compact('parent','list_cate'));
- }
+       $list_cate = Category::where('parent_id',0)->get()->toArray();
+     // $parent = Category::select('id', 'name', 'parent_id')->get()->toArray();
+       return view('backend.category.create', compact('list_cate'));
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -73,10 +73,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $list_cate = Category::all()->toArray();
-        $category = Category::find($id);
-        return view('backend.category.edit', compact('category','list_cate'));
-    }
+       $list_cate = Category::where('parent_id',0)->where('id','<>',$id)->get()->toArray();
+     //dd($list_cate);
+       $category = Category::find($id);
+       return view('backend.category.edit', compact('category','list_cate'));
+   }
 
     /**
      * Update the specified resource in storage.
@@ -85,23 +86,25 @@ class CategoryController extends Controller
      * @param  \App\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
-    {
-
+    public function update(Request $request, $id)
+    {   
+        $request->validate(
+            ['name' => 'required',],
+            ['name.required' => 'Vui lòng nhập tên danh mục',]);
+        $check=Category::where('id','<>',$id)->get()->toArray();
+        foreach ($check as $val) {
+            if ( $val['name'] == $request->name) {  
+                return redirect()->back()->with(['class'=>'danger','message'=>'Tên danh mục bị trùng']);
+            }
+        }
         $category = Category::find($id);
         $category->name=$request->name;
         $category->alias=str_slug($request->name);
         $category->parent_id=$request->category_id;
         $category->save();
         return redirect()->route('category-list')->with(['class'=>'success','message'=>'Cập nhật danh mục thành công']);
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\category  $category
-     * @return \Illuminate\Http\Response
-     */
+    }
     public function destroy($id)
     {
         Category::destroy($id);

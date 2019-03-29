@@ -120,10 +120,11 @@
                     @foreach($product->images as $k => $img)
                     <div class="form-group" id=hinh{{$k}}>
                         <img src="{{asset('lib/public/images_product')}}/{{$img->name}}" id=hinh{{$k}} alt="" class="imgcr1 img-responsive">
-                        <a href="" title="" class="btn btn-danger btn-circle">X</a>
-                        <input type="file"name="ImageProductDetail[]" id="image" >
                     </div>
-                    @endforeach     
+                    @endforeach    
+                    <input type="file"name="ImageProductDetail[]" id="image" >
+                    <input type="file"name="ImageProductDetail[]" id="image" >
+                    <input type="file"name="ImageProductDetail[]" id="image" > 
                 </div>
             </div>
         </form>

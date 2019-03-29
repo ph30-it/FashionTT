@@ -21,7 +21,7 @@ class CommentController extends Controller
 		echo json_encode($data);
 	}
 	public function index(){
-		$cmt = Comment::paginate(10);
+		$cmt=$this->ordertable('App\Models\Comment','user');
 		return view('backend.comment.list', compact('cmt'));
 	}
 	public function destroy($id){

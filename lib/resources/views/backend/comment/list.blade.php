@@ -1,9 +1,6 @@
 @extends('backend.layout.master')
 @section('title','Comment')
 @section('content')
-
-
-
 <div class="content">
 	<div class="container-fluid">
 		<div class="row">
@@ -18,9 +15,9 @@
 						<button class="btn btn-susscec"><a href="{{route('product-list')}}">List Product</a></button>
 						<table class="table table-hover table-striped" style="margin-bottom: 0">
 							<thead>
-								<th>ID</th>
+								<th>ID  <a href="?orderby=id&sta=desc" title=""><i class="glyphicon glyphicon-arrow-up"></i></a><a href="?orderby=id&sta=asc" title=""><i class="glyphicon glyphicon-arrow-down"></i></a></th>
 								<th>Content</th>
-								<th>User Id</th>
+								<th>User Id  <a href="?orderby=user_id&sta=desc" title=""><i class="glyphicon glyphicon-arrow-up"></i></a><a href="?orderby=user_id&sta=asc" title=""><i class="glyphicon glyphicon-arrow-down"></i></a></th>
 								<th>Product Id</th>
 								<th>Create At</th>
 								<th>Action</th>
@@ -30,7 +27,7 @@
 								<tr>
 									<td>{{$item->id}}</td>
 									<td>{{$item->content}}</td>
-									<td>{{$item->user_id}}</td>
+									<td>{{$item->user->username}}</td>
 									<td>{{$item->product_id}}</td>
 									<td>{{$item->created_at	}}</td>
 									<td>
@@ -50,9 +47,4 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
 	@endsection
