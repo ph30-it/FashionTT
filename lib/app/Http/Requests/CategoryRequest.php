@@ -32,7 +32,7 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Bạn chưa điền tên đăng nhập',
+            'name.required' => 'Bạn chưa điền tên Category',
             'name.unique' => 'Tên đã bị trùng ',
         ];
     }

@@ -16,13 +16,11 @@ Route::view('about', 'frontend.about')->name('about');
 Route::get('ADMIN',function(){
 	if (Auth::check()) {
 		if (\Auth::user()->id==1) {
-			return redirect()->route('category-list');
+			return redirect()->route('admin-profile');
 		}else{
 			return	redirect()->route('user');
 		}
 	}else{
-
-
 		return	redirect()->route('login');
 	}
 });
@@ -43,7 +41,9 @@ Route::POST('comment','admin\CommentController@comment')->name('comment');
 
 Route::group(['middleware' => ['auth']], function () {	
 	Route::group(['prefix' => 'admin','middleware'=>'admin'], function(){
-	//route category
+		Route::get('/', 'admin\ProfileController@index')->name('admin-profile');
+		Route::POST('changepass','admin\ProfileController@change')->name('changepass');
+		Route::get('getnewcapt','admin\ProfileController@getnewcapt')->name('getnewcapt');
 		Route::group(['prefix' => 'category'], function(){
 			Route::get('/', 'admin\CategoryController@index')->name('category-list');
 			Route::get('/create', 'admin\CategoryController@create')->name('category-create');

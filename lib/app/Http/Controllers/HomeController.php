@@ -39,6 +39,7 @@ class HomeController extends Controller
       $single=Product::with('Images')->where('id',$id)->firstOrFail()->toArray();
                               //dd($single);
                               //dd($single);
+                              
       return view('frontend.single',compact('view','single','comment'));
     }
     public function postSearch(Request $req)

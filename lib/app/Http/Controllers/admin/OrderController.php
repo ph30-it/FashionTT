@@ -10,8 +10,14 @@ use App\Http\Controllers\Controller;
 class OrderController extends Controller
 {
 	public function index(){
-		$order = Order::with('user')->orderBy('status','asc')->paginate(10);
-		return view('backend.order.list', compact('order'));
+		if (request()->orderby) {		
+			$order = Order::where('status',0)->with('user')->orderBy(request()->orderby,request()->sta)->paginate(10);
+			$orderxl = Order::where('status','<>',0)->with('user')->orderBy(request()->orderby,request()->sta)->paginate(10);
+		}else{
+			$order = Order::where('status',0)->with('user')->orderBy('id','asc')->paginate(10);
+			$orderxl = Order::where('status','<>',0)->with('user')->orderBy('id','asc')->paginate(10);
+		}	
+		return view('backend.order.list', compact('order','orderxl'));
 	}
 	public function confirm($id)
 	{	$order=Order::find($id);
@@ -31,6 +37,6 @@ class OrderController extends Controller
 		$order = Order::find($id);
 		$data = $request->all();
 		$order->update($data);
-			return redirect()->route('order-list')->with(['class'=>'success','message'=>'Cập nhật thành công']);
+		return redirect()->route('order-list')->with(['class'=>'success','message'=>'Cập nhật thành công']);
 	}
 }
