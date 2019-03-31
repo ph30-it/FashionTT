@@ -12,7 +12,7 @@ Route::POST('sendmail','CheckoutController@sendMail')->name('sendmail');
 Route::get('single/{id}','HomeController@single')->name('single');
 Route::view('contact', 'frontend.contact')->name('contact');
 Route::view('about', 'frontend.about')->name('about');
-
+Route::POST('rating', 'admin\ProductController@rating')->name('rating');
 Route::get('ADMIN',function(){
 	if (Auth::check()) {
 		if (\Auth::user()->id==1) {
@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/', 'admin\ProfileController@index')->name('admin-profile');
 		Route::POST('changepass','admin\ProfileController@change')->name('changepass');
 		Route::get('getnewcapt','admin\ProfileController@getnewcapt')->name('getnewcapt');
+		Route::POST('imgprofile','admin\ProfileController@upload')->name('imgprofile');
 		Route::group(['prefix' => 'category'], function(){
 			Route::get('/', 'admin\CategoryController@index')->name('category-list');
 			Route::get('/create', 'admin\CategoryController@create')->name('category-create');

@@ -1,6 +1,7 @@
 @extends('frontend.user.layout')
 @section('title','List Transaction')
 @section('content')
+@section('class3','active')
 <div class="wrapper">
 	<table class="table table-striped">
 		@if($list)

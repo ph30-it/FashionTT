@@ -45,21 +45,16 @@
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
-						<li class="active">
-							<a href="#">
+						<li  class="@yield('class1')">
+							<a href="{{url('user/')}}">
 								<i class="glyphicon glyphicon-user"></i>
-							Overview </a>
+							General </a>
 						</li>
-						<li>
-							<a href="#">
-								<i class="glyphicon glyphicon-home"></i>
-							Account Settings </a>
-						</li>
-						<li>
+						<li class="@yield('class3')">
 							<a href="{{route('list-tran')}}">
 								<i class="glyphicon glyphicon-list"></i>
 							List Transaction </a>
-						</li>
+						</li >
 						<li>
 							<a href="{{route('logout')}}">
 								<i class="	glyphicon glyphicon-log-out"></i>

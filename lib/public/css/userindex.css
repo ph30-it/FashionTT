@@ -100,6 +100,14 @@ li{
   border-left: 2px solid #5b9bd1;
   margin-left: -2px;
 }
+.profile-usermenu ul li:hover {
+  border-bottom: none;
+}
+.profile-usermenu ul li a:hover {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+}
 
 /* Profile Content */
 .profile-content {

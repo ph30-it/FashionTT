@@ -28,7 +28,7 @@ class EditProductRequest extends FormRequest
             'name'=>'required',
             'price'=>'required',
             'sale'=>'required',
-            'description' => 'required|min:100|max:1000',
+            'description' => 'required|min:100|max:2000',
             'image' => '|image|mimes:jpeg,png,jpg|max:2048',
             'ImageProductDetail.*'=>'|image|mimes:jpeg,png,jpg|max:2048',
         ];
@@ -41,7 +41,7 @@ class EditProductRequest extends FormRequest
             'sale.required' =>'Bạn chưa nhập giảm giá',
             'description.required' =>'Bạn chưa nhập mô tả',
             'description.min' =>'Mô tả ít nhất 100 từ',
-            'description.max' =>'Mô tả ít nhất 1000 từ',
+            'description.max' =>'Mô tả ít nhất 2000 từ',
             'image.image' =>'Ảnh không hợp lệ',
             'image.mimes' =>'Định dạng ảnh phải là: jpeg,png,jpg',
             'image.max' =>'Ảnh không được quá 2MB',
