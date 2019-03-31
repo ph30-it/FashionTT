@@ -69,7 +69,8 @@ public function listtran()
 public function detail($id)
 {
 	$data=Orderdetail::with('product')->where('order_id',$id)->get()->toArray();
-	return view('frontend.user.detail-tran',compact('data'));
+	$date=Order::select('created_at')->where('id',$id)->first()->toArray();
+	return view('frontend.user.detail-tran',compact('data','date'));
 
 }
 }

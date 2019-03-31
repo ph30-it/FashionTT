@@ -73,10 +73,6 @@
 						<section class="creditly-wrapper wrapper">
 							<div class="information-wrapper">
 								<div class="first-row form-group">
-									<div class="controls">
-										<label class="control-label">Address :</label>
-										<input class="billing-address-name form-control" type="text" name="address" placeholder="Address">
-									</div>
 									<div class="card_number_grids">
 										<div class="card_number_grid_left">
 											<div class="controls">
@@ -96,7 +92,12 @@
 												<input class="form-control" name="cty" type="text" placeholder="Cty">
 											</div>
 										</div>
+										<div class="controls">
+										<label class="control-label">Address :</label>
+										<input class="billing-address-name form-control" type="text" name="address" placeholder="Address">
+									</div>
 										<div class="clear"> </div>
+
 									</div>
 									<div class="controls">
 										<label class="control-label">Phone : </label>

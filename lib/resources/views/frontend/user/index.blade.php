@@ -1,6 +1,7 @@
 @extends('frontend.user.layout')
 @section('title','Profile')
 @section('content')
+@section('class1','active')
 <div class="wrapper">
 	<div class="col-md-6">
 		@include('errors.error')

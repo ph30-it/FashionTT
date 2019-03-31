@@ -26,4 +26,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\Orderdetail');
     }
+       public function rates()
+    {
+        return $this->hasMany('App\Models\Rating');
+    }
+
 }

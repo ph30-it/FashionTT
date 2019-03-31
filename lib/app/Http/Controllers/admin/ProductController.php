@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Image;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
@@ -113,37 +114,38 @@ public function update(EditProductRequest $request,$id)
         $imgcurrent=Image::where('product_id',$product_id)->get()->toArray();
         foreach ($imgcurrent as  $value) {
           $imagec=$value['name'];
-         $imagedel=$path.$imagec;
+          $imagedel=$path.$imagec;
           if(File::exists($imagedel)) {
-          File::delete($imagedel); 
-         }
+            File::delete($imagedel); 
+          }
         }
         DB::table('images')->where('product_id', '=',$product_id)->delete();
-       foreach ($request->file('ImageProductDetail') as $file) {
-        $img_detail= new Image;
-        if (isset($file)) {
-          $nameIMG = md5(time().$file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
-          $img_detail->name=$nameIMG;
-          $file->move($path,$nameIMG);
-          $img_detail->product_id=$product_id;
-          $img_detail->save();
+        foreach ($request->file('ImageProductDetail') as $file) {
+          $img_detail= new Image;
+          if (isset($file)) {
+            $nameIMG = md5(time().$file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
+            $img_detail->name=$nameIMG;
+            $file->move($path,$nameIMG);
+            $img_detail->product_id=$product_id;
+            $img_detail->save();
+          }
         }
       }
-    }
-    DB::commit();
-    return redirect()->route('product-list')->with(['class'=>'success','message'=>'Cập nhật sản phẩm thành công']);
-  }catch (Exception $e) {
-   DB::rollBack();
+      DB::commit();
+      return redirect()->route('product-list')->with(['class'=>'success','message'=>'Cập nhật sản phẩm thành công']);
+    }catch (Exception $e) {
+     DB::rollBack();
 
-   throw new Exception($e->getMessage());
+     throw new Exception($e->getMessage());
+   }
  }
-}
 }       
 }
 
 public function destroy($id)
 {
   Product::destroy($id);
+  Image::where('product_id',$id)->delete();
   return redirect()->route('product-list')->with(['class'=>'success','message'=>'Xóa sản phẩm thành công']);
   ;
 }
@@ -155,5 +157,20 @@ public function show($id){
   $product = Product::with('cate')->where('id', $id)->get();
   $images = Image::with('product')->where('id', $id)->get();
   return view('backend.product.show', compact('product','images'));
+}
+public function rating(Request $request)
+{
+  $check=Rating::where('user_id',\Auth::user()->id)->where('product_id',$request->id_product)->exists();
+  if ($check) {
+    return 'rated';
+ }else{
+  $rate = new Rating;
+  $rate->ratingNum=$request->rate;
+  $rate->product_id=$request->id_product;
+  $rate->user_id=\Auth::user()->id;
+  $rate->save();
+  return 'success';
+}
+
 }
 }

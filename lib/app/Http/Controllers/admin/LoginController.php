@@ -17,8 +17,8 @@ class LoginController extends Controller
 	public function postLogin(LoginRequest $request)
 	{
 		$remember=$request->has('remember') ? true : false;
-		$credentials = $request->only('username', 'password');
-		if (Auth::attempt($credentials,$remember)) {
+		$account = $request->only('username', 'password');
+		if (Auth::attempt($account,$remember)) {
 			return redirect()->route('shop');
 		}else{
 			return redirect()->back()->with(['class'=>'danger','message'=>'Đăng nhập thất bại']);

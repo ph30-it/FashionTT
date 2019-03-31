@@ -68,7 +68,7 @@
 	@endif
 	<a class="b-home" href="{{url("ADMIN")}}" style="margin-left:100px">Goto AdminPage</a>
 	<div class="col-md-9">
-		<a class="b-home" href="{{route("/")}}">Back to Home</a>
+		<a class="b-home" href="{{route("shop")}}">Back to Home</a>
 	</div>
 </div>
 @stop
