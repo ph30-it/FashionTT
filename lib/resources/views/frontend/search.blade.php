@@ -20,7 +20,7 @@
 			<div class="product-shoe-info shoe">
 				<div class="men-pro-item">
 					<div class="men-thumb-item">
-						<img src="{{asset('lib/public/images_product\/').$val['image']}}" alt="">
+						<img src="{{asset('lib/public/images_product\/').$val['image']}}" alt="" style="height: 297.500px">
 						<div class="men-cart-pro">
 							<div class="inner-men-cart-pro">
 								<a href="{{route('single',$val['id'])}}" class="link-product-add-cart">Quick View</a>

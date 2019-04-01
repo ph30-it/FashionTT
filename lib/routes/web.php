@@ -61,7 +61,6 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::put('/{id}/update', 'admin\ProductController@update')->name('product-update');
 			Route::delete('/{id}/delete', 'admin\ProductController@destroy')->name('product-delete');
 			Route::get('/{id}/showcate', 'admin\ProductController@showCate')->name('category-show');
-			Route::get('/{id}/show', 'admin\ProductController@show')->name('product-show');
 		});
 		Route::group(['prefix' => 'image'], function(){
 			Route::get('/create', 'ImageController@create')->name('image-create');

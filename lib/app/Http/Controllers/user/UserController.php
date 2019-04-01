@@ -41,7 +41,7 @@ use File,Hash,DB;
 		try {
 			if ($req->hasFile('image')) {
 				$image = $req->file('image');
-				$name = time().'.'.$image->getClientOriginalExtension();
+				$name = md5(time().'.'.$image->getClientOriginalExtension());
 				$path = public_path('images/');
 				$image->move($path, $name);
 				$image_path =public_path('images/').\Auth::user()->avatar;
@@ -68,9 +68,8 @@ public function listtran()
 }
 public function detail($id)
 {
-	$data=Orderdetail::with('product')->where('order_id',$id)->get()->toArray();
-	$date=Order::select('created_at')->where('id',$id)->first()->toArray();
-	return view('frontend.user.detail-tran',compact('data','date'));
+	$order = Order::with(['orderdetails','orderdetails.product'])->where('id',$id)->get()->toArray();
+	return view('frontend.user.detail-tran',compact('order'));
 
 }
 }

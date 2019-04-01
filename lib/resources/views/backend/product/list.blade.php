@@ -45,7 +45,7 @@
                                 @foreach($product as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td><a href="{{route('product-show', $item->id)}}">{{$item->name}}</a></td>
+                                    <td>{{$item->name}}</td>
                                     <td>{{$item->price}}</td>
                                     <td>{{$item->sale}}</td>                                    
                                     <td>{{$item->category_id}}</td>

@@ -48,7 +48,8 @@ public function chart($id)
 }
 public function single($id)
 {
-  $chart=$this->chart($id);
+  // $rate = Rating::where('product_id',$id)->selectRaw('count(ratingNum) as rating')->groupBy('ratingNum')->get()->toArray();
+  $rate=$this->chart($id);
   Product::where('id',$id)->update(['view'=> DB::raw('view+1')]);
   $comment=Comment::with('user')->where('product_id',$id)->get()->toArray();
   $view=Product::orderBy('view', 'desc')
@@ -56,7 +57,7 @@ public function single($id)
   ->get();
   $single=Product::with('Images')->where('id',$id)->firstOrFail()->toArray();
   $data=Rating::with('user')->where('product_id',$id)->get()->toArray();
-  return view('frontend.single',compact('view','single','comment','data','chart'));
+  return view('frontend.single',compact('view','single','comment','data','rate'));
 }
 public function postSearch(Request $req)
 {

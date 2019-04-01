@@ -120,9 +120,9 @@
         }
 
     }
-    function confirmdel(msg)
+    function confirmdel()
     {
-        if(window.confirm(msg)){
+        if(window.confirm('Bạn chắc chắn muốn xóa')){
             event.preventdefault();
             return true;
         }

@@ -41,14 +41,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CategoryRequest $req)
     {
 
         $category= new Category;
-        $category->name=$request->name;
-        $category->alias=str_slug($request->name);
-        $category->parent_id=$request->category_id;
-        $category->save();
+        $data=$req->all();
+        $data['alias']=str_slug($req->name);
+        $category->create($data);
         return redirect()->route('category-list')->with(['class'=>'success','message'=>'Tạo danh mục thành công']);
     }
 
@@ -89,19 +88,14 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {   
         $request->validate(
-            ['name' => 'required',],
-            ['name.required' => 'Vui lòng nhập tên danh mục',]);
-        $check=Category::where('id','<>',$id)->get()->toArray();
-        foreach ($check as $val) {
-            if ( $val['name'] == $request->name) {  
-                return redirect()->back()->with(['class'=>'danger','message'=>'Tên danh mục bị trùng']);
-            }
-        }
+            ['name' => 'required|unique:categories,name,'.$id],
+            ['name.required' => 'Vui lòng nhập tên danh mục',
+            'name.unique' => 'Tên danh mục bị trùng',
+        ]);
         $category = Category::find($id);
-        $category->name=$request->name;
-        $category->alias=str_slug($request->name);
-        $category->parent_id=$request->category_id;
-        $category->save();
+        $data=$request->all();
+        $data['alias']=str_slug($request->name);
+        $category->update($data);
         return redirect()->route('category-list')->with(['class'=>'success','message'=>'Cập nhật danh mục thành công']);
 
     }
