@@ -28,8 +28,7 @@ class ProfileController extends Controller
     }
     public function change(ChangePasswordRequest $req)
     {
-        $oldpass= \Auth::user()->password;  
-        echo $oldpass;         
+        $oldpass= \Auth::user()->password;         
         if(Hash::check($req->oldpass, $oldpass))
         {          
             $user_id = \Auth::User()->id;                       
@@ -66,7 +65,6 @@ class ProfileController extends Controller
             }
         } catch (Exception $e) {
             DB::rollBack();
-
             throw new Exception($e->getMessage());
         }
     }

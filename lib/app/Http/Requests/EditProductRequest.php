@@ -25,7 +25,7 @@ class EditProductRequest extends FormRequest
     {
         return [
             //
-            'name'=>'required',
+            'name'=>'required|unique:products,name,'.$this->id,
             'price'=>'required',
             'sale'=>'required',
             'description' => 'required|min:100|max:2000',
@@ -37,6 +37,7 @@ class EditProductRequest extends FormRequest
     {
         return [
             'name.required' => 'Bạn chưa điền tên Product',
+            'name.unique'=>'Tên sản phẩm mục bị trùng',
             'price.required'  => 'Mời nhập giá cho sản phẩm',
             'sale.required' =>'Bạn chưa nhập giảm giá',
             'description.required' =>'Bạn chưa nhập mô tả',

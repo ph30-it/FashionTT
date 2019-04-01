@@ -50,7 +50,7 @@ class UserController extends Controller
         if ($request->hasFile('avatar')) {
           $path = public_path('images_product/');
           $image = $request->file('avatar');
-          $name = md5($image->getClientOriginalName()).'.'.$image->getClientOriginalExtension();
+          $name = md5(time().$image->getClientOriginalName()).'.'.$image->getClientOriginalExtension();
           $image->move($path,$name);    
       }else{
         $name='';

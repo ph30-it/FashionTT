@@ -140,7 +140,7 @@
 						<div class="single_page">
 							<div class="bootstrap-tab-text-grids">
 								@if($comment)
-								<div class="bootstrap-tab-text-grid" style="height:500px;overflow: auto">
+								<div class="bootstrap-tab-text-grid" style="max-height:500px;overflow: auto">
 									@foreach($comment as $k => $val)
 									<?php 
 									if ($val['user']['avatar']=='') {
@@ -176,7 +176,7 @@
 					<div class="tab3 resp-tab-content" aria-labelledby="tab_item-3" >
 						<div class="single_page" id="single_page">
 							<h6>List reviews products</h6>
-							<div class="reviews-here" style="height:500px;overflow: auto">
+							<div class="reviews-here" style="max-height:500px;overflow: auto">
 								@if($data)
 									@foreach($data as $rating)
 									<?php 
@@ -195,6 +195,10 @@
 							<a  href="" title="{{$rating['created_at']}}">{{\Carbon\Carbon::createFromTimeStamp(strtotime($rating['created_at']))->diffforHumans()}}</a>
 						</p>
 									@endforeach
+								@else
+								<div class="bootstrap-tab-text-grid">
+									<p style="font-size:20px;color:green;text-align: center;">Chưa có đánh giá nào cho sản phẩm này</p>
+								</div>
 								@endif
 							</div>
 							
@@ -369,6 +373,7 @@
 							alert('Bạn đã đánh giá sản phẩm này!');
 						}else{
 							alert('Cảm ơn bạn đã đánh giá '+star+' sao cho sản phẩm này!');
+							location.reload();
 						}
 					}
 				});
@@ -403,13 +408,18 @@
                     }
                 }
             },
-            series: [
-            @foreach($chart as $val)
-            	{{ ($val*100)/ count($chart) }},
+            series: 
+            @if(count($data)>0)
+            [
+            @foreach($rate as $k=> $value)
+            	{{ ($value*100)/count($data)}},
             @endforeach
             ],
+            @else
+            [0,0,0,0,0],
+            @endif
             labels: [
-            @foreach($chart as $k=> $val)
+            @foreach($rate as $k=> $val)
             	{{$k}} +'*',
             @endforeach
             ],

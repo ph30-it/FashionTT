@@ -6,11 +6,17 @@
 
 <div class="wrapper">
 	<h3 class="text-center">Hóa đơn chi tiết</h3>
+	@if($order[0]['status']==0)
 	<?php
-	$date = strtotime($date['created_at']);
-	$date = strtotime("+5 day", $date);
+	$date = strtotime($order[0]['created_at']);
+	$date = strtotime("+5 day", $date);	
 	?>
 	<div id="CountDownTimer" data-date="{{date('M d, Y h:i:s', $date)}}" style="width: 500px; height: 150px;margin:0 auto"></div>Trong vòng 5 ngày hàng sẽ được chuyển đến tận nơi!
+	@elseif($order[0]['status']==2)
+	<div class="row "><img src="{{asset('lib/public/images/error.png')}}" alt="" width="100px" class="img-responsive center-block"><p class="text-center" style="font-size:20px;font-weight: bold">Giao hàng thất bại hoặc bạn đã hủy đơn đặt hàng</p></div>
+	@else
+	<div class="row "><img src="{{asset('lib/public/images/success.png')}}" alt="" width="100px" class="img-responsive center-block"><p class="text-center" style="font-size:20px;font-weight: bold">Đã giao hàng thành công</p></div>
+	@endif
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -23,9 +29,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($data as $val)
+			<?php $i=1;?>
+			@foreach($order[0]['orderdetails'] as $val)
 			<tr>
-				<th scope="row">1</th>
+				<th scope="row">{{$i}}</th>
 				<td><img src="{{asset('lib/public/images_product')}}/{{$val['product']['image']}}" class="img-responsive zoom"  width="100px" title="Nhấn để phóng to ảnh">
 					<div id="overlay"></div>
 				</td>
@@ -34,10 +41,12 @@
 				<td>${{$val['price']}}</td>
 				<td>${{$val['price']*$val['qty']}}</td>
 				
-			</tr>	
+			</tr>
+			<?php $i++;?>	
 			@endforeach
 		</tbody>
 	</table>
+	<a href="{{route('list-tran')}}" title="" class="btn btn-primary">Back</a>
 	<script type="text/javascript">
 		$('.zoom').on('click', function() {
 			$('#overlay')
