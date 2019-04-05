@@ -3,7 +3,6 @@
 @section('content')
 <div class="ads-grid_shop">
 	<div class="shop_inner_inf">
-
 		<div class="side-bar col-md-3">
 			<div class="search-hotel">
 				<h3 class="agileits-sear-head">Search Here..</h3>
@@ -32,37 +31,6 @@
 					<?php menu($category); ?>
 				</ul>
 			</div>
-			{{-- <div class="left-side">
-				<h3 class="agileits-sear-head">Discount</h3>
-				<ul>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">5% or More</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">10% or More</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">20% or More</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">30% or More</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">50% or More</span>
-					</li>
-					<li>
-						<input type="checkbox" class="checked">
-						<span class="span">60% or More</span>
-					</li>
-				</ul>
-			</div> --}}
-			<!-- //discounts -->
-			<!-- reviews -->
 			<div class="customer-rev left-side">
 				<h3 class="agileits-sear-head">Customer Review</h3>
 				<ul>

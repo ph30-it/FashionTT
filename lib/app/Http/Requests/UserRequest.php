@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             //
-            'username'=>'required|min:6|max:16|unique:users,username',
+            'username'=>'required|min:6|max:16|unique:users,username|regex:/[^a-z0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/u',
             'password'=>'required|min:6|max:16|',
             'email'=>'required|email|unique:users,email',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
@@ -38,6 +38,7 @@ class UserRequest extends FormRequest
             'username.min' => 'Username phải từ 6 kí tự trở lên',
             'username.max' => 'Username phải từ 32 kí tự trở xuống',
             'username.unique' => 'Username đã tồn tại',
+            'username.regex'=>'Username không hợp lệ',
             'password.required'  => 'Bạn chưa điền tên mật khẩu',
             'password.min' => 'Password phải từ 6 kí tự trở lên',
             'password.max' => 'Password phải từ 32 kí tự trở xuống',
