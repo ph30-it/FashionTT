@@ -140,7 +140,7 @@
 						<div class="single_page">
 							<div class="bootstrap-tab-text-grids">
 								@if($comment)
-								<div class="bootstrap-tab-text-grid" style="max-height:500px;overflow: auto">
+								<div class="bootstrap-tab-text-grid comment-here" style="max-height:500px;overflow: auto">
 									@foreach($comment as $k => $val)
 									<?php 
 									if ($val['user']['avatar']=='') {
@@ -153,7 +153,7 @@
 									<div class="clearfix"></div>
 								</div>
 								@else
-								<div class="bootstrap-tab-text-grid">
+								<div class="bootstrap-tab-text-grid comment-here">
 									<p style="font-size:20px;color:green;text-align: center;">Hãy là người đầu tiên bình luận sản phẩm này</p>
 								</div>
 								@endif
@@ -301,7 +301,7 @@
 						html+='<p style="background-color:#e9ebee;border-radius:10px"><img src="http://localhost/FashionTT/lib/public/images/'+value.user.avatar+'" width="50px"><b>'+value.user.username+' : </b>'+value.content+'</p><a  href="" title="'+value.created_at+'">'+moment(value.created_at).fromNow();+'</a>';
 					});
 					html+='<div class="clearfix"></div>';
-					$('.bootstrap-tab-text-grid').html(html);
+					$('.comment-here').html(html);
 				}
 			});
 		});
@@ -331,17 +331,6 @@
 		$('.flexslider').flexslider({
 			animation: "slide",
 			controlNav: "thumbnails"
-		});
-	});
-</script>
-<script type="text/javascript">
-	jQuery(document).ready(function ($) {
-
-		$(".scroll").click(function (event) {
-			event.preventDefault();
-			$('html,body').animate({
-				scrollTop: $(this.hash).offset().top
-			}, 1000);
 		});
 	});
 </script>

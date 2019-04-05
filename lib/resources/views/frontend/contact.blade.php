@@ -12,18 +12,21 @@
 			<p class="head_para">Add Some Description</p>
 			<div class="inner_section_w3ls">
 				<div class="col-md-7 contact_grid_right">
+					@include('errors.error')
 					<h6>Please fill this form to contact with us.</h6>
-					<form action="#" method="post">
+
+					<form action="{{route('contacted')}}" method="POST">
+						@csrf
 						<div class="col-md-6 col-sm-6 contact_left_grid">
-							<input type="text" name="Name" placeholder="Name" required="">
-							<input type="email" name="Email" placeholder="Email" required="">
+							<input type="text" name="name" placeholder="Name" >
+							<input type="text" name="email" placeholder="Email" >
 						</div>
 						<div class="col-md-6 col-sm-6 contact_left_grid">
-							<input type="text" name="Telephone" placeholder="Telephone" required="">
-							<input type="text" name="Subject" placeholder="Subject" required="">
+							<input type="text" name="phone" placeholder="Telephone" >
+							<input type="text" name="subject" placeholder="Subject" >
 						</div>
 						<div class="clearfix"> </div>
-						<textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+						<textarea name="message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" >Message...</textarea>
 						<input type="submit" value="Submit">
 						<input type="reset" value="Clear">
 					</form>

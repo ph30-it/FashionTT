@@ -10,7 +10,8 @@ Route::POST('checkout','CheckoutController@postCheckout')->name('checkout');
 Route::get('payment','CheckoutController@payment')->name('payment');
 Route::POST('sendmail','CheckoutController@sendMail')->name('sendmail');
 Route::get('single/{id}','HomeController@single')->name('single');
-Route::view('contact', 'frontend.contact')->name('contact');
+Route::get('contact', 'ContactController@index')->name('contact');
+Route::post('contacted','ContactController@contact')->name('contacted');
 Route::view('about', 'frontend.about')->name('about');
 Route::POST('rating', 'admin\ProductController@rating')->name('rating');
 Route::get('ADMIN',function(){
